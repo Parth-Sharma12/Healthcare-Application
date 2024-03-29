@@ -14,14 +14,20 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://192.168.0.109:8082/api/user/authenticate",
+        "https://9e50-119-161-98-68.ngrok-free.app/api/user/authenticate",
         userLoginDetails
       );
       if (response.status === 200) {
-        window.localStorage.setItem("authToken", response.data);
-        navigate("/DoctorHome");
+        console.log(response.data);
+        const authToken = {
+          accessToken: response.data.accessToken,
+          tokenType: response.data.tokenType,
+          userId: response.data.userId
+        };
+        window.localStorage.setItem("authToken", JSON.stringify(authToken));
+        navigate("/home");
       }
-    } 
+    }
     catch (error) {
       console.error("Error posting data:", error.response.status);
       let errorStatus = error.response.status;

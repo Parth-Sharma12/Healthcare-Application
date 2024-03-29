@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../CSS/Register.css";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaLock, FaPhone, FaPagelines, FaNotesMedical, FaDollarSign, FaPlus} from "react-icons/fa";
-import { MdEmail} from "react-icons/md";
+import { FaUser, FaLock, FaPhone, FaPagelines, FaNotesMedical, FaDollarSign, FaPlus } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { GrLicense } from "react-icons/gr";
 import ErrorModal from "../Modals/ErrorModal";
 import axios from "axios";
@@ -36,14 +36,19 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://192.168.0.109:8082/api/doctor/register",
+        "https://9e50-119-161-98-68.ngrok-free.app/api/doctor/register",
         doctorDetails
       );
       console.log(response.data);
       console.log(response.status);
       if (response.status === 200) {
-        window.localStorage.setItem("authToken", response.data.accessToken);
-        navigate("/DoctorHome");
+        const authToken = {
+          accessToken: response.data.accessToken,
+          tokenType: response.data.tokenType,
+          userId: response.data.userId
+        };
+        window.localStorage.setItem("authToken", JSON.stringify(authToken));
+        navigate("/home");
       }
     } catch (error) {
       if (error.response.status === 409) {
@@ -73,7 +78,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaUser className="icon-register"/>
+              <FaUser className="icon-register" />
             </div>
             <div className="form-group col-md-4">
               <input
@@ -85,7 +90,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaUser className="icon-register"/>
+              <FaUser className="icon-register" />
             </div>
             <div className="form-group col-md-4">
               <input
@@ -97,7 +102,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaUser className="icon-register"/>
+              <FaUser className="icon-register" />
             </div>
           </div>
 
@@ -112,7 +117,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <MdEmail className="icon-register"/>
+              <MdEmail className="icon-register" />
             </div>
             <div className="form-group col-md-6">
               <input
@@ -124,7 +129,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaPhone className="icon-register"/>
+              <FaPhone className="icon-register" />
             </div>
           </div>
 
@@ -139,7 +144,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaLock className="icon-register"/>
+              <FaLock className="icon-register" />
             </div>
             <div className="form-group col-md-4">
               <input
@@ -151,7 +156,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaPagelines className="icon-register"/>
+              <FaPagelines className="icon-register" />
             </div>
             <div className="form-group col-md-4 input-box-register">
               <input
@@ -162,7 +167,7 @@ export default function Register() {
                 value={doctorDetails.licenceNo}
                 onChange={handleChange}
               />
-              <GrLicense className="icon-register"/>
+              <GrLicense className="icon-register" />
             </div>
           </div>
 
@@ -177,7 +182,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               ></textarea>
-              <FaNotesMedical className="icon-register"/>
+              <FaNotesMedical className="icon-register" />
             </div>
           </div>
 
@@ -192,7 +197,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaDollarSign className="icon-register-disturbed"/>
+              <FaDollarSign className="icon-register-disturbed" />
             </div>
             <div className="form-group col-md-4">
               <input
@@ -204,7 +209,7 @@ export default function Register() {
                 onChange={handleChange}
                 required
               />
-              <FaPlus className="icon-register-disturbed"/>
+              <FaPlus className="icon-register-disturbed" />
             </div>
             <div className="form-group col-md-4">
               <select
@@ -226,20 +231,20 @@ export default function Register() {
 
           <div className="form-group">
             <div className="form-check">
-            <label
+              <label
                 className="form-check-label"
                 htmlFor="applySeniorDoctorCheck"
               >
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="applySeniorDoctorCheck"
-                name="isSenior"
-                checked={doctorDetails.isSenior}
-                onChange={handleChange}
-              />
-              Applying as Senior Doctor
-            </label>
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="applySeniorDoctorCheck"
+                  name="isSenior"
+                  checked={doctorDetails.isSenior}
+                  onChange={handleChange}
+                />
+                Applying as Senior Doctor
+              </label>
             </div>
           </div>
           <button type="submit" className="btn-design">
@@ -254,6 +259,6 @@ export default function Register() {
           )}
         </form>
       </div>
-      </div>
+    </div>
   );
 }

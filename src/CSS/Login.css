@@ -3,17 +3,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background: url("C:\Users\LENOVO\Desktop\HAD FINAL\doctor\src\Images\3133086.jpg")
-    no-repeat;
+  background: url("C:\Users\LENOVO\Desktop\HAD FINAL\doctor\src\Images\3133086.jpg") no-repeat;
   background-size: cover;
   background-position: center;
 }
+
 .wrapper {
   width: 420px;
   background: transparent;
@@ -32,12 +33,14 @@
   font-weight: 100;
   font-style: normal;
 }
+
 .wrapper .input-box {
   position: relative;
   width: 100%;
   height: 50px;
   margin: 30px 0;
 }
+
 .input-box input {
   width: 100%;
   height: 100%;
@@ -49,9 +52,11 @@
   color: #fff;
   padding: 20px 45px 20px 20px;
 }
+
 .input-box input::placeholder {
   color: #fff;
 }
+
 .input-box .icon {
   position: absolute;
   right: 20px;
@@ -59,23 +64,28 @@
   transform: translateY(-50%);
   font-size: 16px;
 }
+
 .wrapper .remember-forgot {
   display: flex;
   justify-content: space-between;
   font-size: 14.5px;
   margin: -15px 0 15px;
 }
+
 .remember-forgot label input {
   accent-color: #fff;
   margin-right: 4px;
 }
+
 .remember-forgot a {
   color: #fff;
   text-decoration: none;
 }
+
 .remember-forgot a:hover {
   text-decoration: underline;
 }
+
 .wrapper button {
   width: 100%;
   height: 45px;
@@ -89,16 +99,19 @@
   color: #333;
   font-weight: 700;
 }
+
 .wrapper .register-link {
   font-size: 14.5px;
   text-align: center;
   margin: 20px 0 15px;
 }
+
 .register-link p a {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
 }
+
 .register-link p a:hover {
   text-decoration: underline;
 }

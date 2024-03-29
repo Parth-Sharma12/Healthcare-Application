@@ -26,11 +26,13 @@
   color: black;
   border-radius: 10px;
   padding: 1.35% 5%;
-  margin: 20px auto; /* Adjusted margin */
+  margin: 20px auto;
+  /* Adjusted margin */
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .h1 {
   text-align: center;
   font-family: "Poppins", sans-serif;
@@ -48,24 +50,30 @@
   border-radius: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  font-size: 1.4vw; /* Adjusted font-size */
+  font-size: 1.4vw;
+  /* Adjusted font-size */
   color: #333;
   font-weight: 700;
 }
 
 .form-control,
 .form-select {
-  width: calc(106% - 20px); /* Adjusted width */
+  width: calc(106% - 20px);
+  /* Adjusted width */
   background: transparent !important;
   outline: none !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 40px;
-  font-size: 1vw; /* Adjusted font-size */
+  font-size: 1vw;
+  /* Adjusted font-size */
   color: #fff !important;
-  padding: 2.5% 4%; /* Adjusted padding */
+  padding: 2.5% 4%;
+  /* Adjusted padding */
   position: relative;
-  height: 7vh; /* Adjusted height */
-  margin: 2vh auto; /* Adjusted margin */
+  height: 7vh;
+  /* Adjusted height */
+  margin: 2vh auto;
+  /* Adjusted margin */
 }
 
 .form-control::placeholder {
@@ -85,14 +93,16 @@
   right: 9%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1vw; /* Adjusted font-size */
+  font-size: 1vw;
+  /* Adjusted font-size */
   color: #fff;
 }
-.icon-register-disturbed{
+
+.icon-register-disturbed {
   position: absolute;
   right: 14%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1vw; /* Adjusted font-size */
+  font-size: 1vw;
   color: #fff;
 }
