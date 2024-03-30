@@ -13,9 +13,8 @@ export default function Home() {
     try {
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
-      const userId = authToken ? authToken.userId : '';
-      //const token='';
-      const response = await axios.get(`http://192.168.39.236:8082/api/appointments/doctor-appointments?userId=${userId}`, {
+      const userId = parseInt(authToken.userId);
+      const response = await axios.get(`http://192.168.233.236:8082/api/appointment/doctor-appointments/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',
@@ -23,15 +22,16 @@ export default function Home() {
       });
       console.log(response.data);
       const extractedAppointments = response.data.map((Appointment, index) => ({
-        id: Appointment.appointment_id,
-        fullName: `${Apppointment.Patient.first_name || ''} ${Appointment.Patient.middle_name || ''} ${Appointment.Patient.lastName || ''}`,
-        gender: Appointment.Patient.gender,
+        id: Appointment.appointmentId,
+        //fullName: `${Appointment.Patient.first_name || ''} ${Appointment.Patient.middle_name || ''} ${Appointment.Patient.lastName || ''}`,
+        //gender: Appointment.Patient.gender,
         date: Appointment.date,
-        start_time: Appointment.start_time,
-        end_time: Appointment.end_tim,
-        age: Appointment.Patient.age,
+        start_time: Appointment.startTime,
+        end_time: Appointment.endTime,
+        //age: Appointment.Patient.age,
         description: Appointment.description
       }));
+      //console.log(extractedAppointments);
       setAppointments(extractedAppointments);
     } catch (error) {
       console.error('Error fetching data:', error.message);
@@ -51,6 +51,7 @@ export default function Home() {
       field: 'age',
       headerName: 'Age',
       type: 'number',
+      
       width: 130,
     },
     { field: 'gender', headerName: 'Gender', width: 130 },
@@ -79,7 +80,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <button class="logoutButton" onClick={handleLogout}>Logout</button>
+      <button className="logoutButton" onClick={handleLogout}>Logout</button>
     </div>
   )
 }

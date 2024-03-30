@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://9e50-119-161-98-68.ngrok-free.app/api/user/authenticate",
+        "http://192.168.233.236:8082/api/user/authenticate",
         userLoginDetails
       );
       if (response.status === 200) {
