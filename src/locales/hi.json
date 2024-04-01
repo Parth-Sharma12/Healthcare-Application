@@ -1,0 +1,33 @@
+{
+    "loginPage": {
+      "title": "लॉगिन",
+      "username": "उपयोगकर्ता नाम",
+      "password": "पासवर्ड",
+      "loginButton": "लॉगिन",
+      "acceptTerms": "शर्तें स्वीकार करें",
+      "forgotPassword": "पासवर्ड भूल गए?",
+      "noAccount": "खाता नहीं है?",
+      "registerHere": "यहाँ पंजीकरण करें"
+    },
+    "registerPage": {
+      "title": "आज ही परिवर्तन करना शुरू करें!!",
+      "firstName": "पहला नाम",
+      "middleName": "मध्य नाम",
+      "lastName": "अंतिम नाम",
+      "email": "ईमेल",
+      "mobileNo": "मोबाइल नंबर",
+      "password": "पासवर्ड",
+      "age": "उम्र",
+      "licenseNumber": "लाइसेंस नंबर",
+      "description": "विवरण",
+      "consultationFee": "परामर्श शुल्क",
+      "experience": "अनुभव",
+      "gender": "लिंग",
+      "male": "पुरुष",
+      "female": "महिला",
+      "others": "अन्य",
+      "seniorDoctor": "वरिष्ठ चिकित्सक के रूप में आवेदन करें",
+      "registerButton": "रजिस्टर",
+      "choose": "चुनें"
+    }
+  }

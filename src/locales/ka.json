@@ -1,0 +1,34 @@
+{
+    "loginPage": {
+      "title": "ಲಾಗಿನ್",
+      "username": "ಬಳಕೆದಾರರ ಹೆಸರು",
+      "password": "ಪಾಸ್‌ವರ್ಡ್",
+      "loginButton": "ಲಾಗಿನ್",
+      "acceptTerms": "ನಿಬಂಧನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ",
+      "forgotPassword": "ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿರುವುದು?",
+      "noAccount": "ಖಾತೆ ಇಲ್ಲಿದೆಯೆ?",
+      "registerHere": "ಇಲ್ಲಿ ನೆನಪಿಗೆ ನೋಂದಣಿ ಮಾಡಿ"
+    },
+    "registerPage": {
+        "title": "ಇಂದು ಪರಿವರ್ತನೆ ಆರಂಭಿಸಿ!!",
+        "firstName": "ಮೊದಲ ಹೆಸರು",
+        "middleName": "ಮಧ್ಯದ ಹೆಸರು",
+        "lastName": "ಕೊನೆಯ ಹೆಸರು",
+        "email": "ಇಮೇಲ್",
+        "mobileNo": "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",
+        "password": "ಪಾಸ್‌ವರ್ಡ್",
+        "age": "ವಯಸ್ಸು",
+        "licenseNumber": "ಲೈಸೆನ್ ಸಂಖ್ಯೆ",
+        "description": "ವಿವರಣೆ",
+        "consultationFee": "ಪರಾಮರ್ಶ ಶುಲ್ಕ",
+        "experience": "ಅನುಭವ",
+        "gender": "ಲಿಂಗ",
+        "male": "ಗಂಡು",
+        "female": "ಹೆಣ್ಣು",
+        "others": "ಇತರೆ",
+        "seniorDoctor": "ವಯೋವೃದ್ಧ ಡಾಕ್ಟರ್ ಆಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸುತ್ತಿದ್ದೀರಾ",
+        "registerButton": "ನೆನಪಿಗೆ ನೋಂದಣಿ ಮಾಡಿ",
+        "choose": "ಆಯ್ಕೆ ಮಾಡಿ"
+      }
+  }
+  

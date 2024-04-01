@@ -14,7 +14,14 @@
   background-size: cover;
   background-position: center;
 }
-
+.language-selection {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
 .wrapper {
   width: 420px;
   background: transparent;

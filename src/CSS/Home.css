@@ -2,11 +2,12 @@
   height: 80%;
   width: 50%;
   background-color: white;
-  margin: 50px auto;
+  margin: 10px auto;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .logoutButton {
+  margin-left: 48%;
   background-color: #f44336;
   color: white;
   padding: 10px 20px;
@@ -19,4 +20,28 @@
 
 .logoutButton:hover {
   background-color: #d32f2f;
+}
+
+.calender{
+  width:60%;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto; 
+  border: 2px solid red;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .calender {
+    width: 40%;
+  }
+}
+@media (max-width: 480px) {
+  .calender {
+    width: 20%;
+  }
+}
+.orange-date {
+  background-color: orange !important; /* Change the background color to orange */
+  color: pink; /* Change the text color to white */
+  border-radius: 50%; /* Make the date circle rounded */
 }

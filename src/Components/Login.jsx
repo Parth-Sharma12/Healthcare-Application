@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../CSS/Login.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 export default function Login() {
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [userLoginDetails, setUserLoginDetails] = useState({
     email: "",
     password: "",
   });
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('selectedLanguage', lng);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -34,19 +42,45 @@ export default function Login() {
       console.log(errorStatus);
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserLoginDetails({ ...userLoginDetails, [name]: value });
   };
+
+  const handleLanguageChange = (lng) => {
+    setSelectedLanguage(lng);
+    changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    changeLanguage(selectedLanguage);
+  }, []);
+
   return (
     <div className="login-wrapper">
+      <div className="language-selection">
+        <label>
+          <input type="radio" value="hi" onChange={() => handleLanguageChange('hi')} checked={selectedLanguage === 'hi'} />
+          Hindi
+        </label>
+        <label>
+          <input type="radio" value="en" onChange={() => handleLanguageChange('en')} checked={selectedLanguage === 'en'} />
+          English
+        </label>
+        <label>
+          <input type="radio" value="ka" onChange={() => handleLanguageChange('ka')} checked={selectedLanguage === 'ka'} />
+          Kannada
+        </label>
+      </div>
       <div className="wrapper">
         <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
+          <h1>{t('loginPage.title')}</h1>
           <div className="input-box">
             <input
               type="email"
-              placeholder="Username"
+              placeholder={t('loginPage.username')}
               name="email"
               value={userLoginDetails.email}
               onChange={handleChange}
@@ -57,7 +91,7 @@ export default function Login() {
           <div className="input-box">
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t('loginPage.password')}
               name="password"
               value={userLoginDetails.password}
               onChange={handleChange}
@@ -68,14 +102,14 @@ export default function Login() {
           <div className="remember-forgot">
             <label>
               <input type="checkbox" />
-              Accept T&C
+              {t('loginPage.acceptTerms')}
             </label>
-            <Link to="/home">Forgot Password?</Link>
+            <Link to="/home">{t('loginPage.forgotPassword')}</Link>
           </div>
-          <button type="submit">Login</button>
+          <button type="submit">{t('loginPage.loginButton')}</button>
           <div className="register-link">
             <p>
-              Dont have an account? <Link to="/register">Register here</Link>
+              {t('loginPage.noAccount')} <Link to="/register">{t('loginPage.registerHere')}</Link>
             </p>
           </div>
         </form>

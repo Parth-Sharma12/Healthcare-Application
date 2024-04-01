@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../CSS/Register.css";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaPhone, FaPagelines, FaNotesMedical, FaDollarSign, FaPlus } from "react-icons/fa";
@@ -6,7 +6,10 @@ import { MdEmail } from "react-icons/md";
 import { GrLicense } from "react-icons/gr";
 import ErrorModal from "../Modals/ErrorModal";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 export default function Register() {
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [doctorDetails, setDoctorDetails] = useState({
@@ -31,6 +34,22 @@ export default function Register() {
       type === "checkbox" || type === "radio" ? checked : value;
     setDoctorDetails({ ...doctorDetails, [name]: inputValue });
   };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('selectedLanguage', lng);
+  };
+
+  const handleLanguageChange = (lng) => {
+    setSelectedLanguage(lng);
+    changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    const selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    changeLanguage(selectedLanguage);
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,15 +83,29 @@ export default function Register() {
   };
   return (
     <div className="wrapper-register-main">
+      <div className="language-selection">
+        <label>
+          <input type="radio" value="hi" onChange={() => handleLanguageChange('hi')} checked={selectedLanguage === 'hi'} />
+          Hindi
+        </label>
+        <label>
+          <input type="radio" value="en" onChange={() => handleLanguageChange('en')} checked={selectedLanguage === 'en'} />
+          English
+        </label>
+        <label>
+          <input type="radio" value="ka" onChange={() => handleLanguageChange('ka')} checked={selectedLanguage === 'ka'} />
+          Kannada
+        </label>
+      </div>
       <div className="wrapper-register">
-        <h1 className="h1">Start Transforming Today!!</h1>
+        <h1 className="h1">{t('registerPage.title')}</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group col-md-4">
               <input
                 type="text"
                 className="form-control"
-                placeholder="First Name"
+                placeholder={t('registerPage.firstName')}
                 name="firstName"
                 value={doctorDetails.firstName}
                 onChange={handleChange}
@@ -84,7 +117,7 @@ export default function Register() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Middle Name"
+                placeholder={t('registerPage.middleName')}
                 name="middleName"
                 value={doctorDetails.middleName}
                 onChange={handleChange}
@@ -96,7 +129,7 @@ export default function Register() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Last Name"
+                placeholder={t('registerPage.lastName')}
                 name="lastName"
                 value={doctorDetails.lastName}
                 onChange={handleChange}
@@ -111,7 +144,7 @@ export default function Register() {
               <input
                 type="email"
                 className="form-control"
-                placeholder="Email"
+                placeholder={t('registerPage.email')}
                 name="email"
                 value={doctorDetails.email}
                 onChange={handleChange}
@@ -123,7 +156,7 @@ export default function Register() {
               <input
                 type="tel"
                 className="form-control"
-                placeholder="Mobile No."
+                placeholder={t('registerPage.mobileNo')}
                 name="mobileNo"
                 value={doctorDetails.mobileNo}
                 onChange={handleChange}
@@ -138,7 +171,7 @@ export default function Register() {
               <input
                 type="password"
                 className="form-control"
-                placeholder="Password"
+                placeholder={t('registerPage.password')}
                 name="password"
                 value={doctorDetails.password}
                 onChange={handleChange}
@@ -150,7 +183,7 @@ export default function Register() {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Age"
+                placeholder={t('registerPage.age')}
                 name="age"
                 value={doctorDetails.age}
                 onChange={handleChange}
@@ -162,7 +195,7 @@ export default function Register() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Licence Number"
+                placeholder={t('registerPage.licenseNumber')}
                 name="licenceNo"
                 value={doctorDetails.licenceNo}
                 onChange={handleChange}
@@ -176,7 +209,7 @@ export default function Register() {
               <textarea
                 className="form-control"
                 rows="3"
-                placeholder="Description"
+                placeholder={t('registerPage.description')}
                 name="description"
                 value={doctorDetails.description}
                 onChange={handleChange}
@@ -191,7 +224,7 @@ export default function Register() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Consultation Fee"
+                placeholder={t('registerPage.consultationFee')}
                 name="consultationFee"
                 value={doctorDetails.consultationFee}
                 onChange={handleChange}
@@ -203,7 +236,7 @@ export default function Register() {
               <input
                 type="number"
                 className="form-control"
-                placeholder="Experience"
+                placeholder={t('registerPage.experience')}
                 name="experience"
                 value={doctorDetails.experience}
                 onChange={handleChange}
@@ -220,11 +253,11 @@ export default function Register() {
                 onChange={handleChange}
               >
                 <option value="" disabled>
-                  Choose
+                  {t('registerPage.choose')}
                 </option>
-                <option value="1">Male</option>
-                <option value="2">Female</option>
-                <option value="3">Others</option>
+                <option value="1">{t('registerPage.male')}</option>
+                <option value="2">{t('registerPage.female')}</option>
+                <option value="3">{t('registerPage.others')}</option>
               </select>
             </div>
           </div>
@@ -243,12 +276,12 @@ export default function Register() {
                   checked={doctorDetails.isSenior}
                   onChange={handleChange}
                 />
-                Applying as Senior Doctor
+                {t('registerPage.seniorDoctor')}
               </label>
             </div>
           </div>
           <button type="submit" className="btn-design">
-            Register
+            {t('registerPage.registerButton')}
           </button>
           {error && (
             <ErrorModal

@@ -1,0 +1,33 @@
+{
+    "loginPage": {
+      "title": "Login",
+      "username": "Username",
+      "password": "Password",
+      "loginButton": "Login",
+      "acceptTerms": "Accept T&C",
+      "forgotPassword": "Forgot Password?",
+      "noAccount": "Don't have an account?",
+      "registerHere": "Register here"
+    },
+    "registerPage": {
+      "title": "Start Transforming Today!!",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "mobileNo": "Mobile No.",
+      "password": "Password",
+      "age": "Age",
+      "licenseNumber": "License Number",
+      "description": "Description",
+      "consultationFee": "Consultation Fee",
+      "experience": "Experience",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "others": "Others",
+      "seniorDoctor": "Applying as Senior Doctor",
+      "registerButton": "Register",
+      "choose":"Choose"
+    }
+  }

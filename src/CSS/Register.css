@@ -94,7 +94,6 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1vw;
-  /* Adjusted font-size */
   color: #fff;
 }
 
@@ -105,4 +104,18 @@
   transform: translateY(-50%);
   font-size: 1vw;
   color: #fff;
+}
+.language-selection {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 768px) {
+  .language-selection {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
