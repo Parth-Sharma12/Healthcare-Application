@@ -5,15 +5,9 @@ import '../CSS/Home.css'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Navbar from './Navbar'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import dayjs from 'dayjs';
+import CalenderComponent from './CalenderComponent'
+import AppointmentTable from './AppointmentTable'
 export default function Home() {
-  const orangeDates = ['2024-04-01', '2024-04-05', '2024-04-15'].map(date => new Date(date));
-  const [selectedDate, setSelectedDate] = useState(null);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
@@ -79,15 +73,11 @@ export default function Home() {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
-  const onClickDay = (date) => {
-    console.log("Selected date:", date);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const handleDateSelect = (date) => {
     setSelectedDate(date);
+    console.log("Selected date by you is:", date);
   };
-  // const handleDateChange = (date) => {
-  //   // Do something with the selected date
-  //   console.log('Selected date:', date);
-  // };
-  // Custom renderDay function to render badges for specific dates
   return (
     <>
     <Navbar/>
@@ -107,16 +97,11 @@ export default function Home() {
         </div>
       </div>
       <button className="logoutButton" onClick={handleLogout}>Logout</button> */}
-      <div className="calender">
-      {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <StaticDatePicker orientation="portrait" markedDates={orangeDates}/>
-    </LocalizationProvider> */}
-     <Calendar onClickDay={onClickDay}
-            tileClassName={({ date }) => {
-              // Check if the date is in the orangeDates array
-              return orangeDates.some(d => dayjs(d).isSame(date, 'day')) ? 'orange-date' : null;
-            }}
-          />
+      <div className="middlePageContainer">
+        <CalenderComponent onDateSelect={handleDateSelect}/>
+        {selectedDate && (<div className="appointment-slots-table">
+        <AppointmentTable date={selectedDate} />
+        </div>)}
       </div>
     </div>
     </>

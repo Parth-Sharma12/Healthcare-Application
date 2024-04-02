@@ -22,26 +22,20 @@
   background-color: #d32f2f;
 }
 
-.calender{
-  width:60%;
-  margin-top: 10vh;
-  margin-left: auto;
-  margin-right: auto; 
-  border: 2px solid red;
+.middlePageContainer{
+  display: flex;
+  align-items: center;
+  margin-top: 15vh;
+  margin-left: 2vh;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.appointment-slots-table{
+  height:30vw;
+  width:30vw;
+  justify-content: space-evenly;
+  height: 60vh;
+  width:25%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
-}
-@media (max-width: 768px) {
-  .calender {
-    width: 40%;
-  }
-}
-@media (max-width: 480px) {
-  .calender {
-    width: 20%;
-  }
-}
-.orange-date {
-  background-color: orange !important; /* Change the background color to orange */
-  color: pink; /* Change the text color to white */
-  border-radius: 50%; /* Make the date circle rounded */
 }

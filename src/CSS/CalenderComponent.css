@@ -1,0 +1,18 @@
+.orange-date {
+    background-color: rgb(88, 163, 195) !important; /* Change the background color to orange */
+    color: black; /* Change the text color to white */
+    border-radius: 50%; /* Make the date circle rounded */
+  }
+  .react-calendar{
+    width: 45vw !important;
+    max-width: 100%;
+    background: white;
+    border: 1px solid #a0a096;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 2.125em !important;
+    /* border-radius: 3%; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.react-calendar__tile--now {
+    background: none;
+}
