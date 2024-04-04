@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../CSS/Login.css";
+import "../Login/Login.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
@@ -22,7 +22,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.233.236:8082/api/user/authenticate",
+        "http://192.168.53.236:8082/api/user/authenticate",
         userLoginDetails
       );
       if (response.status === 200) {

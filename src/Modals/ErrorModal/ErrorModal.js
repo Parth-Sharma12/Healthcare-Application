@@ -1,5 +1,5 @@
 import React from 'react';
-import '../CSS/ErrorModal.css';
+import '../ErrorModal/ErrorModal.css';
 const ErrorModal = ({ title, message, onClose }) => {
   return (
     <div className="error-modal">

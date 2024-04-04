@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
-import { FaFacebook } from "react-icons/fa"
-import '../CSS/Navbar.css'
+import './Navbar.css'
 import { GiHamburgerMenu } from "react-icons/gi"
 import {Link} from 'react-router-dom'
 import { FaUser } from "react-icons/fa"
@@ -28,10 +27,10 @@ export default function Navbar() {
                 <Link to="/temp">Forums</Link>
                 </li>
                 <li>
-                <Link to="/temp">Home</Link>
+                <Link to="/temp">Add Posts</Link>
                 </li>
                 <li>
-                <Link to="/temp">Home</Link>
+                <Link to="/temp">Patient History</Link>
                 </li>
             </ul>
         </div>
@@ -42,10 +41,10 @@ export default function Navbar() {
                     {/* <Link to="/"><FaFacebook/></Link> */}
                 </li>
                 <li>
-                <Link to="/"><p>View Profile</p></Link>
+                <Link to="/"><p>Your Profile</p></Link>
                 </li>
                 <li>
-                <FaUser/>
+                <FaUser style={{color:'#BC7FCD'}}/>
                 </li>
             </ul>
             <div className="hamburger-menu">

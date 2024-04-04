@@ -1,6 +1,6 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
-import '../CSS/AppointmentTable.css'
+import '../Appointments/AppointmentTable.css'
 export default function AppointmentTable({date}) {
 const columns = [
   { field: 'slot', headerName: 'Total Slots', width: 130 }, 
@@ -33,14 +33,14 @@ const getRowClassName = (params) => {
 };
   return (
    <>
-    <div style={{ height: 400, width: '100%'}}>
+    <div style={{ height: 350, width: '100%'}}>
       <DataGrid
         rows={rows}
         columns={columns}
         getRowClassName={getRowClassName} // Use getRowClassName prop to apply custom row class
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5},
+            paginationModel: { page: 0, pageSize: 4},
           }, 
         }}
         pageSizeOptions={[5, 10]}

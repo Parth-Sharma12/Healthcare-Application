@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "../CSS/Register.css";
+import "../Register/Register.css";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaPhone, FaPagelines, FaNotesMedical, FaDollarSign, FaPlus } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { GrLicense } from "react-icons/gr";
-import ErrorModal from "../Modals/ErrorModal";
+import ErrorModal from "../../Modals/ErrorModal/ErrorModal";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
 export default function Register() {
@@ -55,7 +55,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://9e50-119-161-98-68.ngrok-free.app/api/doctor/register",
+        "http://192.168.53.236:8082/api/doctor/register",
         doctorDetails
       );
       console.log(response.data);

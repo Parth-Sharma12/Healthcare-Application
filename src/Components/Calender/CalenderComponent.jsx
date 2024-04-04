@@ -2,7 +2,7 @@ import {React,useState} from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import dayjs from 'dayjs'
-import '../CSS/CalenderComponent.css'
+import '../Calender/CalenderComponent.css'
 export default function CalenderComponent({onDateSelect}) {
     const orangeDates = ['2024-04-01', '2024-04-05', '2024-04-15'].map(date => new Date(date));
     const [selectedDate, setSelectedDate] = useState(null);
