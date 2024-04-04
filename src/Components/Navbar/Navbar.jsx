@@ -21,7 +21,7 @@ export default function Navbar() {
           }>
             <ul>
                 <li>
-                    <Link to="/temp">Home</Link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
                 <Link to="/temp">Forums</Link>
@@ -30,7 +30,7 @@ export default function Navbar() {
                 <Link to="/temp">Add Posts</Link>
                 </li>
                 <li>
-                <Link to="/temp">Patient History</Link>
+                <Link to="/ViewPosts">View Posts</Link>
                 </li>
             </ul>
         </div>

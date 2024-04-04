@@ -1,0 +1,52 @@
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .comment-modal{
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+  }
+  .close-button {
+    float: right;
+    cursor: pointer;
+    border: none;
+    background: none;
+    left: 13vw;
+    position: relative;
+  }
+  
+  .modal-content{
+    margin-top: 20px;
+  }
+  
+  .comment {
+    margin-bottom: 20px;
+  }
+  
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+  }
+  .comment-time {
+    color: #888;
+    font-size: 0.9em;
+  }
+  
+  .comment-body {
+    margin-top: 10px;
+  }    

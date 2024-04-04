@@ -8,7 +8,7 @@ export default function CalenderComponent({onDateSelect}) {
     const [selectedDate, setSelectedDate] = useState(null);
     const onClickDay = (date) => {
       const formattedDate = formatDateToYYYYMMDD(date);
-      //console.log("Selected date:", formattedDate);
+      console.log("Selected date:", formattedDate);
       setSelectedDate(formattedDate);
       onDateSelect(formattedDate);
       };
