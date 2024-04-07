@@ -12,13 +12,13 @@ i18n
   .init({
     resources: {
       en: {
-        translation: require('../src/locales/en.json')
+        translation: require('../src/Doctor/locales/en.json')
       },
       hi: {
-        translation: require('../src/locales/hi.json')
+        translation: require('../src/Doctor/locales/hi.json')
       },
       ka: {
-        translation: require('../src/locales/ka.json')
+        translation: require('../src/Doctor/locales/ka.json')
       }
     },
     fallbackLng: 'en',

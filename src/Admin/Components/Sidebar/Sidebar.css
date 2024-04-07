@@ -1,0 +1,59 @@
+.mainSidebarContainer {
+    flex: 0.8;
+    background-color: white;
+    height: 100vh;
+}
+
+.liContainer {
+    display: flex;
+    align-items: center;
+    margin-top: -7px;
+}
+
+.ulContainer {
+    margin-top: 30px;
+    margin-left: 30px;
+    line-height: 2rem;
+}
+
+.menu {
+    display: flex;
+    color: rgb(66, 71, 75);
+    margin-left: 3px;
+    margin-bottom: 2.5vh;
+}
+
+.sidebarIcons {
+    width: 20px;
+    height: 20px;
+}
+
+.itemNames {
+    margin-left: 10px;
+    color: rgb(70, 76, 81);
+}
+
+.RequestContainer {
+    display: flex;
+    margin-left: 30px;
+    padding: 10px;
+    background-color: rgb(61, 65, 63, 0.115);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.RequestContainer a {
+    text-decoration: none;
+    color: black;
+}
+
+.RequestTitle {
+    font-size: 14px;
+    color: rgb(70, 76, 81);
+    margin-left: 30px;
+}
+
+.mainScheduledContainer {
+    margin-top: 80px;
+}

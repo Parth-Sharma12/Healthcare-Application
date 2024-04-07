@@ -1,0 +1,164 @@
+.navbar{
+    margin-top: -15px;
+    width: 1665px;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px; /* Increase padding for more space */
+    font-size: 25px;
+    font-family:serif;
+}
+.navbar-brand,.navbar-toggler{
+    margin-left: 5px;
+    font-size: 30px; /* Increase font size */
+}
+
+/* AdminPanel.css */
+
+/* Navbar style */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+
+  /* Center the nav items */
+  .navbar-nav {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-item {
+    margin-right: 100px; /* Adjust the margin as needed */
+  }
+  
+  /* Adjust dropdown position if needed */
+  .nav-item.dropdown {
+    position: relative;
+    margin-right: 250px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  .vertical-column{
+    height: 705px;
+    background-color: rgb(207, 60, 209);
+    width: 150px;
+    padding: 64px;
+  }
+  .logo{
+    width: 100px;
+    height: 80px;
+  }
+  .data{
+    margin-left: 400px;
+    background-color: rgb(221, 233, 244);
+    
+  }
+  .data1{
+    width: 800px;
+    height: 200px;
+    margin-top: 100px;
+    margin-bottom: 80px;
+  }
+
+  .responder-content{
+    display: flex;
+    height: 705px;
+  }
+  .data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100%;
+  }
+  
+  .data {
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #0b0a0a;
+    display: flex;
+    font-size:large;
+    font-weight: 500;
+  }
+  
+  .info-row {
+    display:grid;
+    align-items: center;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 70px;
+
+  }
+  
+  .info-row p {
+    margin-right: 10px;
+  }
+  
+  .circle1,
+  .circle2 {
+    width: 60px;
+    height: 60px;
+    background-color: #d86363;
+    color: #fff;
+    font-size: larger;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .circle1 {
+    margin-left: 20px;
+  }
+  
+  .circle2 {
+    margin-left: 70px;
+    margin-top: 10px;
+  }
+  
+  .circle1:hover,
+  .circle2:hover {
+    transform: scale(1.1);
+  }
+  
+  
+  button {
+    margin-top: 20px;
+    margin-left: 60px;
+    border-radius: 30px;
+    background-color: rgb(179, 240, 23);
+    padding: 15px 30px;
+    font-size: 20px;
+    color: #100d0d;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;  
+  }
+  
+  button:hover {
+    transform: translateY(-3px);
+    background-color: rgb(150, 200, 10);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    transform: translateY(1px);
+  }
+  
+
+ /* Add this at the end of your CSS file */
+
+

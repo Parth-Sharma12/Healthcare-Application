@@ -1,0 +1,117 @@
+.navbar{
+    margin-top: -15px;
+    width: 1665px;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px; /* Increase padding for more space */
+    font-size: 25px;
+    font-family:serif;
+}
+.navbar-brand,.navbar-toggler{
+    margin-left: 5px;
+    font-size: 30px; /* Increase font size */
+}
+
+/* AdminPanel.css */
+
+/* Navbar style */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+
+  /* Center the nav items */
+  .navbar-nav {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-item {
+    margin-right: 100px; /* Adjust the margin as needed */
+  }
+  
+  /* Adjust dropdown position if needed */
+  .nav-item.dropdown {
+    position: relative;
+    margin-right: 250px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  .vertical-column{
+    height: 705px;
+    background-color: rgb(207, 60, 209);
+    width: 150px;
+  }
+  .logo{
+    width: 100px;
+    height: 80px;
+  }
+  .profile_pic{
+    width: 1500px;
+    height: 800px;
+    background-color: blue;
+  }
+  .card_profile{
+    height: 700px;
+    margin-top: 10px;
+    margin-left: 450px ;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+  }
+  .card-body{
+    height: 650px;
+    width: 650px;
+    margin-top: 0px;
+    padding: 1.25rem;
+  }
+  .card-header{
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+  .img-account-profile{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #fff;
+  }
+  .small {
+    font-size: 80%;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    margin-right: 50px;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  .profile-info{
+    margin-top: 50px;
+    font-size: larger;
+    font-family: sans-serif;
+  }
+ .adminprofile{
+    margin-top: 50px;
+    width: 700px;
+    height: 500px;
+ }

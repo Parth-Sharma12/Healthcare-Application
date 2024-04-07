@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper-register-main {
+  align-items: center;
+  min-height: 105vh;
+  background: url("../../Images/3133086.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  position: relative;
+}
+
+.wrapper-register {
+  width: 90%;
+  max-width: 700px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: black;
+  border-radius: 10px;
+  padding: 1.35% 5%;
+  margin: 20px auto;
+  /* Adjusted margin */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.h1 {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: #fff;
+}
+
+.btn-design {
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1.4vw;
+  /* Adjusted font-size */
+  color: #333;
+  font-weight: 700;
+}
+
+.form-control,
+.form-select {
+  width: calc(106% - 20px);
+  /* Adjusted width */
+  background: transparent !important;
+  outline: none !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 40px;
+  font-size: 1vw;
+  /* Adjusted font-size */
+  color: #fff !important;
+  padding: 2.5% 4%;
+  /* Adjusted padding */
+  position: relative;
+  height: 7vh;
+  /* Adjusted height */
+  margin: 2vh auto;
+  /* Adjusted margin */
+}
+
+.form-control::placeholder {
+  color: #fff;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-select option {
+  color: #000;
+}
+
+.icon-register {
+  position: absolute;
+  right: 9%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1vw;
+  color: #fff;
+}
+
+.icon-register-disturbed {
+  position: absolute;
+  right: 14%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1vw;
+  color: #fff;
+}
+.language-selection {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 768px) {
+  .language-selection {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

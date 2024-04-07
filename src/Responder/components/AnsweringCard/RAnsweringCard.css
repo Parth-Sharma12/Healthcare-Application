@@ -1,0 +1,90 @@
+.question-answer-card_responder {
+    width: 900px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.6); /* Light background color */
+    border-radius: 20px;
+    border: 2px solid #000; /* Black border */
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  
+  .username {
+    margin-bottom: 10px;
+  }
+  
+  .header_responder {
+    margin-bottom: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center; /* Vertically align items */
+  }
+  
+  .question-answer-card_responder h3 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  
+  .question-answer-card_responder p {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .ques-content_responder {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    height: 50px;
+    overflow: auto;
+  }
+  
+  .ans-content_responder {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    overflow: auto;
+  }
+  
+  .answer-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .answer-timing {
+    font-style: italic;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  .form-control {
+    height: 100px; /* Adjust this value as needed */
+    resize: none; /* Prevent resizing of the input */
+    background-color: rgba(239, 238, 238, 0.8); /* Light gray background color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Padding for spacing inside the input field */
+    color: #333; /* Font color for better readability */
+  }
+  
+  
+  .btn-submit {
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* Text color */
+    padding: 8px 16px; /* Padding */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s ease-in-out;
+    margin-left: 350px;
+  }
+  

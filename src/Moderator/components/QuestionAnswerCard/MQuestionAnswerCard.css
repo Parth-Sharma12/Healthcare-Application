@@ -1,0 +1,85 @@
+.question-answer-card {
+  width: 900px;
+  height: auto;
+  background-color: rgb(249, 249, 249,0.7);
+  border-radius: 16px;
+  border: 2px solid black;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.header {
+  margin-bottom: 10px;
+  height: 30px;
+}
+
+.question-answer-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.question-answer-card p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.ques-content {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  height: 50px;
+  overflow: auto;
+}
+
+.vote-buttons {
+  margin-top: auto;
+}
+
+.vote-buttons button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.vote-buttons button:hover {
+  background-color: #2980b9;
+}
+
+.ans-content {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  height: 300px;
+  overflow: auto;
+}
+
+.flagged-indicator {
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.answer-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.answer-timing {
+  font-style: italic;
+}

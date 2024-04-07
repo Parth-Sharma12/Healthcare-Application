@@ -1,0 +1,49 @@
+.MainRequestContainer {
+    flex: 4;
+    background-color: rgb(237, 234, 234);
+}
+
+.RequestsTable {
+    width: 80%;
+    background-color: white;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.requestsButtonnotApproved {
+    padding: 0px 15px !important; /* Adjust padding */
+    background-color: lightpink;
+    border: none;
+    border-radius: 8px; /* Reduce border radius */
+    cursor: pointer;
+    font-size: 12px; /* Optionally adjust font size */
+    height:6vh;
+    margin-top: 2px;
+    line-height: 2rem;
+}
+
+.requestsButtonapproved {
+    padding: 0px 15px !important; /* Adjust padding */
+    background-color: powderblue;
+    border: none;
+    border-radius: 8px; /* Reduce border radius */
+    cursor: pointer;
+    font-size: 12px; /* Optionally adjust font size */
+    height:6vh;
+    margin-top: 2px;
+    line-height: 2rem;
+}
+
+  button:hover {
+    background-color: #BC7FCD;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    background-color: #BC7FCD;
+  }

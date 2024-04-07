@@ -1,0 +1,141 @@
+.navbar {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar-brand,
+.navbar-toggler {
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+/* Center the nav items */
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+/* Adjust dropdown position if needed */
+.nav-item.dropdown {
+  position: relative;
+  margin-right: 20px;
+}
+
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  .main-content_mod1 {
+    display: flex;
+  }
+  
+  .flag-img1{
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    margin-top: 250px;
+  }
+  
+  .logo{
+    width: 100px;
+    height: 80px;
+  }
+  .QnAs{
+    margin-left: 400px;
+    margin-top:20px;
+    margin-right: 280px;
+  }
+  .column-item{
+    margin-bottom:100px;
+  }
+  .box1 {
+    width: 200px;
+    padding: 20px;
+    background-color: #f8d7d7; /* Light pink background */
+    border: 1px solid #e0a6a6; /* Light pink border */
+    border-radius: 16px;
+    text-align: center;
+    margin-left: 220px;
+    height: 300px;
+    margin-top: 40px;
+    position: fixed;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    right: 0;
+    margin-right: 50px;
+  }
+
+  
+  .circle1 {
+    width: 120px; /* Increased size for the circle */
+    height: 120px; /* Increased size for the circle */
+    border-radius: 50%;
+    background-color: #007bff; /* Blue circle background */
+    color: white;
+    font-size: 36px; /* Larger font size for the circle */
+    line-height: 120px; /* Center text vertically */
+    margin: 0 auto 15px; /* Adjusted margin for better spacing */
+    margin-right: 15px;
+    margin-top: 10px;
+  }
+  
+  .circle1-text {
+    font-size: 18px;
+    color: #555; /* Slightly darker text color */
+  }
+  @media (max-width: 992px) {
+    .nav-item {
+        margin-right: 10px;
+    }
+
+    .dropdown-menu {
+        top: 100%;
+        left: -50%; /* Adjust as needed */
+    }
+}
+
+@media (max-width: 1200px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .navbar-nav {
+        margin-top: 10px;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .dropdown-menu {
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+
+    .QnAs {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .column-item {
+        margin-bottom: 10px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+}
+  

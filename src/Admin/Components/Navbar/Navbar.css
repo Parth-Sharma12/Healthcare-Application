@@ -1,0 +1,49 @@
+.mainNavbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(215, 213, 213, 0.255);
+    border-radius: 13px;
+    margin-top: 0.5vh;
+}
+
+.dashboardContainer {
+    flex: 0.7;
+    margin-right: 900px;
+}
+
+.notificationIcon {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(228, 213, 213);
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.profileIcon {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+}
+
+.profileItemsContainer {
+    display: flex;
+    flex: 0.5;
+    align-items: center;
+}
+
+.profileItems {
+    display: flex;
+    align-items: center;
+}
+
+.dashText {
+    font-size: 20px;
+    margin-right: 118px;
+}
+
+.profileName {
+    margin-left: 10px;
+    white-space: nowrap;
+    margin-bottom: 0rem;
+}

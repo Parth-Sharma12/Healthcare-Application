@@ -1,0 +1,31 @@
+.MainDoctorContainer {
+    flex: 4;
+    background-color: rgb(237, 234, 234);
+}
+
+.doctorDataTable {
+    width: 80%;
+    background-color: white;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.requestsButton {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    border-radius: 10px;
+}
+
+.disabledButtonClass {
+    background-color: gray;
+}
+
+.approvedButtonClass {
+    background-color: green;
+}
