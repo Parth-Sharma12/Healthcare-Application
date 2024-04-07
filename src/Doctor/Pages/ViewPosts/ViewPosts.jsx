@@ -19,8 +19,8 @@ export default function ViewPosts() {
     return (
         <>
             <Navbar />
-            <div className="post-card-container">
-                <div className="post-card">
+            <div className="post-card-doc-container">
+                <div className="post-card-doc">
                     <img src="https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_22028_16430272124432966.jpg" alt="" />
                     <div className="card-content">
                         <h1>Mental Sickness Causes</h1>
@@ -32,7 +32,7 @@ export default function ViewPosts() {
                         </div>
                     </div>
                 </div>
-                <div className="post-card">
+                <div className="post-card-doc">
                     <img src="https://img.freepik.com/free-vector/mental-health-awareness-concept_52683-37916.jpg" alt="" />
                     <div className="card-content">
                         <h1>Overcoming Anxiety: Personal Stories and Support</h1>
@@ -44,7 +44,7 @@ export default function ViewPosts() {
                         </div>
                     </div>
                 </div>
-                <div className="post-card">
+                <div className="post-card-doc">
                     <img src="https://www.healthcareradius.in/cloud/2021/11/15/Mental-Health-1.jpg" alt="" />
                     <div className="card-content">
                         <h1>Self-Care Sunday</h1>
@@ -56,7 +56,7 @@ export default function ViewPosts() {
                         </div>
                     </div>
                 </div>
-                <div className="post-card">
+                <div className="post-card-doc">
                     <img src="https://media.istockphoto.com/id/1470505351/photo/portrait-of-a-smiling-doctor-holding-glasses-and-a-mobile-phone-at-the-office.webp?b=1&s=170667a&w=0&k=20&c=8CebFLF4PFnt9JYJznGhYoOQxcyHLVpTGVfkvEsZd2Q=" alt="" />
                     <div className="card-content">
                         <h1>Coping Strategies: Share Your Best Techniques</h1>
@@ -68,7 +68,7 @@ export default function ViewPosts() {
                         </div>
                     </div>
                 </div>
-                <div className="post-card">
+                <div className="post-card-doc">
                      <img src="https://www.icrc.org/sites/default/files/styles/special_page_image/public/document_new/image/world_mental_health_day_2022.jpeg?itok=vgCX9sqT" alt=""/>
                     <div className="card-content">
                         <h1>Title</h1>
@@ -80,7 +80,7 @@ export default function ViewPosts() {
                         </div>
                     </div>
                 </div>
-                <div className="post-card">
+                <div className="post-card-doc">
                     <img src="https://neurosciencenews.com/files/2023/08/pain-mental-health-neuroscuece.jpg" alt="" />
                     <div className="card-content">
                         <h1>Title</h1>
