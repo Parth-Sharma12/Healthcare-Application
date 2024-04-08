@@ -4,60 +4,51 @@ import Navbar from '../../Components/Navbar/Navbar';
 
 export default function ProfileDetails() {
     return (
-        <div className='MainProfileContainerdoc'>
+        <>
             <Navbar />
-            <div className="viewProfileContainerdoc">
-                <div className="userProfiledoc">
-                    <div className="userAvatardoc">
-                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt='' />
+            <div className='profile-details-wrapper'>
+                <div className="profile-inner">
+                    <div className="profile-image-holder">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-world-mental-health-day_52683-44659.jpg" alt="image" />
                     </div>
-                    <h2 className="userNamedoc">Vivek Maltare</h2>
-                    <h3 className="userEmaildoc">doctor@gmail.com</h3>
-                </div>
-                {/* <div className="aboutSectiondoc">
-            <h2>About</h2>
-            <p>
-              I'm Yuki. Full Stack Designer. I enjoy creating user-centric, delightful
-              and human experiences.
-            </p>
-          </div> */}
-                <div className="personalDetailsdoc">
-                    <h1 className='personalDetailsHeadingdoc'>Personal Details</h1>
-                    <div className="formField">
-                        <label htmlFor="fullName" className="formLabeldoc">Full Name</label>
-                        <input readOnly type="text" id="fullName" className="formInputdoc non-editable-field-doc" placeholder="Vivek Maltare" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="email" className="formLabeldoc">Email</label>
-                        <input type="email" id="email" className="formInputdoc" placeholder="maltarevivek@gmail.com" />
-                    </div>
-                    {/* Add more personal details fields here */}
-                </div>
-                <div className="addressSectiondoc">
-                    {/* <h2>Address</h2> */}
-                    <div className="formField">
-                        <label htmlFor="street" className="formLabeldoc">Street</label>
-                        <input type="text" id="street" className="formInputdoc" placeholder="24,Churchhill Road" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="city" className="formLabeldoc">City</label>
-                        <input type="text" id="city" className="formInputdoc" placeholder="London" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="city" className="formLabeldoc">Age</label>
-                        <input type="text" id="city" className="formInputdoc" placeholder="33" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="city" className="formLabeldoc">Gender</label>
-                        <input readOnly type="text" id="city" className="formInputdoc non-editable-field-doc-doc" placeholder="Male" />
-                    </div>
-                    {/* Add more address fields here */}
-                </div>
-                <div className="buttonContainerdoc">
-                    <button className="cancelButtondoc">Cancel</button>
-                    <button className="updateButtondoc">Edit</button>
+                    <form>
+                        <h3>Your Profile</h3>
+                        <div className="form-group-profile">
+                            <input type="text" placeholder='First Name' className='form-control-profile' />
+                            <input type="text" placeholder='Middle Name' className='form-control-profile' />
+                            <input type="text" placeholder='Last Name' className='form-control-profile' />
+                        </div>
+                        <div className="form-wrapper-profile">
+
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='Email Address' className='form-control-profile' readOnly />
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='Mobile No.' className='form-control-profile' />
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='Address' className='form-control-profile' />
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='Consultation Fee' className='form-control-profile' />
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='Gender' className='form-control-profile' />
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='License No.' className='form-control-profile' />
+                        </div>
+                        <div className="form-wrapper-profile">
+                            <input type="text" placeholder='Description' className='form-control-profile' />
+                        </div>
+                        <div className='view-profile-buttons'>
+                            <button className='view-profile-button'>Edit</button>
+                            <button className='view-profile-button'>cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
