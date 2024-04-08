@@ -28,7 +28,7 @@ import AddPost from "./Doctor/Pages/AddPost/AddPost.jsx";
 function App() {
   const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
   const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(window.localStorage.getItem('isLoggedIn')) || false
+    JSON.parse(window.localStorage.getItem('isLoggedIn')) || true
   );
   useEffect(() => {
     const storedRole = window.localStorage.getItem("userRole");

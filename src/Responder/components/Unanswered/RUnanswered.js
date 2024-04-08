@@ -8,23 +8,21 @@ export const RUnanswered = () => {
     textDecoration: 'none',
   };
   return (
-    <div className="app-container">
+    <div className="resp2-app-container">
     {/* Navbar */}
-    <nav class="navbar navbar-expand-lg ">
-    <img class = "logo" src="images/logo.png" alt="Logo" />
-      <a class="navbar-brand" href="#">Tranquil Minds</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav className="resp2-navbar  ">
+    {/* <img className = "resp2-logo" src="images/logo.png" alt="Logo" /> */}
+      <a className="resp2-navbar-brand" href="#" style={linkStyle}>Tranquil Minds</a>
+      
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+      <div className="resp2-collapse" id="navbarSupportedContent">
+        <ul className="resp2-navbar-nav">
 
-          <li class="nav-item">
-            <a class="nav-link" href="#"> <Link to="/home" style={linkStyle}>Home</Link></a>
+          <li className="resp2-nav-item">
+            <a className="resp2-nav-link" href="#"> <Link to="/home" style={linkStyle}>Home</Link></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><b>View Posts</b></a>
+          <li className="resp2-nav-item">
+            <a className="resp2-nav-link" href="#" style={linkStyle}><b>View Posts</b></a>
           </li>
           
         
@@ -32,11 +30,11 @@ export const RUnanswered = () => {
 
       </div>
     </nav>
-    <div className='Main-content1'>
-   <div className='img_responder'>
-    <img className="moving-img" src="images/unanswered3.png" alt="Moving Img" />
+    <div className='resp2-Main-content1'>
+   <div className='resp2-img_responder'>
+    <img className="resp2-moving-img" src="images/unanswered3.png" alt="Moving Img" />
     </div>
-    <div className='unanswered-ques'>
+    <div className='resp2-unanswered-ques'>
       <AnsweringCard question = "What are the ways to avoid obesity?" username = "Vivek-Maltare"></AnsweringCard>
       <AnsweringCard question = "What are the ways to avoid Heart Problems?" username = "parth-sharma"></AnsweringCard>
     </div>

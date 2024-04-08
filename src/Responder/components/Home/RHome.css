@@ -1,4 +1,4 @@
-.navbar{
+.resp1-navbar{
     margin-top: -15px;
     width: 1665px;
     height: 100px;
@@ -10,15 +10,16 @@
     font-size: 25px;
     font-family:serif;
 }
-.navbar-brand,.navbar-toggler{
-    margin-left: 5px;
+.resp1-navbar-brand,.resp1-navbar-toggler{
+    margin-left:2vw;
+    margin-top: 3vh;
     font-size: 30px; /* Increase font size */
 }
 
 /* AdminPanel.css */
 
 /* Navbar style */
-.navbar {
+.resp1-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,61 +27,62 @@
   
 
   /* Center the nav items */
-  .navbar-nav {
+  .resp1-navbar-nav {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .nav-item {
+  .resp1-nav-item {
     margin-right: 100px; /* Adjust the margin as needed */
   }
   
   /* Adjust dropdown position if needed */
-  .nav-item.dropdown {
+  .resp1-nav-item.dropdown {
     position: relative;
     margin-right: 250px;
   }
   
-  .dropdown-menu {
+  .resp1-dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
   }
-  .vertical-column{
+  .resp1-vertical-column{
     height: 705px;
     background-color: rgb(207, 60, 209);
     width: 150px;
     padding: 64px;
   }
-  .logo{
+  .resp1-logo{
     width: 100px;
     height: 80px;
   }
-  .data{
+  .resp1-data{
     margin-left: 400px;
     background-color: rgb(221, 233, 244);
     
   }
-  .data1{
+  .resp1-data1{
     width: 800px;
     height: 200px;
     margin-top: 100px;
     margin-bottom: 80px;
   }
 
-  .responder-content{
+  .resp1-responder-content{
     display: flex;
     height: 705px;
   }
-  .data-container {
+  .resp1-data-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100%;
+    margin-top: 20vh;
+    margin-right: 20vw;
   }
   
-  .data {
+  .resp1-data {
     align-items: center;
     border-radius: 20px;
     padding: 10px;
@@ -90,7 +92,7 @@
     font-weight: 500;
   }
   
-  .info-row {
+  .resp1-info-row {
     display:grid;
     align-items: center;
     height: 100px;
@@ -99,13 +101,13 @@
 
   }
   
-  .info-row p {
+  .resp1-info-row p {
     margin-right: 10px;
   }
   
-  .circle1,
-  .circle2 {
-    width: 60px;
+  .resp1-circle1,
+  .resp1-circle2 {
+    width: 70px;
     height: 60px;
     background-color: #d86363;
     color: #fff;
@@ -117,22 +119,22 @@
     transition: transform 0.3s ease;
   }
   
-  .circle1 {
-    margin-left: 20px;
+  .resp1-circle1 {
+    margin-left: 2vw;
   }
   
-  .circle2 {
-    margin-left: 70px;
-    margin-top: 10px;
+  .resp1-circle2 {
+    margin-left: 5vw;
+
   }
   
-  .circle1:hover,
-  .circle2:hover {
+  .resp1-circle1:hover,
+  .resp1-circle2:hover {
     transform: scale(1.1);
   }
   
-/*   
-  button {
+  
+  .resp1-button {
     margin-top: 20px;
     margin-left: 60px;
     border-radius: 30px;
@@ -145,20 +147,18 @@
     transition: all 0.3s ease;  
   }
   
-  button:hover {
+  .resp1-button:hover {
     transform: translateY(-3px);
     background-color: rgb(150, 200, 10);
   }
   
-  button:focus {
+  .resp1-button:focus {
     outline: none;
   }
   
-  button:active {
+  .resp1-button:active {
     transform: translateY(1px);
   } */
   
 
  /* Add this at the end of your CSS file */
-
-

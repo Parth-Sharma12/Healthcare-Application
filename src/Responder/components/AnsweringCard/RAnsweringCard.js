@@ -17,21 +17,21 @@ const RAnsweringCard = ({question,username}) => {
   };
   return (
        
-    <div className="question-answer-card_responder">
-        <div className="username">
+    <div className="resp3-question-answer-card_responder">
+        <div className="resp3-username">
         <h7>Asked By: <b>{username}</b></h7>
       </div>
-      <div className="header_responder">
+      <div className="resp3-header_responder">
         <h3>Question:</h3>
       </div>
-      <div className="ques-content_responder">
+      <div className="resp3-ques-content_responder">
         <p>{question}</p>
       </div>
-      <div className="form-group">
-          <label htmlFor="answerInput"><h3>Your Answer:</h3></label>
+      <div className="resp3-form-group">
+          <label className="resp3-label" htmlFor="answerInput"><h3>Your Answer:</h3></label>
           <textarea
           type="text"
-            className="form-control"
+            className="resp3-form-control"
             id="answerInput"
             value={answer}
             onChange={handleChange}
@@ -39,10 +39,10 @@ const RAnsweringCard = ({question,username}) => {
 
         </div>
       <div>
-        <div className="answer-timing">
+        <div className="resp3-answer-timing">
           <p>Answered at: {currentTime}</p>
         </div>
-        <button className="btn-submit" onClick={handleSubmit}>Submit</button>
+        <button className="resp3-btn-submit" onClick={handleSubmit}>Submit</button>
       </div>
       
       </div>
