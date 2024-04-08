@@ -35,40 +35,42 @@ export const MFlaggedPosts = () => {
     textDecoration: 'none',
   };
     return (
-        <div className="app-container">
+        <div className="mod1-app-container">
             {/* Navbar */}
-            <nav class="navbar navbar-expand-lg ">
-                <img class="logo" src="images/logo.png" alt="Logo" />
-                <a class="navbar-brand" href="#">Tranquil Minds</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <nav className="mod1-navbar ">
+               
+                <a className="mod1-navbar-brand"  style={linkStyle} href="#">Tranquil Minds</a>
+               
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                <div className="mod1-collapse mod1-navbar-collapse" id="navbarSupportedContent">
+                    <ul className="mod1-navbar-nav mr-auto">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                        <li className="mod1-nav-item">
+                            <a className="mod1-nav-link"  style={linkStyle} href="#">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> <Link to="/QnA" style={linkStyle}>QnA's</Link></a>
+                        
+                        <li className="mod1-nav-item">
+                            <a className="mod1-nav-link" href="#"> <Link to="/QnA" style={linkStyle}>QnA's</Link></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"> <Link to="/profile_moderator" style={linkStyle}>Profile</Link></a>
-                        </li>   
+                        <li className="mod1-nav-item">
+                            <a className="mod1-nav-link" href="#"> <Link to="/profile_moderator" style={linkStyle}>Profile</Link></a>
+                        </li>  
+                        <li className="mod1-nav-item">
+                            <a className="mod1-nav-link"  style={linkStyle} href="/">Logout</a>
+                        </li> 
 
                     </ul>
 
                 </div>
             </nav>
-            <div className='main-content1'>
-                <div className='img'>
-                <img className = "flag-img" src="images/flag.png" alt="Column 1 Image" />
+            <div className='mod1-main-content1'>
+                <div className='mod1-img'>
+                <img className = "mod1-flag-img" src="images/flag.png" alt="Column 1 Image" />
                 </div>
                 
-                <div className='Posts'>
+                <div className='mod1-Posts'>
                 {flaggedPosts.map((post, index) => (
-                    <div className="column" key={index}>
+                    <div className="mod1-column" key={index}>
                         <PostCard
                             key={index} // Make sure to use a unique key for each post
                             title={post.title}
@@ -82,9 +84,9 @@ export const MFlaggedPosts = () => {
                         </div>
                     ))} 
                 </div>
-                <div className='box'>
+                <div className='mod1-box'>
           <h3>Number of Flagged Posts</h3>
-          <div className='circle'>{numberOfFlaggedPosts}</div>
+          <div className='mod1-circle'>{numberOfFlaggedPosts}</div>
         </div>
 
             </div>

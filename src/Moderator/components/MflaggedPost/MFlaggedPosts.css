@@ -1,4 +1,4 @@
-.navbar{
+.mod1-navbar{
     margin-top: -15px;
     width: 1665px;
     height: 100px;
@@ -10,15 +10,14 @@
     font-size: 25px;
     font-family:serif;
 }
-.navbar-brand,.navbar-toggler{
-    margin-left: 5px;
+.mod1-navbar-brand,.mod1-navbar-toggler{
     font-size: 30px; /* Increase font size */
 }
 
 /* AdminPanel.css */
 
 /* Navbar style */
-.navbar {
+.mod1-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,33 +25,32 @@
   
 
   /* Center the nav items */
-  .navbar-nav {
+  .mod1-navbar-nav {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .nav-item {
+  .mod1-nav-item {
     margin-right: 100px; /* Adjust the margin as needed */
   }
   
   /* Adjust dropdown position if needed */
-  .nav-item.dropdown {
-    position: relative;
-    margin-right: 250px;
-  }
-  
-  .dropdown-menu {
+
+  .mod1-dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
   }
   
-  .logo{
+  .mod1-logo{
     width: 100px;
     height: 80px;
   }
-  .main-content1{
+  .mod1-collapse{
+    margin-right: 20vw;
+  }
+  .mod1-main-content1{
     display: flex;
     width: 1600px;
     margin-left: 100px;
@@ -63,7 +61,7 @@
     background-size: cover;
     background-position: center;
   }
-  .Posts {
+  .mod1-Posts {
     /* Add styles for the posts container */
     display: flex;  
     flex-wrap: wrap;
@@ -72,29 +70,28 @@
     margin-top: 50px;
 
   }
-  .box {
+  .mod1-box {
     width: 200px;
     padding: 20px;
     background-color: #f8d7d7; /* Light pink background */
     border: 1px solid #e0a6a6; /* Light pink border */
     border-radius: 16px;
     text-align: center;
-    margin-left: 220px;
     height: 300px;
     margin-top: 40px;
     position: fixed;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
     right: 0;
-    margin-right: 50px;
+    margin-right: 5vw;
   }
   
-  .heading {
+  .mod1-heading {
     margin-bottom: 15px; /* Increased margin for better spacing */
     font-size: 20px; /* Larger font size for headings */
     color: #333; /* Darker text color */
   }
   
-  .circle {
+  .mod1-circle {
     width: 120px; /* Increased size for the circle */
     height: 120px; /* Increased size for the circle */
     border-radius: 50%;
@@ -105,11 +102,11 @@
     margin: 0 auto 15px; /* Adjusted margin for better spacing */
   }
   
-  .circle-text {
+  .mod1-circle-text {
     font-size: 18px;
     color: #555; /* Slightly darker text color */
   }
-  .flag-img{
+  .mod1-flag-img{
     width: 400px;
     height: 350px;
     position: fixed;
@@ -117,23 +114,7 @@
     margin-left: -60px;
 
   }
-  .img{
+  .mod1-img{
     margin-right: 40px;
   }
-  @media (max-width: 1200px) {
-    /* Media query for smaller devices */
-   
-    .nav-item {
-      margin-right: 20px; /* Adjust the margin */
-  }
-  
-    .Posts {
-        margin: 20px 60px; /* Adjust margin */
-    }
-    .box {
-      width: 150px; /* Adjust box width */
-      
-      margin-right: 100px; /* Adjust margin */
-      
-  }
-}
+ 

@@ -6,47 +6,50 @@ export const RHome = () => {
   const totalQuestions1 = 10;
   const totalUnansweredQuestions1 = 2;
 
-
+  const linkStyle = {
+    color: 'black',
+    textDecoration: 'none',
+  };
   return (
-    <div className="app-container">
+    <div className="resp1-app-container">
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg">
-        <Link to="#" className="navbar-brand">
-          <img className="logo" src="images/logo.png" alt="Logo" />
+      <nav className="resp1-navbar">
+        <Link to="#" style={linkStyle} className="resp1-navbar-brand">
+          {/* <img className="resp1-logo" src="images/logo.png" alt="Logo" /> */}
           Tranquil Minds
         </Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to="/home" className="nav-link"><b>Home</b></Link>
+      
+        <div className="resp1-collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="resp1-navbar-nav ml-auto">
+            <li className="resp1-nav-item">
+              <Link to="/home" style={linkStyle} className="resp1-nav-link"><b>Home</b></Link>
             </li>
-            <li className="nav-item">
-              <Link to="/profile_moderator" className="nav-link">Profile</Link>
+            <li className="resp1-nav-item">
+              <Link to="/profile_moderator" style={linkStyle} className="resp1-nav-link">Profile</Link>
+            </li>
+            <li className="resp1-nav-item">
+              <Link to="/" style={linkStyle} className="resp1-nav-link">Logout</Link>
             </li>
           </ul>
         </div>
       </nav>
 
-      <div className="responder-content">
-        <div className="vertical-column1"></div>
-        <div className="data-container">
-          <div className="data data1">
-            <div className="info-row">
+  
+      
+        <div className="resp1-data-container">
+          <div className="resp1-data resp1-data1">
+            <div className="resp1-info-row">
               <p>Total Questions:</p>
-              <div className="circle1">{totalQuestions1}</div>
+              <div className="resp1-circle1">{totalQuestions1}</div>
             </div>
-            <div className="info-row">
+            <div className="resp1-info-row">
               <p>Total Unanswered Questions:</p>
-              <div className="circle2">{totalUnansweredQuestions1}</div>
+              <div className="resp1-circle2">{totalUnansweredQuestions1}</div>
             </div>
-            <Link to="/RUnanswered"><button>Answer Now</button></Link>
+            <Link to="/RUnanswered"><button className='resp1-button'>Answer Now</button></Link>
           </div>
          
-        </div>
+
       </div>
     </div>
   );

@@ -26,38 +26,36 @@ export const MQnA = () => {
     textDecoration: 'none',
   };
   return (
-    <div className="app-container">
+    <div className="mod2-app-container">
     {/* Navbar */}
-    <nav class="navbar navbar-expand-lg ">
-    <img class = "logo" src="images/logo.png" alt="Logo" />
-      <a class="navbar-brand" href="#">Tranquil Minds</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <nav className="mod2-navbar mod2-navbar-expand-lg ">
+    {/* <img className = "mod2-logo" src="images/logo.png" alt="Logo" /> */}
+      <a className="mod2-navbar-brand"  style={linkStyle} href="#">Tranquil Minds</a>
+   
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+      <div className="mod2-collapse " id="navbarSupportedContent">
+        <ul className="mod2-navbar-nav mod2-mr-auto">
 
-          <li class="nav-item">
-            <a class="nav-link" href="#"><Link to="/home" style={linkStyle}>Home</Link></a>
+          <li className="mod2-nav-item">
+            <a className="mod2-nav-link" href="#"><Link to="/home" style={linkStyle}>Home</Link></a>
           </li>
          
-          <li class="nav-item">
-            <a class="nav-link" href="#"> <Link to="/profile_moderator" style={linkStyle}>Profile</Link></a>
+          <li className="mod2-nav-item">
+            <a className="mod2-nav-link" href="#"> <Link to="/profile_moderator" style={linkStyle}>Profile</Link></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link  " href="#"><b>QnA's</b></a>
+          <li className="mod2-nav-item">
+            <a className="mod2-nav-link"  style={linkStyle} href="#"><b>QnA's</b></a>
           </li>
         
         </ul>
 
       </div>
     </nav>
-    <div className='main-content_mod1'>
-    <img className = "flag-img1" src="images/flag.png" alt="Column 1 Image" />
-      <div className='QnAs'>
+    <div className='mod2-main-content_mod1'>
+    <img className = "mod2-flag-img1" src="images/flag.png" alt="Column 1 Image" />
+      <div className='mod2-QnAs'>
         {qaData.map((qa, index) => (
-          <div className="column-item" key={index}>
+          <div className="mod2-column-item" key={index}>
             <QuestionAnswerCard
               question={qa.question}
               answer={qa.answer}
@@ -69,9 +67,9 @@ export const MQnA = () => {
         ))}
 
       </div>
-      <div className='box1'>
+      <div className='mod2-box1'>
           <h3>Number of Flagged Questions</h3>
-          <div className='circle1'>{numberOfFlaggedQuestion}</div>
+          <div className='mod2-circle1'>{numberOfFlaggedQuestion}</div>
         </div>
     </div>
     

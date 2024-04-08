@@ -1,4 +1,4 @@
-.navbar{
+.resp2-navbar{
     margin-top: -15px;
     width: 1650px;
     height: 100px;
@@ -10,10 +10,17 @@
     font-size: 25px;
     font-family:serif;
 }
-.navbar-brand,.navbar-toggler{
-    margin-left: 5px;
+.resp2-navbar-brand,.resp2-navbar-toggler{
+    margin-left: 2vw;
     font-size: 30px; /* Increase font size */
 }
+.resp2-collapse{
+  margin-right:40vw;
+}
+.resp2-nav-item{
+  margin-right: 5vw;
+}
+
 body{
   /* background-color: #8BC6EC;
   background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%); */
@@ -27,7 +34,7 @@ body{
 /* AdminPanel.css */
 
 /* Navbar style */
-.navbar {
+.resp2-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,46 +42,32 @@ body{
   
 
   /* Center the nav items */
-  .navbar-nav {
-    margin: 0 auto;
+  .resp2-navbar-nav {
+    margin: 0 ;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .nav-item {
-    margin-right: 100px; /* Adjust the margin as needed */
+  
   }
   
   /* Adjust dropdown position if needed */
-  .nav-item.dropdown {
-    position: relative;
-    margin-right: 250px;
-  }
+
   
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-  .vertical-column1{
-    height: auto;
-    background-color: rgb(207, 60, 209);
-    width: 250px;
-  }
-  .logo{
+ 
+  .resp2-logo{
     width: 100px;
     height: 80px;
   }
-  .Main-content1{
+  .resp2-Main-content1{
     display:flex;
   }
-  .unanswered-ques{
+  .resp2-unanswered-ques{
     margin-left: 400px;
     margin-top: 50px;
     margin-bottom: 40px;
   }
   
-  .moving-img {
+  .resp2-moving-img {
     position: fixed; /* Position the image fixed */
     top: 50%; /* Position from the top */
     left: 20px; /* Position from the left */
@@ -83,7 +76,7 @@ body{
   }
   
   /* Adjust the width and height of the image as needed */
-  .moving-img {
+  .resp2-moving-img {
     width: 400px;
     height: 600px;
     margin-left: -85px;
@@ -91,7 +84,7 @@ body{
   }
   
   /* Add transition effect to smooth movement */
-  .moving-img {
+  .resp2-moving-img {
     transition: top 0.3s ease;
   }
   

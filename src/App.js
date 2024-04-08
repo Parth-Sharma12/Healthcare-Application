@@ -26,7 +26,7 @@ import AnsweringCard from './Responder/components/AnsweringCard/RAnsweringCard.j
 function App() {
   const [role, setRole] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(window.localStorage.getItem('isLoggedIn')) || false
+    JSON.parse(window.localStorage.getItem('isLoggedIn')) || true
   );
   useEffect(() => {
     const storedRole = window.localStorage.getItem("userRole");

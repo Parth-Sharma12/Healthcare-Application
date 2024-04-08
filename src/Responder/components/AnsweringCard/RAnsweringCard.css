@@ -1,5 +1,5 @@
-.question-answer-card_responder {
-    width: 900px;
+.resp3-question-answer-card_responder {
+    width: 200%;
     height: auto;
     background-color: rgba(255, 255, 255, 0.6); /* Light background color */
     border-radius: 20px;
@@ -9,31 +9,31 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+  
   }
   
-  .username {
+  .resp3-username {
     margin-bottom: 10px;
   }
   
-  .header_responder {
+  .resp3-header_responder {
     margin-bottom: 10px;
     height: 30px;
     display: flex;
     align-items: center; /* Vertically align items */
   }
   
-  .question-answer-card_responder h3 {
+  .resp3-question-answer-card_responder h3 {
     font-size: 1.2rem;
     margin-bottom: 4px;
   }
   
-  .question-answer-card_responder p {
+  .resp3-question-answer-card_responder p {
     font-size: 1rem;
     margin-bottom: 12px;
   }
   
-  .ques-content_responder {
+  .resp3-ques-content_responder {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 12px;
@@ -42,42 +42,37 @@
     overflow: auto;
   }
   
-  .ans-content_responder {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 12px;
-    overflow: auto;
-  }
+
   
-  .answer-info {
+  .resp3-answer-info {
     display: flex;
     justify-content: space-between;
   }
   
-  .answer-timing {
+  .resp3-answer-timing {
     font-style: italic;
   }
   
-  .form-group {
+  .resp3-form-group {
     margin-bottom: 15px;
   }
   
-  label {
+  .resp3-label{
     display: block;
   }
   
-  .form-control {
+  .resp3-form-control {
     height: 100px; /* Adjust this value as needed */
     resize: none; /* Prevent resizing of the input */
-    background-color: rgba(239, 238, 238, 0.8); /* Light gray background color */
+    background-color:rgba(255, 255, 255, 0.6); /* Light gray background color */
     border-radius: 8px; /* Rounded corners */
     padding: 10px; /* Padding for spacing inside the input field */
     color: #333; /* Font color for better readability */
+    width: 100%;
   }
   
   
-  .btn-submit {
+  .resp3-btn-submit {
     background-color: #007bff; /* Primary color */
     color: #fff; /* Text color */
     padding: 8px 16px; /* Padding */
