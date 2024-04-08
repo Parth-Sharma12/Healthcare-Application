@@ -1,5 +1,4 @@
-.post-card-container {
-  /* display: flex;  */
+.post-card-doc-container {
   justify-content: center;
   flex-wrap: wrap;
   gap: 25px;
@@ -7,19 +6,18 @@
   margin-left: 35vw;
 }
 
-.post-card {
+.post-card-doc {
   max-height: 80vh;
   width: 500px;
   background-color: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0, 3);
-  /* overflow: hidden; */
   overflow-y: auto;
   margin-top: 20px;
   margin-bottom: 5vh;
 }
 
-.post-card img {
+.post-card-doc img {
   width: 100%;
   height: auto;
   object-fit: cover;

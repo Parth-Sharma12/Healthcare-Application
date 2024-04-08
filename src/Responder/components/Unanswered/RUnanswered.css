@@ -14,6 +14,7 @@
     margin-left: 2vw;
     font-size: 30px; /* Increase font size */
 }
+<<<<<<< HEAD
 .resp2-collapse{
   margin-right:40vw;
 }
@@ -31,6 +32,13 @@ body{
   
   
 }
+=======
+/* body{
+  background: #1FA2FF;
+  background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
+  background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); 
+} */
+>>>>>>> 71880921544632b2e30051941a1e80d6042025d7
 /* AdminPanel.css */
 
 /* Navbar style */

@@ -17,7 +17,7 @@ export default function Sidebar() {
           <h4 className='menu'>Menu</h4>
           <li className='liContainer'>
             <FaHome className='sidebarIcons' />
-            <Link to='/' style={{ textDecoration: 'none' }}><p className='itemNames'>Home</p></Link>
+            <Link to='/home' style={{ textDecoration: 'none' }}><p className='itemNames'>Home</p></Link>
           </li>
           <li className='liContainer'>
             <FaUser className='sidebarIcons' />

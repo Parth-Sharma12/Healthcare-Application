@@ -7,6 +7,9 @@ const InvalidRole = () => {
   useEffect(() => {
     // Clear auth token from local storage
     window.localStorage.removeItem('authToken');
+    window.localStorage.removeItem('userRole');
+    window.localStorage.removeItem('isLoggedIn');
+
   }, []);
 
   const handleLogin = () => {

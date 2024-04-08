@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-export default function Login({ setRole }) {
+export default function Login({ setRole,setIsLoggedIn }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ export default function Login({ setRole }) {
         window.localStorage.setItem("userRole", role);
         window.localStorage.setItem("isLoggedIn",true);
         setRole(role);
+        setIsLoggedIn(true);
         console.log(role);
         navigate("/home");
       }
