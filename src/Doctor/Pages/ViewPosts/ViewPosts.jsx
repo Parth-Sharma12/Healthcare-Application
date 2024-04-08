@@ -3,6 +3,8 @@ import Navbar from '../../Components/Navbar/Navbar'
 import '../ViewPosts/ViewPosts.css'
 import CommentModal from '../../Modals/CommentModal/CommentModal';
 import { FaFlag } from "react-icons/fa";
+import { MdOutlineInsertComment } from "react-icons/md";
+import { FiFlag } from "react-icons/fi";
 export default function ViewPosts() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [comments, setComments] = useState([]);
@@ -27,8 +29,10 @@ export default function ViewPosts() {
                         <p>childhood abuse, trauma, or neglect.social isolation or lonelines.experiencing discrimination and stigma, including racism.social disadvantage, poverty or debt</p>
                         <p>Uploaded By: Vivek Maltare at April 5, 2024, 12:34 PM.</p>
                         <div className="button-flag">
+                        <MdOutlineInsertComment className='comment-icon-view-posts'/>
                             <button className='View-Comments' onClick={openModal}>View Comments</button>
-                            <FaFlag className='flag' />
+                            <FiFlag className='flag'/>
+                            <button className='View-Comments'>View Comments</button>
                         </div>
                     </div>
                 </div>
@@ -39,8 +43,10 @@ export default function ViewPosts() {
                         <p>Offer support and encouragement to others who might be struggling with stress, and learn new coping strategies from fellow community members.Discuss how you navigate challenging situations and maintain emotional balance in your daily life.</p>
                         <p>Uploaded By: Subhra Jyoti Singh at April 5, 2024, 12:34 PM.</p>
                         <div className="button-flag">
+                        <MdOutlineInsertComment className='comment-icon-view-posts'/>
                             <button className='View-Comments' onClick={openModal}>View Comments</button>
-                            <FaFlag className='flag' />
+                            <FiFlag className='flag'/>
+                            <button className='View-Comments'>View Comments</button>
                         </div>
                     </div>
                 </div>
@@ -51,8 +57,10 @@ export default function ViewPosts() {
                         <p>Discover new self-care rituals to pamper yourself, whether it's indulging in a luxurious bath, enjoying a nature walk, or treating yourself to a favorite meal.</p>
                         <p>Uploaded By: Kaushal Pancholi at April 5, 2024, 12:34 PM.</p>
                         <div className="button-flag">
+                        <MdOutlineInsertComment className='comment-icon-view-posts'/>
                             <button className='View-Comments' onClick={openModal}>View Comments</button>
-                            <FaFlag className='flag' />
+                            <FiFlag className='flag'/>
+                            <button className='View-Comments'>View Comments</button>
                         </div>
                     </div>
                 </div>
@@ -63,8 +71,11 @@ export default function ViewPosts() {
                         <p>Take a moment to honestly assess your current mental state and share it with the community.Offer a listening ear and words of encouragement to those who may be struggling, fostering a sense of connection and support.</p>
                         <p>Uploaded By: Shivam Jaiswal at April 5, 2024, 12:34 PM.</p>
                         <div className="button-flag">
+                            <MdOutlineInsertComment className='comment-icon-view-posts'/>
                             <button className='View-Comments' onClick={openModal}>View Comments</button>
-                            <FaFlag className='flag' />
+                            <FiFlag className='flag'/>
+                            <button className='View-Comments'>View Comments</button>
+                            {/* <button className='View-Comments'>View flag</button> */}
                         </div>
                     </div>
                 </div>
@@ -75,8 +86,10 @@ export default function ViewPosts() {
                         <p>Lorem ipsum dolor amet consectetur, adipisicing elit. Fuga quos quod eligendi magnam nisi rerum veritatis sint ut</p>
                         <p>uploaded by</p>
                         <div className="button-flag">
+                        <MdOutlineInsertComment className='comment-icon-view-posts'/>
                             <button className='View-Comments' onClick={openModal}>View Comments</button>
-                            <FaFlag className='flag' />
+                            <FiFlag className='flag'/>
+                            <button className='View-Comments'>View Comments</button>
                         </div>
                     </div>
                 </div>
@@ -90,8 +103,10 @@ export default function ViewPosts() {
                             Sequi quasi sapiente dolorem, quos sint architecto recusandae eum corporis illo hic earum ab minus ipsum illum ea assumenda voluptate excepturi repellat accusantium dignissimos, nisi laudantium! Assumenda eaque aut temporibus.Lorem ipsum dolor amet consectetur, adipisicing elit. Fuga quos quod eligendi magnam nisi rerum veritatis sint ut</p>
                         <p>uploaded by</p>
                         <div className="button-flag">
+                        <MdOutlineInsertComment className='comment-icon-view-posts'/>
                             <button className='View-Comments' onClick={openModal}>View Comments</button>
-                            <FaFlag className='flag' />
+                            <FiFlag className='flag'/>
+                            <button className='View-Comments'>View Comments</button>
                         </div>
                         <CommentModal
                             isOpen={isModalOpen}

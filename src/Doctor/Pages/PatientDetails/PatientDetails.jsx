@@ -1,86 +1,59 @@
-import React, { useEffect,useState} from 'react'
-import { useTranslation } from 'react-i18next'
-import axios from 'axios'
-import { DataGrid } from '@mui/x-data-grid'
-import Navbar from '../../Components/Navbar/Navbar';
+import React from 'react'
+import Navbar from '../../Components/Navbar/Navbar'
+import '../PatientDetails/PatientDetails.css'
 export default function PatientDetails() {
-    const { t, i18n } = useTranslation();
-    const [appointments, setAppointments] = useState([]);
-    useEffect(() => {
-        fetchData();
-    }, []);
-    const fetchData = async () => {
-        const selectedLanguage = localStorage.getItem('selectedLanguage');
-        if (selectedLanguage) {
-            i18n.changeLanguage(selectedLanguage);
-        }
-        try {
-            const authToken = JSON.parse(localStorage.getItem("authToken"));
-            const token = authToken ? authToken.accessToken : '';
-            const userId = parseInt(authToken.userId);
-            const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": 'application/json',
-                }
-            });
-            console.log(response.data);
-            const extractedAppointments = response.data.map((Appointment, index) => ({
-                id: index + 1,
-                fullName: `${Appointment.firstName || ''} ${Appointment.middleName || ''} ${Appointment.lastName || ''}`,
-                gender: Appointment.gender,
-                date: Appointment.date,
-                start_time: Appointment.startTime,
-                end_time: Appointment.endTime,
-                age: Appointment.age,
-                description: Appointment.description
-            }));
-            console.log(extractedAppointments);
-            setAppointments(extractedAppointments);
-        } catch (error) {
-            console.error('Error fetching data:', error.message);
-        }
-    };
-    const columns = [
-        {
-            field: 'fullName',
-            headerName: 'Full Name',
-            description: 'This column has a value getter and is not sortable.',
-            sortable: false,
-            width: 140,
-        },
-        {
-            field: 'age',
-            headerName: 'Age',
-            type: 'number',
-
-            width: 130,
-        },
-        { field: 'gender', headerName: 'Gender', width: 130 },
-        { field: 'date', headerName: 'Date', width: 130 },
-        { field: 'start_time', headerName: 'Start Time', width: 130 },
-        { field: 'end_time', headerName: 'End Time', width: 130 },
-        { field: 'description', headerName: 'Description', width: 130 },
-    ];
-    return (
-        <>
-        <Navbar/>
-        <div className="appointment-table" style={{marginTop:'100px'}}>
-            <div className='appointmentgrid'>
-                <div style={{ height: 400, width: '100%' }}>
-                    <DataGrid
-                        rows={appointments}
-                        columns={columns}
-                        initialState={{
-                            pagination: {
-                                paginationModel: { page: 0, pageSize: 5 },
-                            },
-                        }}
-                        pageSizeOptions={[5, 10]}
-                    />
+  return (
+  <>
+  <Navbar />
+            <div className='container-view-patient'>
+                <div className="form-view-patient">
+                    <div className="img-view-patient">
+                        <img src="https://c8.alamy.com/comp/M3YY2G/doctor-with-patient-cartoon-M3YY2G.jpg" alt="" />
+                        <p className='img-text-view-patient'>Vivek Maltare<br/>23<br/>Male</p>
+                    </div>
+                    <div className="view-patient-form">
+                        <span className="circle-view-patient-one"></span>
+                        <span className='circle-view-patient-two'></span>
+                        <form className='view-a-patient'>
+                            <h3 className='patient-page-title'>Appointment Details</h3>
+                            <div className="input-container-view-patient focus">
+                                <input type="text" name="patient-name" className='input-view-patient' placeholder='Vivek Maltare' readOnly/>
+                                <label className='view-patient-label' for="">Patient Name</label>
+                                <span>Patient Name</span>
+                            </div>
+                            <div className="input-container-view-patient focus">
+                                <input type="text" name="patient-age" className='input-view-patient' placeholder='23' readOnly/>
+                                <label className='view-patient-label' for="">Age</label>
+                                <span>Age</span>
+                            </div>
+                            <div className="input-container-view-patient focus">
+                                <input type="text" name="patient-gender" className='input-view-patient' placeholder='male' readOnly/>
+                                <label className='view-patient-label' for="">Gender</label>
+                                <span>Gender</span>
+                            </div>
+                            <div className="input-container-view-patient focus">
+                                <input type="text" name="patient-appointment-date" className='input-view-patient' placeholder='23/10/2000' readOnly/>
+                                <label className='view-patient-label' for="">Appointment Date</label>
+                                <span>Appointment Date</span>
+                            </div>
+                            <div className="input-container-view-patient focus">
+                                <input type="text" name="patient-appointment-time" className='input-view-patient' placeholder='8:00 PM' readOnly/>
+                                <label className='view-patient-label' for="">Appointment Time</label>
+                                <span>Appointment Time</span>
+                            </div>
+                            <div className="input-container-view-patient focus">
+                                <input type="text" name="appointment-duration" className='input-view-patient' placeholder='1 hrs' readOnly/>
+                                <label className="view-patient-label" htmlFor="">Duration</label>
+                                <span>Duration</span>
+                            </div>   
+                            <div className="view-patient-buttons">              
+                            <button className='view-patient-button' type="submit">Chat Now</button>
+                            <button className='view-patient-button' type="submit">Call</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        </>
-    )
+  </>
+  )
 }

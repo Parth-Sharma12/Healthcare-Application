@@ -30,7 +30,7 @@ export default function Navbar() {
                     <Link to="/home">Home</Link>
                 </li>
                 <li>
-                <Link to="/home">Add Posts</Link>
+                <Link to="/addposts">Add Posts</Link>
                 </li>
                 <li>
                 <Link to="/ViewPosts">Forums</Link>
@@ -54,7 +54,7 @@ export default function Navbar() {
                 </li>
             </ul>
             <div className="hamburger-menu">
-            <Link to="/home" onClick={() => setShowMediaIcons(!showMediaIcons)}>
+            <Link to="#" onClick={() => setShowMediaIcons(!showMediaIcons)}>
             <GiHamburgerMenu />
             </Link>
             </div>

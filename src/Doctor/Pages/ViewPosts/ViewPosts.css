@@ -16,7 +16,6 @@
   margin-top: 20px;
   margin-bottom: 5vh;
 }
-
 .post-card-doc img {
   width: 100%;
   height: auto;
@@ -65,11 +64,17 @@ button:active {
 
 .button-flag {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
 }
 
 .flag {
-  margin-left: 200px;
-  font-size: 30px;
-  color: red;
+  margin-left: 4vw;
+  height: 2rem;
+  width: 2rem;
+  color: #86469C;
+}
+.comment-icon-view-posts{
+  width:2rem;
+  height: 2rem;
+  color: #86469C;
 }

@@ -23,6 +23,8 @@ import { MFlaggedPosts } from './Moderator/components/MflaggedPost/MFlaggedPosts
 import { RHome } from './Responder/components/Home/RHome.js';
 import { RUnanswered } from './Responder/components/Unanswered/RUnanswered.js';
 import AnsweringCard from './Responder/components/AnsweringCard/RAnsweringCard.js';
+import AddPost from "./Doctor/Pages/AddPost/AddPost.jsx";
+//Logic to implement role based routing
 function App() {
   const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -35,8 +37,6 @@ function App() {
       setRole(storedRole);
       setIsLoggedIn(storedLoggedIn);
     }
-    console.log(isLoggedIn);
-    console.log(storedRole);
   }, []);
   return (
     <Router>
@@ -75,7 +75,7 @@ function App() {
         <Route path="/QnA" exact element={role === 'moderator' && isLoggedIn ? <QnA /> : <InvalidRole />} />
         <Route path="/profile_moderator" exact element={role === 'moderator' && isLoggedIn ? <Profile_info /> : <InvalidRole />} />
         <Route path="/RUnanswered" exact element={role === 'responder' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
-        {/* <Route path="/profile_moderator" exact element={role==='moderator' && isLoggedIn?<Profile_info />:<InvalidRole/>}/> */}
+      <Route path="/addposts" exact element={<AddPost/>}/>
       </Routes>
     </Router>
   );
