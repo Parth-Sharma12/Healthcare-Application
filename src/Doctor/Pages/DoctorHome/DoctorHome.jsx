@@ -79,8 +79,9 @@ export default function DoctorHome() {
     try {
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
+      console.log(authToken);
       const userId = parseInt(authToken.userId);
-      const response = await axios.get(`http://192.168.168.209:8082/api/appointment/doctor-appointments/${userId}`, {
+      const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',

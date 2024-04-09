@@ -1,7 +1,11 @@
 import React from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import '../PatientDetails/PatientDetails.css'
+import {useLocation} from 'react-router-dom';
 export default function PatientDetails() {
+  const location = useLocation();
+  const patientId = location.state ? location.state.patientId : null;
+  console.log(patientId);
   return (
   <>
   <Navbar />

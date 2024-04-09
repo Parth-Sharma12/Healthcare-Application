@@ -10,10 +10,13 @@ export default function Doctor() {
   }, []);
   const fetchData = async () => {
     try {
-      const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjpbIkFETUlOIl0sImlhdCI6MTcxMjQwODY3NCwiZXhwIjoxNzEyNDQ0Njc0fQ.RVf2XELGPOLHm43MBJ3Ket1IecaPgheUM3uPZiXXYvw';
+      //first get the accessToken to pass in header
+      const authTokenString = localStorage.getItem('authToken');
+      const authToken = JSON.parse(authTokenString);
+      const accessToken = authToken.accessToken;
       const response = await axios.get('http://localhost:8082/api/admin/doctors', {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": 'application/json',
         }
       });

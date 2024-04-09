@@ -37,7 +37,7 @@
     display: flex;
     margin-left: 30px;
     padding: 10px;
-    background-color: rgb(61, 65, 63, 0.115);
+    background-color: #86469C;
     border-radius: 10px;
     margin-top: 10px;
     margin-right: 10px;
@@ -45,7 +45,7 @@
 
 .RequestContainer a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .RequestTitle {

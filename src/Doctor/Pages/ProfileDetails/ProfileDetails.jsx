@@ -1,8 +1,28 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import '../ProfileDetails/ProfileDetails.css';
 import Navbar from '../../Components/Navbar/Navbar';
-
+import axios from 'axios'
 export default function ProfileDetails() {
+    useEffect(() => {
+        fetchData();
+      }, []);
+    const fetchData = async () => {
+    try {
+        const authToken = JSON.parse(localStorage.getItem("authToken"));
+        const token = authToken ? authToken.accessToken : '';
+        console.log(authToken);
+        const userId = parseInt(authToken.userId);
+        const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json',
+          }
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
     return (
         <>
             <Navbar />
