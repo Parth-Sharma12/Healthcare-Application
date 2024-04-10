@@ -2,33 +2,78 @@ import React from 'react'
 import './MFlaggedPosts.css'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import PostCard from '../PostCard/MPostCard';
 export const MFlaggedPosts = () => {
-    const numberOfFlaggedPosts = 2;
-    const flaggedPosts = [
-        {
-            title: 'Fast Food',
-            description: 'Fast food refers to easily prepared and quickly served meals that are often consumed on the go. It has become an integral part of modern society, offering convenience and accessibility to people with busy lifestyles. The popularity of fast food is attributed to factors such as speed, affordability, and widespread availability. While it has its advantages, there are also concerns about its impact on health, the environment, and overall well-being.',
-            imageSrc: '/images/adminprofile.png',
-            userName: 'Rahul Sharma',
-            postTime: '4/5/24 6:44 ',
-        },
-        {
-            title: 'Heart Disease',
-            description: 'Heart disease, also known as cardiovascular disease, refers to a range of conditions that affect the heart. These conditions can involve the blood vessels, such as coronary artery disease, or the heart muscle itself, such as cardiomyopathy. Heart disease can lead to serious complications, including heart attack, heart failure, or stroke.',
-            imageSrc: '/images/adminpanel.png',
-            userName: 'Avinash jain',
-            postTime: '4/5/24 12:31 ',
-        },
-        // Add more posts as needed
-    ];
-    const handleUnflag = (index) => {
-        // Perform unflag action
-        console.log(`Unflag post ${index}`);
-        // Show alert
-        alert('Post unflagged successfully');
+    const [flaggedPosts, setFlaggedPosts] = useState([]);
+
+    useEffect(() => {
+        // Fetch data from the database
+        fetchFlaggedPosts();
+    }, []);
+
+    const fetchFlaggedPosts = async () => {
+        try {
+            // Get the authentication token from wherever it's stored in your application
+            const authToken = JSON.parse(localStorage.getItem("authToken"));
+            const token = authToken ? authToken.accessToken : '';
+            console.log(authToken);
+            
+            const userId = parseInt(authToken.userId);
+            // Make an HTTP GET request to fetch flagged posts from the database
+            const response = await fetch('http://localhost:8082/api/post/get-posts', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}` // Include the auth token in the header
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to fetch flagged posts');
+            }
+    
+            const data = await response.json();
+            // Ensure that each post object includes the uploaded_at property
+            // Filter the flagged posts where post.flagged > 0
+            const Flaggeddata = data.filter(post => post.flagged > 0);
+            console.log(data);
+          
+            setFlaggedPosts(Flaggeddata);
+        } catch (error) {
+            console.error('Error fetching flagged posts:', error);
+        }
     };
+    const handleUnflag  = async (postId) =>{
+        try {
+            const authToken = JSON.parse(localStorage.getItem("authToken"));
+            const token = authToken ? authToken.accessToken : '';
+            console.log(authToken);
+            
+            const userId = parseInt(authToken.userId);
+            // Make an HTTP PUT request to update the flagged status of the post
+            const response = await fetch(`http://localhost:8082/api/post/${postId}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}` 
+              },
+              body: JSON.stringify({ flagged: 0 }) // Set flagged status to 0
+            });
+      
+            if (!response.ok) {
+              throw new Error('Failed to unflag post');
+            }
+      
+            // Remove the post from the state
+            const updatedPosts = flaggedPosts.filter(post => post.id !== postId);
+            setFlaggedPosts(updatedPosts);
+            // Show alert
+            alert('Post unflagged successfully');
+          } catch (error) {
+            console.error('Error unflagging post:', error);
+          }
+        };
  
     const linkStyle = {
     color: 'black',
@@ -69,24 +114,24 @@ export const MFlaggedPosts = () => {
                 </div>
                 
                 <div className='mod1-Posts'>
-                {flaggedPosts.map((post, index) => (
-                    <div className="mod1-column" key={index}>
+                {flaggedPosts.map((post) => (
+                    <div className="mod1-column" key={post.id}>
+                        
                         <PostCard
-                            key={index} // Make sure to use a unique key for each post
                             title={post.title}
                             description={post.description}
-                            imageSrc={post.imageSrc}
-                            userName={post.userName}
-                            postTime={post.postTime}
-                            onDisable={() => console.log(`Disable post ${index}`)} // Add your disable post function
-                            onUnflag={()  => handleUnflag(index)} // Add your unflag post function
+                            imageSrc={post.image}
+                            userName={post.name}
+                            uploaded_at={post.uploadedAt}
+                            onDisable={() => console.log(`Disable post ${post.id}`)} // Add your disable post function
+                            onUnflag={()  => handleUnflag(post.id)} // Add your unflag post function
                         />
                         </div>
                     ))} 
                 </div>
                 <div className='mod1-box'>
           <h3>Number of Flagged Posts</h3>
-          <div className='mod1-circle'>{numberOfFlaggedPosts}</div>
+          <div className='mod1-circle'>{flaggedPosts.length}</div>
         </div>
 
             </div>

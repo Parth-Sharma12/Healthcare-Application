@@ -52,10 +52,8 @@
   }
   .mod1-main-content1{
     display: flex;
-    width: 1600px;
+    width: 100%;
     margin-left: 100px;
-    justify-content: space-between;
-  
     /* Replace 'background-image.jpg' with your image file name */
     /* background-image: url("C:\Users\ASUS\Desktop\temp\had\public\images\flagged.png");  */
     background-size: cover;

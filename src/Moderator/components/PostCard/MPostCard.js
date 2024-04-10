@@ -1,11 +1,23 @@
 // PostCard.js
 import React, { useState } from 'react';
+import CommentModal from '../../../Doctor/Modals/CommentModal/CommentModal';
 import './MPostCard.css'; // Add styles for your post card here
+import { use } from 'i18next';
 
-export const MPostCard = ({ title, description,imageSrc,userName, onDisable,postTime,onUnflag }) => {
-
+export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uploaded_at,onUnflag }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString(); // You can customize the format further if needed
+  };
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const handleCommentsClick = () => {
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
@@ -22,7 +34,7 @@ export const MPostCard = ({ title, description,imageSrc,userName, onDisable,post
             <p>{userName}</p>
         </div>
         <div className="post-time">
-            <p>{postTime}</p>
+            <p>{formatTimestamp(uploaded_at)}</p>
           </div>
         </div>
         
@@ -66,8 +78,10 @@ export const MPostCard = ({ title, description,imageSrc,userName, onDisable,post
           <div className="button-container">
             <button className='btn-disable' onClick={onDisable}>Disable</button>
             <button onClick={onUnflag}>Unflag</button>
+            <button className='mod1-btn-comments' onClick={handleCommentsClick}>Comments</button>
           </div>
         </div>
+        <CommentModal isOpen={isModalOpen} onClose={handleCloseModal}  comments={[]} />
       </div>
    
   );
