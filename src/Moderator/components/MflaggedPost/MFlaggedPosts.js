@@ -18,20 +18,19 @@ export const MFlaggedPosts = () => {
             // Get the authentication token from wherever it's stored in your application
             const authToken = JSON.parse(localStorage.getItem("authToken"));
             const token = authToken ? authToken.accessToken : '';
-            console.log(authToken);
+            console.log(token);
             
             const userId = parseInt(authToken.userId);
             // Make an HTTP GET request to fetch flagged posts from the database
             const response = await fetch('http://localhost:8082/api/post/get-posts', {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authToken}` // Include the auth token in the header
+                    'Authorization': `Bearer ${token}` // Include the auth token in the header
                 }
             });
     
             if (!response.ok) {
-                throw new Error('Failed to fetch flagged posts');
+                throw new Error('Failed to fetch flagged posts',response.error);
             }
     
             const data = await response.json();

@@ -1,8 +1,21 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import '../ProfileDetails/ProfileDetails.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import axios from 'axios'
 export default function ProfileDetails() {
+    const [profileData,setProfileData]=useState({
+        firstName: "",
+    middleName: "",
+    lastName: "",
+    user: {
+        email: ""
+    },
+    mobileNo: "",
+    consultationFee: "",
+    gender: "",
+    licenceNo: "",
+    description: ""
+    });
     useEffect(() => {
         fetchData();
       }, []);
@@ -19,6 +32,7 @@ export default function ProfileDetails() {
           }
         });
         console.log(response.data);
+        setProfileData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error.message);
       }
@@ -34,33 +48,28 @@ export default function ProfileDetails() {
                     <form>
                         <h3>Your Profile</h3>
                         <div className="form-group-profile">
-                            <input type="text" placeholder='First Name' className='form-control-profile' />
-                            <input type="text" placeholder='Middle Name' className='form-control-profile' />
-                            <input type="text" placeholder='Last Name' className='form-control-profile' />
+                            <input type="text" placeholder='First Name' className='form-control-profile' value={profileData.firstName+" "+profileData.middleName+" "+profileData.lastName} readOnly/>
                         </div>
                         <div className="form-wrapper-profile">
-
+                        <input type="text" placeholder='Email Address' className='form-control-profile' readOnly value={profileData.user.email} />                            
                         </div>
                         <div className="form-wrapper-profile">
-                            <input type="text" placeholder='Email Address' className='form-control-profile' readOnly />
-                        </div>
-                        <div className="form-wrapper-profile">
-                            <input type="text" placeholder='Mobile No.' className='form-control-profile' />
+                            <input type="text" placeholder='Mobile No.' className='form-control-profile' value={profileData.mobileNo} readOnly/>
                         </div>
                         <div className="form-wrapper-profile">
                             <input type="text" placeholder='Address' className='form-control-profile' />
                         </div>
                         <div className="form-wrapper-profile">
-                            <input type="text" placeholder='Consultation Fee' className='form-control-profile' />
+                            <input type="text" placeholder='Consultation Fee' className='form-control-profile' value={profileData.consultationFee} readonly/>
                         </div>
                         <div className="form-wrapper-profile">
-                            <input type="text" placeholder='Gender' className='form-control-profile' />
+                            <input type="text" placeholder='Gender' className='form-control-profile' value={profileData.gender} readonly/>
                         </div>
                         <div className="form-wrapper-profile">
-                            <input type="text" placeholder='License No.' className='form-control-profile' />
+                            <input type="text" placeholder='License No.' className='form-control-profile' value={profileData.licenceNo} readonly />
                         </div>
                         <div className="form-wrapper-profile">
-                            <input type="text" placeholder='Description' className='form-control-profile' />
+                            <input type="text" placeholder='Description' className='form-control-profile' value={profileData.description} readonly />
                         </div>
                         <div className='view-profile-buttons'>
                             <button className='view-profile-button'>Edit</button>
