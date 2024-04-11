@@ -28,7 +28,7 @@ import { Senior_Home } from "./Senior_Doctor/components/Home/Senior_Home.js";
 import Senior_Navbar from "./Senior_Doctor/components/Senior_Navbar/Senior_Navbar.js";
 import { InformationCard } from "./Senior_Doctor/components/InformationCard/InformationCard.js";
 import  {Appointment_History}  from "./Senior_Doctor/components/Appointment_History/Appointment_History.js";
-import { Moderator_Profile } from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
+import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
 
 //Logic to implement role based routing
 function App() {
