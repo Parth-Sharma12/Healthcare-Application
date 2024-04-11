@@ -1,0 +1,99 @@
+/* Appointment_History.css */
+
+.Senior3-Doctor-Info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 20vh;
+    margin-top: 15vh;
+  }
+  
+  .Senior3-Doctor-Profile-Pic {
+    width: 10vw;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .Senior3-Doctor-Details {
+    flex: 1;
+  }
+  
+  .Senior3-Doctor-Details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333333; /* Dark gray text color */
+  }
+  
+  .Senior3-Doctor-Details p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    color: #666666; /* Light gray text color */
+  }
+  
+  .Appointment-History-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5; /* Light gray background */
+  }
+  
+  .Appointment-History-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333333; /* Dark gray text color */
+  }
+  
+  .Appointment-History-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .Appointment-History-item {
+    display: flex; /* Make appointment items flex containers */
+    justify-content: space-between; /* Align items to the start and end of the container */
+    align-items: center; /* Center align items vertically */
+    background-color: #ffffff; /* White background */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .Appointment-History-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .Appointment-History-item p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    color: #666666; /* Light gray text color */
+  }
+  
+  .Appointment-History-item p:first-child {
+    font-weight: bold;
+    color: #333333; /* Dark gray text color */
+  }
+  .Senior3-Viewchat{
+    padding: 10px 20px;
+    background-color: #86469C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  .Senior3-Viewchat:hover {
+    background-color: #BC7FCD;
+  }
+  
+  .Senior3-Viewchat:focus {
+    outline: none;
+  }
+  
+  .Senior3-Viewchat:active {
+    background-color: #BC7FCD;
+  } 

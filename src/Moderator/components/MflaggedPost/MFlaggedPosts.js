@@ -14,6 +14,7 @@ export const MFlaggedPosts = () => {
 
     const fetchFlaggedPosts = async () => {
         try {
+
             // Get the authentication token from wherever it's stored in your application
             const authToken = JSON.parse(localStorage.getItem("authToken"));
             const token = authToken ? authToken.accessToken : '';
@@ -36,7 +37,7 @@ export const MFlaggedPosts = () => {
             // Ensure that each post object includes the uploaded_at property
             // Filter the flagged posts where post.flagged > 0
             const Flaggeddata = data.filter(post => post.flagged > 0);
-            console.log(data);
+            console.log(data    );
           
             setFlaggedPosts(Flaggeddata);
         } catch (error) {
@@ -51,7 +52,7 @@ export const MFlaggedPosts = () => {
             
             const userId = parseInt(authToken.userId);
             // Make an HTTP PUT request to update the flagged status of the post
-            const response = await fetch(`http://localhost:8082/api/post/${postId}`, {
+            const response = await fetch(`http://localhost:8082/api/moderator/update/${postId}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -97,7 +98,7 @@ export const MFlaggedPosts = () => {
                             <a className="mod1-nav-link" href="#"> <Link to="/QnA" style={linkStyle}>QnA's</Link></a>
                         </li>
                         <li className="mod1-nav-item">
-                            <a className="mod1-nav-link" href="#"> <Link to="/profile_moderator" style={linkStyle}>Profile</Link></a>
+                            <a className="mod1-nav-link"> <Link to="/Moderator_Profile" style={linkStyle}>Profile</Link></a>
                         </li>  
                         <li className="mod1-nav-item">
                             <a className="mod1-nav-link"  style={linkStyle} href="/">Logout</a>
