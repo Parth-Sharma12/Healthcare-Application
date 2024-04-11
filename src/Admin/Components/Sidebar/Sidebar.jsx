@@ -32,6 +32,10 @@ export default function Sidebar() {
             <Link to='/responders' style={{ textDecoration: 'none' }}><p className='itemNames'>Responders</p></Link>
           </li>
           <li className='liContainer'>
+            <FaUser className='sidebarIcons' />
+            <Link to='/patients' style={{ textDecoration: 'none' }}><p className='itemNames'>Patients</p></Link>
+          </li>
+          <li className='liContainer'>
             <IoLogOut className='sidebarIcons' />
             <Link to="/" onClick={handleLogout} style={{ textDecoration: 'none' }}><p className='itemNames'>Logout</p></Link>
           </li>

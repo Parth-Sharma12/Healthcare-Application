@@ -1,15 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import '../RequestsDetails/RequestDetails.css'
 import Navbar from '../Navbar/Navbar'
 import { DataGrid } from '@mui/x-data-grid'
+import axios from 'axios'
 export default function RequestDetails() {
-  const [isApproved, setIsApproved] = useState(false);
-  const handleToggle = () => {
-    // Toggle the approval status
-    setIsApproved(!isApproved);
-    // Call a function here if you need to perform additional actions
+  //fetch data from backend display only those whose isDisabled value is true.
+  const [disabledDoctors,setDisabledDoctors] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const authToken = JSON.parse(localStorage.getItem("authToken"));
+      const token = authToken ? authToken.accessToken : '';
+      const response = await axios.get(`http://localhost:8082/api/admin/doctors`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const extractedDoctors = response.data.filter(doctor => doctor.isDisabled)
+      .map((doctor, index) => ({
+        id: index + 1,
+        fullName: `${doctor.firstName || ''} ${doctor.middleName || ''} ${doctor.lastName || ''}`,
+        gender: doctor.gender,
+        age: doctor.age,
+        experience: doctor.experience,
+        mobileNo:doctor.mobileNo,
+        license_no:doctor.licenceNo,
+        userId:doctor.userId,
+        isDisabled:doctor.isDisabled
+      }));
+      setDisabledDoctors(extractedDoctors);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+    }
   };
-  const buttonClass = isApproved ? 'requestsButtonapproved' : 'requestsButtonnotApproved';
+  const handleToggle = async (userId) => {
+    try{
+      const updatedDoctors = disabledDoctors.map(doctor =>
+        doctor.userId === userId ? { ...doctor, isDisabled: !doctor.isDisabled } : doctor
+      );
+      setDisabledDoctors(updatedDoctors);
+      // const authToken = JSON.parse(localStorage.getItem("authToken"));
+      // const token = authToken ? authToken.accessToken : '';
+      // await axios.put(`http://localhost:8082/api/admin/doctors/${userId}`, { isDisabled: !updatedDoctors.find(doctor => doctor.userId === userId).isDisabled }, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": 'application/json',
+      //   }
+      // });
+    }catch (error) {
+      console.error('Error updating doctor:', error.message);
+    } 
+  };
+  
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     {
@@ -17,8 +61,7 @@ export default function RequestDetails() {
       headerName: 'Full name',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
-      width: 130,
-      valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+      width: 130
     },
     { field: 'gender', headerName: 'Gender', width: 130, sortable: false, },
     { field: 'license_no', headerName: 'License No', width: 130 },
@@ -36,23 +79,19 @@ export default function RequestDetails() {
       width: 130,
       renderCell: (params) => {
         return (
-          <button className={buttonClass} onClick={handleToggle}>{isApproved ? 'Approved' : 'Approve'}</button>
+          <button className={params.row.isDisabled ? 'requestsButtonapproved' : 'requestsButtonnotApproved'} onClick={() => handleToggle(params.row.userId)}>{params.row.isDisabled? 'Approve' : 'Approved'}</button>
         )
       }
     },
   ];
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', MiddleName: 'lannister', age: 35,gender:'Male',license_no:'875678',experience:'12 years',mobileNo:'9648753739'},
-    { id: 2, lastName: 'Sharma', firstName: 'Jyoti', MiddleName: '', age: 40,gender:'Female',license_no:'875383',experience:'15 years',mobileNo:'9642337391'},
-    { id: 3, lastName: 'Patidar', firstName: 'Kumar', MiddleName: 'Saurabh', age: 29,gender:'Male',license_no:'871234',experience:'3 years',mobileNo:'9687534890'},
-  ];
+  console.log(disabledDoctors);
   return (
     <div className='MainRequestContainer'>
       <Navbar />
       <div className="RequestsTable">
         <div>
           <DataGrid
-            rows={rows}
+            rows={disabledDoctors}
             columns={columns}
             initialState={{
               pagination: {

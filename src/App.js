@@ -11,6 +11,7 @@ import InvalidRole from "./InvalidRole/InvalidRole";
 import DoctorDetails from './Admin/Pages/DoctorDetails/DoctorDetails';
 import Home from './Admin/Pages/AdminHome/AdminHome';
 import Moderator from './Admin/Pages/Moderator/Moderator';
+import Patient from './Admin/Pages/Patient/Patient';
 import Responder from './Admin/Pages/Responder/Responder';
 import Requests from './Admin/Pages/Requests/Requests';
 import Profile from './Admin/Pages/Profile/Profile';
@@ -67,6 +68,7 @@ function App() {
         <Route path="/register" exact element={role === 'doctor' && isLoggedIn ? <Register /> : <InvalidRole />} />
         <Route path="/PatientDetails" exact element={role === 'doctor' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
         <Route path="/doctors" exact element={role === 'admin' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
+        <Route path="/patients" exact element={role === 'admin' && isLoggedIn ? <Patient/> : <InvalidRole />} />
         <Route path="/responders" exact element={role === 'admin' && isLoggedIn ? <Responder /> : <InvalidRole />} />
         <Route path="/moderators" exact element={role === 'admin' && isLoggedIn ? <Moderator /> : <InvalidRole />} />
         <Route path="/requests" exact element={role === 'admin' && isLoggedIn ? <Requests /> : <InvalidRole />} />
