@@ -30,6 +30,9 @@ import Senior_Navbar from "./Senior_Doctor/components/Senior_Navbar/Senior_Navba
 import { InformationCard } from "./Senior_Doctor/components/InformationCard/InformationCard.js";
 import  {Appointment_History}  from "./Senior_Doctor/components/Appointment_History/Appointment_History.js";
 import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
+import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx"
+import Message from "./chat/Message.jsx";
+import Messages from "./chat/Messages.jsx";
 import Responder_Profile from "./Responder/components/Responder_Profile/Responder_Profile.js";
 
 //Logic to implement role based routing
@@ -50,6 +53,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" exact element={<Login setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/forgotpassword" exact element={<ForgotPassword/>}/>
+        <Route path="/register" exact element={<Register />}/>
+        <Route path="/chatroom" exact element={<Messages/>}/>
         <Route
           path="/home"
           element={
@@ -74,7 +80,6 @@ function App() {
         />
         <Route path="/ViewPosts" exact element={role === 'doctor' && isLoggedIn ? <ViewPosts /> : <InvalidRole />} />
         <Route path="/viewprofile" exact element={role === 'doctor' && isLoggedIn ? <ProfileDetails /> : <InvalidRole />} />
-        <Route path="/register" exact element={role === 'doctor' && isLoggedIn ? <Register /> : <InvalidRole />} />
         <Route path="/PatientDetails" exact element={role === 'doctor' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
         <Route path="/doctors" exact element={role === 'admin' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
         <Route path="/patients" exact element={role === 'admin' && isLoggedIn ? <Patient/> : <InvalidRole />} />

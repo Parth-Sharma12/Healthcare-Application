@@ -2,6 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color:#333;
     font-size: 14px;
+    margin-left: 1rem;
 }
 .profile-image-holder{
     margin-top: 14vh;
@@ -23,7 +24,7 @@
 .profile-inner{
     padding: 20px;
     background:#fff;
-    max-width: 850px;
+    max-width: 900px;
     margin: 6rem auto;
     display: flex;
     border-radius: 8px;
@@ -53,9 +54,12 @@
 }
 .form-group-profile input{
     margin-right: 8px;
+    margin-left: 1rem;
 }
 .form-wrapper-profile{
     position: relative;
+    display: flex;
+    width: 100%;
 }
 .form-control-profile{
     border: 1px solid #333;
@@ -81,6 +85,19 @@
   font-size: 1rem;
   font-weight: 500;
   transition: background-color 0.3s ease;
+}
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+.form-group-profile{
+    display:flex;
+    width: 100%;
+}
+.view-profile-label{
+    margin-top: 0.5rem;
+    font-weight: 600;
+    white-space: nowrap;
 }
 @media(max-width:767px){
     .profile-inner{

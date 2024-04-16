@@ -68,7 +68,7 @@ button:active {
 }
 
 .flag {
-  margin-left: 4vw;
+  margin-left: 8vw;
   height: 2rem;
   width: 2rem;
   color: #86469C;
@@ -77,4 +77,20 @@ button:active {
   width:2rem;
   height: 2rem;
   color: #86469C;
+}
+.success-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-size: 30px;
+}
+.tick-icon{
+  height: 100px;
+  width: 100px;
+  color:#86469C;
 }
