@@ -30,6 +30,7 @@ import Senior_Navbar from "./Senior_Doctor/components/Senior_Navbar/Senior_Navba
 import { InformationCard } from "./Senior_Doctor/components/InformationCard/InformationCard.js";
 import  {Appointment_History}  from "./Senior_Doctor/components/Appointment_History/Appointment_History.js";
 import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
+import Responder_Profile from "./Responder/components/Responder_Profile/Responder_Profile.js";
 
 //Logic to implement role based routing
 function App() {
@@ -58,7 +59,8 @@ function App() {
               ) : role === "admin" ? (
                 <AdminHome />
               ) : role === "moderator" ? (
-                // <Appointment_History/>
+               // <Senior_Home/> <Appointment_History/>
+                
                 <MFlaggedPosts />
               ) : role === "responder" ? (
                 <RHome />
@@ -84,6 +86,7 @@ function App() {
         <Route path="/QnA" exact element={role === 'moderator' && isLoggedIn ? <QnA /> : <InvalidRole />} />
         <Route path="/Moderator_Profile" exact element={role === 'moderator' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
         <Route path="/RUnanswered" exact element={role === 'responder' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
+        <Route path="/profile_responder" exact element={role === 'responder' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
       <Route path="/addposts" exact element={<AddPost/>}/>
       </Routes>
     </Router>

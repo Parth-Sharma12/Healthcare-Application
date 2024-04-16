@@ -22,7 +22,7 @@ export const MFlaggedPosts = () => {
             
             const userId = parseInt(authToken.userId);
             // Make an HTTP GET request to fetch flagged posts from the database
-            const response = await fetch('http://localhost:8082/api/post/get-posts', {
+            const response = await fetch('http://localhost:8082/api/moderator/flagged-posts', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}` // Include the auth token in the header
@@ -37,7 +37,10 @@ export const MFlaggedPosts = () => {
             // Ensure that each post object includes the uploaded_at property
             // Filter the flagged posts where post.flagged > 0
             const Flaggeddata = data.filter(post => post.flagged > 0);
-            console.log(data    );
+            // Sort flagged posts in decreasing order of flagged values
+            Flaggeddata.sort((a, b) => b.flagged - a.flagged);
+
+            console.log(data);
           
             setFlaggedPosts(Flaggeddata);
         } catch (error) {
@@ -50,15 +53,15 @@ export const MFlaggedPosts = () => {
             const token = authToken ? authToken.accessToken : '';
             console.log(authToken);
             
-            const userId = parseInt(authToken.userId);
+            const userId = parseInt(token.userId);
             // Make an HTTP PUT request to update the flagged status of the post
-            const response = await fetch(`http://localhost:8082/api/moderator/update/${postId}`, {
+            const response = await fetch(`http://localhost:8082/api/moderator/unflag/${postId}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken}` 
+                'Authorization': `Bearer ${token}` 
               },
-              body: JSON.stringify({ flagged: 0 }) // Set flagged status to 0
+              body: JSON.stringify(false) // Set flagged status to 0
             });
       
             if (!response.ok) {
@@ -74,6 +77,36 @@ export const MFlaggedPosts = () => {
             console.error('Error unflagging post:', error);
           }
         };
+        const handleDisable  = async (postId) =>{
+            try {
+                const authToken = JSON.parse(localStorage.getItem("authToken"));
+                const token = authToken ? authToken.accessToken : '';
+                console.log(authToken);
+                
+                const userId = parseInt(token.userId);
+                // Make an HTTP PUT request to update the flagged status of the post
+                const response = await fetch(`http://localhost:8082/api/moderator/disable/${postId}`, {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                  },
+                  body: JSON.stringify(true) // Set flagged status to 0
+                });
+          
+                if (!response.ok) {
+                  throw new Error('Failed to unflag post');
+                }
+          
+                // Remove the post from the state
+                const updatedPosts = flaggedPosts.filter(post => post.id !== postId);
+                setFlaggedPosts(updatedPosts);
+                // Show alert
+                alert('Post unflagged successfully');
+              } catch (error) {
+                console.error('Error unflagging post:', error);
+              }
+            };
  
     const linkStyle = {
     color: 'black',
@@ -118,12 +151,13 @@ export const MFlaggedPosts = () => {
                     <div className="mod1-column" key={post.id}>
                         
                         <PostCard
+                            Comments = {post.comments}
                             title={post.title}
                             description={post.description}
                             imageSrc={post.image}
                             userName={post.name}
                             uploaded_at={post.uploadedAt}
-                            onDisable={() => console.log(`Disable post ${post.id}`)} // Add your disable post function
+                            onDisable={() => handleDisable(post.id)} // Add your disable post function
                             onUnflag={()  => handleUnflag(post.id)} // Add your unflag post function
                         />
                         </div>

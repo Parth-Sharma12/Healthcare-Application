@@ -4,7 +4,7 @@ import CommentModal from '../../../Doctor/Modals/CommentModal/CommentModal';
 import './MPostCard.css'; // Add styles for your post card here
 import { use } from 'i18next';
 
-export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uploaded_at,onUnflag }) => {
+export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uploaded_at,onUnflag,Comments }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
@@ -81,7 +81,7 @@ export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uplo
             <button className='mod1-btn-comments' onClick={handleCommentsClick}>Comments</button>
           </div>
         </div>
-        <CommentModal isOpen={isModalOpen} onClose={handleCloseModal}  comments={[]} />
+        <CommentModal isOpen={isModalOpen} onClose={handleCloseModal}  comments={Comments} />
       </div>
    
   );

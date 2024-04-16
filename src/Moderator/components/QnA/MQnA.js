@@ -1,82 +1,106 @@
-import React, { useState } from 'react';
-import './MQnA.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './MQnA.css';
 import QuestionAnswerCard from '../QuestionAnswerCard/MQuestionAnswerCard';
 import { Link } from 'react-router-dom';
 
+const MQnA = () => {
+  const [qaData, setQaData] = useState([]);
+  const [numberOfFlaggedQuestion, setNumberOfFlaggedQuestion] = useState(0);
 
-export const MQnA = () => {
-  const numberOfFlaggedQuestion = 2;
-  const qaData = [
-    {
-      question: 'What are the health concerns due to obesity?',
-      answer: 'Obesity is associated with a wide range of health concerns, both physical and psychological...',
-      time : '7:04:41 PM'
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+
+  const fetchQuestions = async () => {
+    try {
+
+      // Get the authentication token from wherever it's stored in your application
+      const authToken = JSON.parse(localStorage.getItem("authToken"));
+      const token = authToken ? authToken.accessToken : '';
+      console.log(token);
       
-    },
-    {
-      question: 'How can I improve my mental health?',
-      answer: 'Improving mental health involves various strategies such as regular exercise, maintaining...',
-      time : '8:01:20 PM',
-     
-    },
-    // Add more Q&A objects as needed
-  ];
+      const userId = parseInt(token.userId);
+      // Make an HTTP GET request to fetch flagged posts from the database
+      const response = await fetch('http://localhost:8082/api/moderator/unapproved-answers', {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}` // Include the auth token in the header
+          }
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to fetch unapproved Questions',response.error);
+      }
+
+      const data = await response.json();
+
+      console.log(data);
+    
+      setQaData(data);
+  } catch (error) {
+      console.error('Error fetching flagged posts:', error);
+  }
+  };
+
   const linkStyle = {
     color: 'black',
     textDecoration: 'none',
   };
+
   return (
     <div className="mod2-app-container">
-    {/* Navbar */}
-    <nav className="mod2-navbar mod2-navbar-expand-lg ">
-    {/* <img className = "mod2-logo" src="images/logo.png" alt="Logo" /> */}
-      <a className="mod2-navbar-brand"  style={linkStyle} href="#">Tranquil Minds</a>
-   
+      {/* Navbar */}
+      <nav className="mod2-navbar mod2-navbar-expand-lg ">
+        <a className="mod2-navbar-brand" style={linkStyle} href="#">
+          Tranquil Minds
+        </a>
 
-      <div className="mod2-collapse " id="navbarSupportedContent">
-        <ul className="mod2-navbar-nav mod2-mr-auto">
+        <div className="mod2-collapse " id="navbarSupportedContent">
+          <ul className="mod2-navbar-nav mod2-mr-auto">
+            <li className="mod2-nav-item">
+              <a className="mod2-nav-link" href="#">
+                <Link to="/home" style={linkStyle}>
+                  Home
+                </Link>
+              </a>
+            </li>
 
-          <li className="mod2-nav-item">
-            <a className="mod2-nav-link" href="#"><Link to="/home" style={linkStyle}>Home</Link></a>
-          </li>
-         
-          <li className="mod2-nav-item">
-            <a className="mod2-nav-link" href="#"> <Link to="/profile_moderator" style={linkStyle}>Profile</Link></a>
-          </li>
-          <li className="mod2-nav-item">
-            <a className="mod2-nav-link"  style={linkStyle} href="#"><b>QnA's</b></a>
-          </li>
-        
-        </ul>
-
-      </div>
-    </nav>
-    <div className='mod2-main-content_mod1'>
-    <img className = "mod2-flag-img1" src="images/flag.png" alt="Column 1 Image" />
-      <div className='mod2-QnAs'>
-        {qaData.map((qa, index) => (
-          <div className="mod2-column-item" key={index}>
-            <QuestionAnswerCard
-              question={qa.question}
-              answer={qa.answer}
-              time = {qa.time}
-              onUpvote={() => {}}
-              onDownvote={() => {}}
-            />
-          </div>
-        ))}
-
-      </div>
-      <div className='mod2-box1'>
-          <h3>Number of Flagged Questions</h3>
-          <div className='mod2-circle1'>{numberOfFlaggedQuestion}</div>
+            <li className="mod2-nav-item">
+              <a className="mod2-nav-link" href="#">
+                {' '}
+                <Link to="/profile_moderator" style={linkStyle}>
+                  Profile
+                </Link>
+              </a>
+            </li>
+            <li className="mod2-nav-item">
+              <a className="mod2-nav-link" style={linkStyle} href="#">
+                <b>QnA's</b>
+              </a>
+            </li>
+          </ul>
         </div>
+      </nav>
+      <div className="mod2-main-content_mod1">
+        <img className="mod2-flag-img1" src="images/flag.png" alt="Column 1 Image" />
+        <div className="mod2-QnAs">
+          {qaData.map((qa, index) => (
+            <div className="mod2-column-item" key={index}>
+              <QuestionAnswerCard
+               key = {index}
+               question = {qa}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="mod2-box1">
+          <h3>Number of Flagged Questions</h3>
+          <div className="mod2-circle1">{numberOfFlaggedQuestion}</div>
+        </div>
+      </div>
     </div>
-    
-
-  </div>
-
-  )
+  );
 };
-export default MQnA;
 
+export default MQnA;

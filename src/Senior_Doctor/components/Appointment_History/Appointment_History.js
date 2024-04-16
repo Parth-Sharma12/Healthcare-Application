@@ -2,8 +2,8 @@ import React from 'react';
 import './Appointment_History.css';
 import Senior_Navbar from '../Senior_Navbar/Senior_Navbar';
 
-export const Appointment_History = () => {
-    const doctorInfo = {
+export const Appointment_History = ({doctorInfo}) => {
+    doctorInfo = {
         name: "Dr. John Doe",
         profilePic: "/images/adminpanel.png",
         email: "john.doe@example.com",
