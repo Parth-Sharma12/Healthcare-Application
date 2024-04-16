@@ -20,7 +20,7 @@ export default function Doctor() {
           "Content-Type": 'application/json',
         }
       });
-      console.log(response.data);
+      //console.log(response.data);
       const extractedDoctors = response.data.map((doctor, index) => ({
         id: index + 1,
         fullName: `${doctor.firstName || ''} ${doctor.middleName || ''} ${doctor.lastName || ''}`,
@@ -31,7 +31,8 @@ export default function Doctor() {
         isSenior: doctor.isSenior ? "yes" : "no",
         Email: doctor.email,
         age: doctor.age,
-        isDisabled: doctor.isDisabled
+        isDisabled: doctor.isDisabled,
+        userId:doctor.userId
       }));
       setDoctors(extractedDoctors);
       //console.log(extractedDoctors);
@@ -40,6 +41,26 @@ export default function Doctor() {
     }
   };
 
+  const handleToggle = async (userId) => {
+    try{
+      const updatedDoctors = doctors.map(doctor =>
+        doctor.userId === userId ? { ...doctor, isDisabled: !doctor.isDisabled } : doctor
+      );
+      setDoctors(updatedDoctors);
+      // const authToken = JSON.parse(localStorage.getItem("authToken"));
+      // const token = authToken ? authToken.accessToken : '';
+      // await axios.put(`http://localhost:8082/api/admin/doctors/${userId}`, { isDisabled: !updatedDoctors.find(doctor => doctor.userId === userId).isDisabled }, {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": 'application/json',
+      //   }
+      // });
+    }catch (error) {
+      console.error('Error updating doctor:', error.message);
+    } 
+  };
+
+   //console.log(doctors);
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     {
@@ -66,18 +87,12 @@ export default function Doctor() {
       headerName: 'Requests',
       width: 130,
       renderCell: (params) => {
-        const doctor = params.row;
-        const status = doctor.isDisabled ? "Pending" : "Approved";
-        const buttonClass = doctor.isDisabled ? "requestsButton disabledButtonClass" : "requestsButton approvedButtonClass";
-        return (
-          <button className={buttonClass} onClick={setDoctorStatus(doctor, status)}>{status}</button>
+        return (     
+        <button className={params.row.isDisabled ? 'requestsButtonapproved' : 'requestsButtonnotApproved'} onClick={() => handleToggle(params.row.userId)}>{params.row.isDisabled? 'Approve' : 'Approved'}</button>
         )
       }
     },
   ];
-  const setDoctorStatus = () => {
-
-  }
   return (
     <div className='MainDoctorContainer'>
       <Navbar />

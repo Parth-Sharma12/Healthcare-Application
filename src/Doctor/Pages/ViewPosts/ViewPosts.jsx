@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import '../ViewPosts/ViewPosts.css'
 import CommentModal from '../../Modals/CommentModal/CommentModal';
@@ -6,12 +6,18 @@ import { FaFlag } from "react-icons/fa";
 import { MdOutlineInsertComment } from "react-icons/md";
 import { FiFlag } from "react-icons/fi";
 import axios from 'axios';
+import { TiTick } from "react-icons/ti";
 
-export default function ViewPosts() {    
+export default function ViewPosts() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [posts, setPosts] = useState([]);
     const [comments, setComments] = useState([]);
-    const [postComments,setSelectedPostComments]=useState([]);
+    const [postComments, setSelectedPostComments] = useState([]);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+    //getting user token 
+    const authToken = JSON.parse(localStorage.getItem("authToken"));
+    const token = authToken ? authToken.accessToken : '';
     useEffect(() => {
         // Fetch posts from the backend
         async function fetchPosts() {
@@ -26,8 +32,28 @@ export default function ViewPosts() {
 
         fetchPosts();
     }, []);
+
+    const handleFlagPost = async (postId) => {
+        try {
+            const response = await axios.put(`http://localhost:8082/api/post/flag/${postId}`, true, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log('Post has been flagged successfully!');
+                openSuccessModal();
+            }
+        } catch (error) {
+            console.error('Error flagging post:', error.message);
+            console.log('Failed to flag post. Please try again.');
+        }
+    };
+
     const formatUploadedAt = (dateString) => {
-        const options = { 
+        const options = {
             timeZone: 'Asia/Kolkata',
             weekday: 'long',
             year: 'numeric',
@@ -41,16 +67,16 @@ export default function ViewPosts() {
         return new Date(dateString).toLocaleString('en-US', options);
     };
     const openModal = (comments) => {
-        // Static comments
-        // const staticComments = [
-        //     { author: 'User1', time: '2 hours ago', body: 'Great post!' },
-        //     { author: 'User2', time: '1 hour ago', body: 'Interesting perspective.' },
-        //     { author: 'User3', time: '30 minutes ago', body: 'I totally agree!' },
-        // ];
-        // setComments(staticComments);
         setSelectedPostComments(comments);
         setIsModalOpen(true);
     };
+    const openSuccessModal = () => {
+        setIsSuccessModalOpen(true);
+        setTimeout(() => {
+            setIsSuccessModalOpen(false);
+        }, 2000); // Close the modal after 2 seconds
+    };
+
     return (
         <>
             <Navbar />
@@ -61,12 +87,12 @@ export default function ViewPosts() {
                         <div className="card-content">
                             <h1>{post.title}</h1>
                             <p>{post.description}</p>
-                            <p>Uploaded By: {post.postedBy} at {formatUploadedAt(post.uploadedAt)}.</p>
+                            <p>Uploaded By: {post.name} at {formatUploadedAt(post.uploadedAt)}.</p>
                             <div className="button-flag">
                                 <MdOutlineInsertComment className='comment-icon-view-posts' />
                                 <button className='View-Comments' onClick={() => openModal(post.comments)}>View Comments</button>
                                 <FiFlag className='flag' />
-                                <button className='View-Comments'>View Comments</button>
+                                <button className='View-Comments' onClick={() => handleFlagPost(post.id)}>Flag</button>
                             </div>
                         </div>
                     </div>
@@ -77,6 +103,12 @@ export default function ViewPosts() {
                 comments={postComments}
                 onClose={() => setIsModalOpen(false)}
             />
+            {isSuccessModalOpen && (
+                <div className="success-modal">
+                    <TiTick className='tick-icon'/> Successfully flagged post!!
+                </div>
+            )}
+
         </>
     )
 }

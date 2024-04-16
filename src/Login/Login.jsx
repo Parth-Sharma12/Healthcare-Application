@@ -112,7 +112,7 @@ export default function Login({ setRole,setIsLoggedIn }) {
               <input type="checkbox" />
               {t('loginPage.acceptTerms')}
             </label>
-            <Link to="/home">{t('loginPage.forgotPassword')}</Link>
+            <Link to="/chatroom">{t('loginPage.forgotPassword')}</Link>
           </div>
           <button type="submit">{t('loginPage.loginButton')}</button>
           <div className="register-link">

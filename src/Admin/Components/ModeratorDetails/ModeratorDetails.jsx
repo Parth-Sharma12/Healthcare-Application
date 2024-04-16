@@ -26,7 +26,7 @@ export default function ModeratorDetails() {
         middleName:moderator.middleName,
         lastName:moderator.lastName,
         fullName: `${moderator.firstName || ''} ${moderator.middleName || ''} ${moderator.lastName || ''}`,
-         Email: moderator.email,
+        email: moderator.email,
       }));
       setModerators(extractedModerators);
       //console.log(extractedDoctors);

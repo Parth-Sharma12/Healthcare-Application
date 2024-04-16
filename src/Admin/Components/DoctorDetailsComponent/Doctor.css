@@ -22,10 +22,25 @@
     border-radius: 10px;
 }
 
-.disabledButtonClass {
-    background-color: gray;
+.requestsButtonapproved {
+    padding: 0px 15px !important; /* Adjust padding */
+    background-color: powderblue;
+    border: none;
+    border-radius: 8px; /* Reduce border radius */
+    cursor: pointer;
+    font-size: 12px; /* Optionally adjust font size */
+    height:6vh;
+    margin-top: 2px;
+    line-height: 2rem;
 }
-
-.approvedButtonClass {
-    background-color: green;
+.requestsButtonnotApproved {
+    padding: 0px 15px !important; /* Adjust padding */
+    background-color: lightpink;
+    border: none;
+    border-radius: 8px; /* Reduce border radius */
+    cursor: pointer;
+    font-size: 12px; /* Optionally adjust font size */
+    height:6vh;
+    margin-top: 2px;
+    line-height: 2rem;
 }
