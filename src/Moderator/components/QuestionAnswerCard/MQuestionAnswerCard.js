@@ -1,10 +1,11 @@
-import React from 'react';
+import {React,useState} from 'react';
 import axios from 'axios'; // Import axios for making HTTP requests
 import './MQuestionAnswerCard.css'; // Add styles for your question-answer card here
 
 const MQuestionAnswerCard = ({question}) => {
   // Set flag to 0
   console.log(question.questionId);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // State variable to track button disable state
   const handleApprove = async (Id) => {
     try {
       // Get authToken from localStorage
@@ -12,11 +13,11 @@ const MQuestionAnswerCard = ({question}) => {
       
       const token = authToken ? authToken.accessToken : '';
       console.log(token);
-      const userId = parseInt(authToken.userId);
+      const userId = parseInt(token.userId);
       // Create a data object to send to the backend
       console.log(userId);
       console.log(Id);
-      const response = await axios.put(
+      const response = await fetch(
         `http://localhost:8082/api/moderator/approve-answer/${Id}`, {
         method: 'PUT',
         headers: {
@@ -28,6 +29,7 @@ const MQuestionAnswerCard = ({question}) => {
         console.log('Answer Approved successfully');
         // Optionally, you can clear the answer field after successful submission
         window.alert('Approved successfully!');
+        
       } else {
         console.error('Failed to Approve answer');
         window.alert('Failed to Approve answer. Please try again later.');
@@ -61,7 +63,14 @@ const MQuestionAnswerCard = ({question}) => {
           <p>Answered at: {question.answeredAt}</p>
         </div>
         <div className="vote-buttons">
-          <button className="unflag-button" onClick={()=>handleApprove(question.questionId)}>Approve</button>
+        <button
+            className="unflag-button"
+            onClick={() => handleApprove(question.questionId)}
+            
+            disabled={isButtonDisabled} // Disable the button if isButtonDisabled is true
+          >
+            Approve
+          </button>
         </div>
       </div>
     </div>

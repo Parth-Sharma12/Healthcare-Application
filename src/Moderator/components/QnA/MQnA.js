@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 const MQnA = () => {
   const [qaData, setQaData] = useState([]);
+  const [numberOfUnapprovedQuestion,setnumberOfUnapprovedQuestion] = useState(0);
   const [numberOfFlaggedQuestion, setNumberOfFlaggedQuestion] = useState(0);
   const handleLogout = () =>{
     localStorage.removeItem("authToken");
@@ -40,8 +41,8 @@ const MQnA = () => {
       }
 
       const data = await response.json();
-
-      console.log(data);
+      setnumberOfUnapprovedQuestion(data.length)
+;      console.log(data);
     
       setQaData(data);
   } catch (error) {
@@ -105,7 +106,7 @@ const MQnA = () => {
         </div>
         <div className="mod2-box1">
           <h3>Number of Flagged Questions</h3>
-          <div className="mod2-circle1">{numberOfFlaggedQuestion}</div>
+          <div className="mod2-circle1">{numberOfUnapprovedQuestion}</div>
         </div>
       </div>
     </div>
