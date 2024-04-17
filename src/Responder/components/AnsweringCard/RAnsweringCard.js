@@ -68,7 +68,7 @@ const RAnsweringCard = ({ question }) => {
         <h3>Question:</h3>
       </div>
       <div className="resp3-ques-content_responder">
-        <p>{question.questionID}</p>
+        <p>{question.question}</p>
       </div>
       <div className="resp3-form-group">
         <label className="resp3-label" htmlFor="answerInput"><h3>Your Answer:</h3></label>

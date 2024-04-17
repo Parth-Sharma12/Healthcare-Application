@@ -2,13 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './RUnanswered.css';
 import AnsweringCard from '../AnsweringCard/RAnsweringCard';
 import { Link } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 export const RUnanswered = () => {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     fetchQuestions(); // Fetch questions when component mounts
   }, []);
+ 
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userRole');
+    // Redirect to the login page or any other appropriate page after logout
+    
+  };
 
   const fetchQuestions = async () => {
     try {
@@ -49,18 +58,23 @@ export const RUnanswered = () => {
         <div className="resp2-collapse" id="navbarSupportedContent">
           <ul className="resp2-navbar-nav">
             <li className="resp2-nav-item">
-              <a className="resp2-nav-link" href="#">
-                {' '}
-                <Link to="/home" style={linkStyle}>
-                  Home
-                </Link>
-              </a>
+
+              <Link to="/home" style={linkStyle}>
+                Home
+              </Link>
+
             </li>
             <li className="resp2-nav-item">
-              <a className="resp2-nav-link" href="#" style={linkStyle}>
-                <b>View Posts</b>
-              </a>
+              <Link to="/home" style={linkStyle}>
+                View Posts
+              </Link>
             </li>
+            <li className="resp2-nav-item">
+              <Link to="/" style={linkStyle} onClick={handleLogout}>
+                LogOut
+              </Link>
+            </li>
+
           </ul>
         </div>
       </nav>

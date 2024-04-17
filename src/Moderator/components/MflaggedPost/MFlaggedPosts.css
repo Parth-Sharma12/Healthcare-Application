@@ -2,7 +2,7 @@
     margin-top: -15px;
     width: 1665px;
     height: 100px;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -24,17 +24,24 @@
   }
   
 
-  /* Center the nav items */
   .mod1-navbar-nav {
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .mod1-nav-item {
-    margin-right: 100px; /* Adjust the margin as needed */
+    margin-right: 10vw;
   }
   
+  .mod1-nav-item {
+    margin-right: 7vw;
+    font-size:x-large;
+    margin-top: 2vh;
+  }
+  
+  /* Adjust dropdown position if needed */
+  .mod1-nav-item.dropdown {
+    position: relative;
+    margin-right: 20px;
+  }
   /* Adjust dropdown position if needed */
 
   .mod1-dropdown-menu {

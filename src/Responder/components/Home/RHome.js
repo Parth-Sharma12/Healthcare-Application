@@ -6,7 +6,12 @@ import './RHome.css';
 export const RHome = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [totalUnansweredQuestions, setTotalUnansweredQuestions] = useState(0);
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userRole');
 
+  }
   useEffect(() => {
     const fetchQuestionStats = async () => {
       try {
@@ -62,7 +67,7 @@ export const RHome = () => {
               <Link to="/profile_responder" style={linkStyle} className="resp1-nav-link">Profile</Link>
             </li>
             <li className="resp1-nav-item">
-              <Link to="/" style={linkStyle} className="resp1-nav-link">Logout</Link>
+              <Link to="/" style={linkStyle} onClick = {handleLogout} className="resp1-nav-link">Logout</Link>
             </li>
           </ul>
         </div>

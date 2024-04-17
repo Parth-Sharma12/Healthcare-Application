@@ -7,7 +7,13 @@ import { Link } from 'react-router-dom';
 const MQnA = () => {
   const [qaData, setQaData] = useState([]);
   const [numberOfFlaggedQuestion, setNumberOfFlaggedQuestion] = useState(0);
-
+  const handleLogout = () =>{
+    localStorage.removeItem("authToken");
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userRole');
+    // Redirect to the login page or any other appropriate page after logout
+    
+  }
   useEffect(() => {
     fetchQuestions();
   }, []);
@@ -67,17 +73,20 @@ const MQnA = () => {
             </li>
 
             <li className="mod2-nav-item">
-              <a className="mod2-nav-link" href="#">
-                {' '}
+            
                 <Link to="/profile_moderator" style={linkStyle}>
                   Profile
                 </Link>
-              </a>
             </li>
             <li className="mod2-nav-item">
-              <a className="mod2-nav-link" style={linkStyle} href="#">
-                <b>QnA's</b>
-              </a>
+            <Link to="/QnA" style={linkStyle}>
+                  QnA's
+                </Link>
+            </li>
+            <li className="mod2-nav-item">
+            <Link to="/" style={linkStyle}>
+                  LogOut
+                </Link>
             </li>
           </ul>
         </div>

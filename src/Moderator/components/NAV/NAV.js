@@ -3,6 +3,12 @@ import "./NAV.css"
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 export const NAV = () => {
+    const handleLogout = () =>{
+      localStorage.removeItem("authToken");
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userRole');
+      // Redirect to the login page or any other appropriate page after logout
+    }
     const linkStyle = {
         color: 'black',
         textDecoration: 'none',
@@ -22,7 +28,7 @@ export const NAV = () => {
             </a> 
           </li>
           <li className="mod6-nav-item">
-            <a className="mod6-nav-link" style={linkStyle} href="#"> <Link to="/" style={linkStyle}>Logout</Link></a>
+            <a className="mod6-nav-link"> <Link to="/" onclick ={handleLogout} style={linkStyle}>Logout</Link></a>
           </li>
          
         

@@ -11,7 +11,13 @@ export const MFlaggedPosts = () => {
         // Fetch data from the database
         fetchFlaggedPosts();
     }, []);
-
+    const handleLogout = () =>{
+        localStorage.removeItem("authToken");
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userRole');
+    // Redirect to the login page or any other appropriate page after logout
+    
+    }
     const fetchFlaggedPosts = async () => {
         try {
 
@@ -56,7 +62,7 @@ export const MFlaggedPosts = () => {
             const userId = parseInt(token.userId);
             // Make an HTTP PUT request to update the flagged status of the post
             const response = await fetch(`http://localhost:8082/api/moderator/unflag/${postId}`, {
-              method: 'PUT',
+               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}` 
@@ -95,16 +101,16 @@ export const MFlaggedPosts = () => {
                 });
           
                 if (!response.ok) {
-                  throw new Error('Failed to unflag post');
+                  throw new Error('Failed to disable post');
                 }
           
                 // Remove the post from the state
                 const updatedPosts = flaggedPosts.filter(post => post.id !== postId);
                 setFlaggedPosts(updatedPosts);
                 // Show alert
-                alert('Post unflagged successfully');
+                alert('Post Disabled successfully');
               } catch (error) {
-                console.error('Error unflagging post:', error);
+                console.error('Error disabling post:', error);
               }
             };
  
@@ -134,7 +140,7 @@ export const MFlaggedPosts = () => {
                             <a className="mod1-nav-link"> <Link to="/Moderator_Profile" style={linkStyle}>Profile</Link></a>
                         </li>  
                         <li className="mod1-nav-item">
-                            <a className="mod1-nav-link"  style={linkStyle} href="/">Logout</a>
+                            <a className="mod1-nav-link" onClick={handleLogout} style={linkStyle} href="/">Logout</a>
                         </li> 
 
                     </ul>
