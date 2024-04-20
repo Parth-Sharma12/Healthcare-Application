@@ -1,7 +1,13 @@
 import React from 'react';
 import './InformationCard.css';
-
-export const InformationCard = ({ profilePhoto, name = "Dr. Parth Sharma", id = 1, email = "sharmaparth1208@gmail.com", experience = 5, age = 45 }) => {
+import { withRouter } from 'react-router-dom'; 
+export const InformationCard = ({ profilePhoto, name, id , email , experience, age }) => {
+  
+  
+  const handleViewAppointments = () => {
+    // Navigate to Appointment History page with doctor ID as a parameter
+    history.push(`/appointment-history/${id}`);
+  };
   return (
     <div className="Senior1-doctor-card">
       <img src='/images/adminpanel.png' alt={name} className="Senior1-profile-photo" />
@@ -12,8 +18,9 @@ export const InformationCard = ({ profilePhoto, name = "Dr. Parth Sharma", id = 
         <p>Email:<b>{email} </b></p>
         <p>Experience:<b>{experience} </b> years</p>
         <p>Age:<b>{age}</b> </p>
-        <button className="Senior-view-appointments-btn">View Appointment History</button>
+        <button className="Senior-view-appointments-btn" onClick={handleViewAppointments}>View Appointment History</button>
       </div>
     </div>
   );
 };
+export default withRouter(InformationCard);

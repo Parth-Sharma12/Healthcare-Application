@@ -43,8 +43,8 @@ export const Senior_Home = () => {
             key={doctor.id}
             // If you don't have images, use a placeholder or leave it empty
             profilePhoto="/images/adminpanel.png" // Example placeholder image URL
-            name={doctor.name}
-            id={doctor.id}
+            name={doctor.firstName}
+            id={doctor.userId}
             email={doctor.email}
             experience={doctor.experience}
             age={doctor.age}
