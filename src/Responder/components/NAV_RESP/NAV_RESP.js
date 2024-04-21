@@ -29,7 +29,7 @@ export const NAV_RESP = () => {
             <a className="resp6-nav-link"> <Link to="/home"  style={linkStyle}>Home</Link></a>
           </li>
           <li className="resp6-nav-item">
-            <a className="resp6-nav-link"> <Link to="/profile_responder"  style={linkStyle}>Profile</Link></a>
+            <a className="resp6-nav-link"> <Link to="/Responder_Profile"  style={linkStyle}>Profile</Link></a>
           </li>
           <li className="resp6-nav-item">
             <a className="resp6-nav-link"> <Link to="/" onclick ={handleLogout} style={linkStyle}>Logout</Link></a>
