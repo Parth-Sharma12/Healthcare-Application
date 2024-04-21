@@ -3,6 +3,7 @@
   .mod2-main-content_mod1 {
     display: flex;
     width: 100%;
+    
   }
   
   .mod2-flag-img1{
@@ -26,7 +27,7 @@
   }
   .mod2-box1 {
     width: 200px;
-    padding: 20px;
+    padding: 1.5vw;
     background-color: rgb(188, 127, 205,0.7); /* Light pink background */
     border: 1px solid #e0a6a6; /* Light pink border */
     border-radius: 16px;
