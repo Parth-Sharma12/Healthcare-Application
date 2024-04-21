@@ -31,9 +31,7 @@ import { InformationCard } from "./Senior_Doctor/components/InformationCard/Info
 import  {Appointment_History}  from "./Senior_Doctor/components/Appointment_History/Appointment_History.js";
 import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
 import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx"
-import Message from "./chat/Message.jsx";
-import Messages from "./chat/Messages.jsx";
-
+import ChatHome from "./chat/components/ChatHome.jsx";
 //Logic to implement role based routing
 function App() {
   const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
@@ -53,20 +51,19 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Login setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/forgotpassword" exact element={<ForgotPassword/>}/>
-        <Route path="/register" exact element={<Register />}/>
-        <Route path="/chatroom" exact element={<Messages/>}/>
+        <Route path="/register" exact element={<Register setRole={setRole} setIsLoggedIn={setIsLoggedIn} />}/>
         <Route
           path="/home"
           element={
             isLoggedIn ? (
-              role === "doctor" ? (
+              role === "DOCTOR" ? (
                 <DoctorHome />
-              ) : role === "admin" ? (
+              ) : role === "ADMIN" ? (
                 <AdminHome />
-              ) : role === "moderator" ? (
+              ) : role === "MODERATOR" ? (
                 // <Appointment_History/>
                 <MFlaggedPosts />
-              ) : role === "responder" ? (
+              ) : role === "RESPONDER" ? (
                 <RHome />
               ) : (
                 <InvalidRole />
@@ -76,20 +73,21 @@ function App() {
             )
           }
         />
-        <Route path="/ViewPosts" exact element={role === 'doctor' && isLoggedIn ? <ViewPosts /> : <InvalidRole />} />
-        <Route path="/viewprofile" exact element={role === 'doctor' && isLoggedIn ? <ProfileDetails /> : <InvalidRole />} />
-        <Route path="/PatientDetails" exact element={role === 'doctor' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
-        <Route path="/doctors" exact element={role === 'admin' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
-        <Route path="/patients" exact element={role === 'admin' && isLoggedIn ? <Patient/> : <InvalidRole />} />
-        <Route path="/responders" exact element={role === 'admin' && isLoggedIn ? <Responder /> : <InvalidRole />} />
-        <Route path="/moderators" exact element={role === 'admin' && isLoggedIn ? <Moderator /> : <InvalidRole />} />
-        <Route path="/requests" exact element={role === 'admin' && isLoggedIn ? <Requests /> : <InvalidRole />} />
-        <Route path="/logout" exact element={role === 'admin' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
-        <Route path="/profile" exact element={role === 'admin' && isLoggedIn ? <Profile /> : <InvalidRole />} />
-        <Route path="/QnA" exact element={role === 'moderator' && isLoggedIn ? <QnA /> : <InvalidRole />} />
-        <Route path="/Moderator_Profile" exact element={role === 'moderator' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
-        <Route path="/RUnanswered" exact element={role === 'responder' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
-      <Route path="/addposts" exact element={<AddPost/>}/>
+        <Route path="/ViewPosts" exact element={role === 'DOCTOR' && isLoggedIn ? <ViewPosts /> : <InvalidRole />} />
+        <Route path="/viewprofile" exact element={role === 'DOCTOR' && isLoggedIn ? <ProfileDetails /> : <InvalidRole />} />
+        <Route path="/PatientDetails" exact element={role === 'DOCTOR' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
+        <Route path="/chat" exact element={role === 'DOCTOR' && isLoggedIn ? <ChatHome /> : <InvalidRole />} />
+        <Route path="/addposts" exact element={role=='DOCTOR'&& isLoggedIn?<AddPost/>:<InvalidRole/>}/>
+        <Route path="/doctors" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
+        <Route path="/patients" exact element={role === 'ADMIN' && isLoggedIn ? <Patient/> : <InvalidRole />} />
+        <Route path="/responders" exact element={role === 'ADMIN' && isLoggedIn ? <Responder /> : <InvalidRole />} />
+        <Route path="/moderators" exact element={role === 'ADMIN' && isLoggedIn ? <Moderator /> : <InvalidRole />} />
+        <Route path="/requests" exact element={role === 'ADMIN' && isLoggedIn ? <Requests /> : <InvalidRole />} />
+        <Route path="/logout" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
+        <Route path="/profile" exact element={role === 'ADMIN' && isLoggedIn ? <Profile /> : <InvalidRole />} />
+        <Route path="/QnA" exact element={role === 'MODERATOR' && isLoggedIn ? <QnA /> : <InvalidRole />} />
+        <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
+        <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
       </Routes>
     </Router>
   );

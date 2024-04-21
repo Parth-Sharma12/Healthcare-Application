@@ -18,8 +18,8 @@ export default function AppointmentTable({ date }) {
           console.error('User ID not found in auth token');
           return;
         }
-        const dummyid = 23;
-        const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${dummyid}/date/${date}`, {
+        //const dummyid = 23;
+        const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}/date/${date}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": 'application/json',
@@ -36,32 +36,51 @@ export default function AppointmentTable({ date }) {
 
   const navigate = useNavigate();
   const columns = [
-    { field: 'slot', headerName: 'Total Slots', width: 130 },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
+    { field: 'slot', headerName: 'Total Slots', width: 130, align: 'center' },
+    // {
+    //   field: 'fullName',
+    //   headerName: 'Full name',
+    //   description: 'This column has a value getter and is not sortable.',
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+    // },
+    // {
+    //   field: 'patientName',
+    //   headerName: 'Patient Name',
+    //   width: 160,
+    //   valueGetter: (params) => {
+    //     const slot = params.row.slot;
+    //     const booking = dateappointments.find(appointment => {
+    //       const startHour = parseInt(appointment.startTime.split(':')[0]); // Extract hour part
+    //       return slot.startsWith(`${startHour}-`);
+    //     });
+
+    //     if (booking && booking.patient) {
+    //       return `${booking.patient.firstName} ${booking.patient.lastName}`;
+    //     } else {
+    //       return 'Available';
+    //     }
+    //   },
+    // },
   ];
 
   const rows = [
-    { id: 1, slot: '8-9', firstName: 'Vivek', lastName: 'Maltare' },
-    { id: 2, slot: '9-10', firstName: 'Vivek', lastName: 'Maltare' },
-    { id: 3, slot: '10-11', firstName: 'Vivek', lastName: 'Maltare' },
-    { id: 4, slot: '11-12', firstName: 'Vivek', lastName: 'Maltare' },
-    { id: 5, slot: '12-13', firstName: 'Vivek', lastName: 'Maltare' },
-    { id: 6, slot: '13-14', firstName: 'Vivek', lastName: 'Maltare' },
-    { id: 7, slot: '17-18', firstName: 'Vivek', lastName: 'Maltare' },
+    { id: 1, slot: '9 AM - 10 AM' },
+    { id: 2, slot: '10 AM - 11 AM' },
+    { id: 3, slot: '11 AM -12 PM' },
+    { id: 4, slot: '12 PM - 13 PM' },
+    { id: 5, slot: '13 PM - 14 PM' },
+    { id: 6, slot: '14 PM -15 PM' },
+    { id: 7, slot: '15 PM -16 PM' },
+    { id: 8, slot: '16 PM - 17 PM' },
   ];
   console.log("appointment for current date are", dateappointments);
   const getRowClassName = (params) => {
     const slot = params.row.slot;
     const isBooked = dateappointments.some(appointment => {
       const startHour = parseInt(appointment.startTime.split(':')[0]); // Extract hour part
-      return slot.startsWith(`${startHour}-`);
+      return slot.startsWith(`${startHour} AM -`) || slot.startsWith(`${startHour} PM -`);
     });
     // Define your condition to determine if the slot should be in green color
     if (isBooked) {
@@ -74,7 +93,7 @@ export default function AppointmentTable({ date }) {
     // Check if the slot is booked
     const slotIsBooked = dateappointments.some(appointment => {
       const startHour = parseInt(appointment.startTime.split(':')[0]); // Extract hour part
-      return params.row.slot.startsWith(`${startHour}-`);
+      return params.row.slot.startsWith(`${startHour} AM -`) || params.row.slot.startsWith(`${startHour} PM -`);
     });
 
     // If the slot is booked, navigate to PatientDetails page
@@ -82,13 +101,17 @@ export default function AppointmentTable({ date }) {
       // Find the appointment corresponding to the clicked slot
       const appointment = dateappointments.find(appointment => {
         const startHour = parseInt(appointment.startTime.split(':')[0]); // Extract hour part
-        return params.row.slot.startsWith(`${startHour}-`);
+        return params.row.slot.startsWith(`${startHour} AM -`) || params.row.slot.startsWith(`${startHour} PM -`);
       });
       //console.log(appointment.patient.email);
-      if (appointment) {
-        // Navigate to PatientDetails page and pass the patient ID as a state
+      if (appointment && appointment.patient) {
+        // Navigate to PatientDetails page only if appointment and patient exist
         navigate("/PatientDetails", { state: { patient: appointment.patient, date: appointment.date } });
+      } else {
+        // Handle the case where appointment or patient is null or undefined
+        console.error('Appointment or patient object is null or undefined');
       }
+
     }
   };
   return (

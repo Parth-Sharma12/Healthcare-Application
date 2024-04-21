@@ -1,0 +1,43 @@
+.chatNavbar{
+    display: flex;
+    align-items: center;
+    background-color: #86469C;
+    height: 10.3vh;
+    padding: 1rem;
+    justify-content: space-between;
+    color: white;
+}
+.Chatuser{
+    display: flex;
+    padding-top: 1rem;
+}
+.chatProfileImg{
+    background-color: #ddddf7;
+    height: 2.5rem;
+    width:2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+/* .chatLogoutButton{
+    padding: 10px 20px;
+    background-color: #86469C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    width: 5rem;
+    margin-right: 0rem;
+  }
+  .chatLogoutButton:hover{
+      background-color: #FB9AD1;
+  }
+  .chatLogoutButton:focus {
+      outline: none;
+    }
+    
+  .chatLogoutButton:active {
+      background-color: #BC7FCD;
+    } */

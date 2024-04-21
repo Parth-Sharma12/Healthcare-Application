@@ -7,7 +7,7 @@
     text-decoration: none;
   }
   .media-links a{
-    color:#BC7FCD;
+    color:rgb(234, 232, 232);
   }
   li {
     list-style: none;
@@ -56,15 +56,24 @@
   .media-links li{
     text-align: right;
   }
-  .logo h2 {
-    font-size: 2.5rem;
+  .nav-logo{
+  background: url("../../Images/first logo.PNG") no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 40%;
+  width: 50%;
+  }
+  .nav-logo h2 {
+    font-size: 2rem;
     font-weight: 400;
     text-transform: uppercase;
-    background: -webkit-linear-gradient(#eee, rgb(206, 165, 206));
-    -webkit-text-fill-color: transparent;
+    margin-left: 6rem;
+    margin-top: 1rem;
+    color: rgb(234, 232, 232);
   }
-  .logo h2 span {
-    font-size: 3.5rem;
+  .nav-logo h2 span {
+    font-size: 2rem;
+    color: rgb(234, 232, 232);
   }
   .nav-links ul li {
     font-size: 1.5rem;
@@ -72,7 +81,7 @@
   
   .nav-links ul li a {
     text-transform: capitalize;
-    color: #BC7FCD;
+    color: rgb(234, 232, 232);
     transition: 0.5s;
   }
   .media-links .hamburger-menu {
@@ -80,7 +89,7 @@
   }
   .nav-links ul li:hover > a {
     transform-origin: left;
-    color:#BC7FCD;
+    color:rgb(234, 232, 232);
     text-decoration: underline;
     transition: 0.5s;
   }
@@ -95,7 +104,7 @@
       grid-template-columns: 2rem 3fr 3fr 1fr 2rem;
     }
   
-    .logo,
+    .nav-logo,
     .nav-links ul,
     .media-links ul {
       height: 8rem;
@@ -112,7 +121,7 @@
       display: none;
     }
   
-    .logo,
+    .nav-logo,
     .media-links ul {
       height: 7rem;
     }
@@ -177,7 +186,7 @@
       grid-template-columns: 1rem 2fr 1fr 1fr 1rem;
     }
   
-    .logo,
+    .nav-logo,
     .media-links ul {
       height: 6rem;
     }
@@ -201,12 +210,12 @@
       grid-template-columns: 1rem 4fr 1fr 1fr 1rem;
     }
   
-    .logo,
+    .nav-logo,
     .media-links ul {
       height: 6rem;
     }
   
-    .logo h2 {
+    .nav-logo h2 {
       font-size: 2rem;
     }
   

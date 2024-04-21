@@ -10,24 +10,7 @@ export default function Navbar() {
     const authToken = JSON.parse(localStorage.getItem("authToken"));
     const userId = authToken ? parseInt(authToken.userId) : null;
     const token = authToken ? authToken.accessToken : '';
-    const fetchDoctorDetails = async (doctorId) => {
-        try {
-          const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${userId}`,{
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": 'application/json',
-              }
-          });
-          console.log(response.data);
-        }
-         catch (error) {
-          console.error('Error fetching doctor details:', error);
-          return null;
-        }
-      };
-      useEffect(() => {
-        fetchDoctorDetails();
-      }, []);
+
     const handleLogout = () => {
         localStorage.removeItem("authToken");
         localStorage.removeItem('isLoggedIn');
@@ -38,7 +21,7 @@ export default function Navbar() {
     <>
     <nav className='main-nav-class'>
         {/* the navbar is divided in three parts first one=logo */}
-        <div className='logo'>
+        <div className='nav-logo'>
             <h2>
                 <span>T</span>ranquil
                 <span>M</span>inds
@@ -50,7 +33,7 @@ export default function Navbar() {
           }>
             <ul>
                 <li>
-                    <Link to="/home">Home</Link>
+                <Link to="/home">Home</Link>
                 </li>
                 <li>
                 <Link to="/addposts">Add Posts</Link>
@@ -70,7 +53,7 @@ export default function Navbar() {
                 <Link to="/" onClick={handleLogout}><p>Logout</p></Link>
                 </li>
                 <li>
-                <FaUser style={{color:'#BC7FCD'}}/>
+                <FaUser style={{color:'rgb(234, 232, 232)'}}/>
                 </li>
                 <li>
                     {/* <Link to="/"><FaFacebook/></Link> */}

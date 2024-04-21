@@ -47,14 +47,20 @@ export default function Doctor() {
         doctor.userId === userId ? { ...doctor, isDisabled: !doctor.isDisabled } : doctor
       );
       setDoctors(updatedDoctors);
-      // const authToken = JSON.parse(localStorage.getItem("authToken"));
-      // const token = authToken ? authToken.accessToken : '';
-      // await axios.put(`http://localhost:8082/api/admin/doctors/${userId}`, { isDisabled: !updatedDoctors.find(doctor => doctor.userId === userId).isDisabled }, {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //     "Content-Type": 'application/json',
-      //   }
-      // });
+
+      // Determine the value based on the current status (disabled or not)
+    const valueToSend = !updatedDoctors.find(doctor => doctor.userId === userId).isDisabled;
+    console.log(valueToSend);
+      const authToken = JSON.parse(localStorage.getItem("authToken"));
+      const token = authToken ? authToken.accessToken : '';
+
+      await axios.put(`http://localhost:8082/api/admin/approve-doctor/${userId}`,valueToSend, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": 'application/json',
+        }
+      });
+      console.log("doctor updated successfully");
     }catch (error) {
       console.error('Error updating doctor:', error.message);
     } 

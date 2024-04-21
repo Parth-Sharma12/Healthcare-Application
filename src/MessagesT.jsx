@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { db, signInAnonymouslyIfNeeded } from '../firebase-config';
-import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
-import Message from './Message';
+import { db,auth, signInAnonymouslyIfNeeded } from './firebase-config';
+import { collection,addDoc,serverTimestamp,query, where, orderBy, onSnapshot } from "firebase/firestore";
+import MessageT from './MessageT';
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
-  const [user, setUser] = useState(null);
   const messagesRef = collection(db, "Messages");
+
   // Sign in anonymously when the component mounts
   useEffect(() => {
     const queryMessages = query(
@@ -26,7 +26,6 @@ export default function Messages() {
     return () => unsuscribe();
   }, []);
 
-
   return (
     <div>
       <h1>Messages for Room 1</h1>
@@ -38,7 +37,7 @@ export default function Messages() {
           </div>
         ))}
       </div>
-      <Message/>
+      <MessageT/>
     </div>
   );
 }

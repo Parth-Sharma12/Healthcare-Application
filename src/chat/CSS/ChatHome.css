@@ -1,0 +1,18 @@
+.chatHome{
+    background-color:white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+}
+.chatHomeContainer{
+    position: fixed;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 65%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+}

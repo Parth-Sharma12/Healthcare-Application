@@ -14,7 +14,7 @@
 
 .requestsButtonnotApproved {
     padding: 0px 15px !important; /* Adjust padding */
-    background-color: lightpink;
+    background-color: #86469C;
     border: none;
     border-radius: 8px; /* Reduce border radius */
     cursor: pointer;
@@ -22,11 +22,12 @@
     height:6vh;
     margin-top: 2px;
     line-height: 2rem;
+    color: white;
 }
 
 .requestsButtonapproved {
     padding: 0px 15px !important; /* Adjust padding */
-    background-color: powderblue;
+    background-color: #86469C;
     border: none;
     border-radius: 8px; /* Reduce border radius */
     cursor: pointer;
@@ -34,6 +35,7 @@
     height:6vh;
     margin-top: 2px;
     line-height: 2rem;
+    color: white;
 }
 
   button:hover {

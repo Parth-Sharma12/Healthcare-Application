@@ -13,42 +13,44 @@ export default function RequestDetails() {
     try {
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
-      const response = await axios.get(`http://localhost:8082/api/admin/doctors`, {
+      const response = await axios.get(`http://localhost:8082/api/admin/disabled-doctors`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      const extractedDoctors = response.data.filter(doctor => doctor.isDisabled)
-      .map((doctor, index) => ({
+      const extractedDoctors = response.data.map((doctor, index) => ({
         id: index + 1,
         fullName: `${doctor.firstName || ''} ${doctor.middleName || ''} ${doctor.lastName || ''}`,
         gender: doctor.gender,
         age: doctor.age,
         experience: doctor.experience,
-        mobileNo:doctor.mobileNo,
-        license_no:doctor.licenceNo,
-        userId:doctor.userId,
-        isDisabled:doctor.isDisabled
+        mobileNo: doctor.mobileNo,
+        license_no: doctor.licenceNo,
+        userId: doctor.userId,
+        isDisabled: doctor.isDisabled
       }));
       setDisabledDoctors(extractedDoctors);
     } catch (error) {
       console.error('Error fetching data:', error.message);
     }
   };
+  
+  console.log("list of disabled doctors is",disabledDoctors);
   const handleToggle = async (userId) => {
     try{
       const updatedDoctors = disabledDoctors.map(doctor =>
         doctor.userId === userId ? { ...doctor, isDisabled: !doctor.isDisabled } : doctor
       );
       setDisabledDoctors(updatedDoctors);
-      // const authToken = JSON.parse(localStorage.getItem("authToken"));
-      // const token = authToken ? authToken.accessToken : '';
-      // await axios.put(`http://localhost:8082/api/admin/doctors/${userId}`, { isDisabled: !updatedDoctors.find(doctor => doctor.userId === userId).isDisabled }, {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //     "Content-Type": 'application/json',
-      //   }
-      // });
+      const authToken = JSON.parse(localStorage.getItem("authToken"));
+      const token = authToken ? authToken.accessToken : '';
+      await axios.put(`http://localhost:8082/api/admin/approve-doctor/${userId}`, true, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": 'application/json',
+        }
+      });
+      console.log("doctor updated successfully");
     }catch (error) {
       console.error('Error updating doctor:', error.message);
     } 
