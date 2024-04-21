@@ -90,6 +90,11 @@
     color: red;
     margin-top: 5px;
 }
+.success-message {
+    color: green;
+    text-align: center;
+    margin-bottom: 10px;
+}
 .form-group-profile{
     display:flex;
     width: 100%;

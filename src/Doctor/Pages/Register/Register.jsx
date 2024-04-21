@@ -7,7 +7,7 @@ import { GrLicense } from "react-icons/gr";
 import ErrorModal from "../../Modals/ErrorModal/ErrorModal";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
-export default function Register() {
+export default function Register({ setRole, setIsLoggedIn }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function Register() {
     experience: null,
     isSenior: false,
     isDisabled: false,
+    image: null
   });
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -50,23 +51,58 @@ export default function Register() {
     changeLanguage(selectedLanguage);
   }, []);
 
+  const convertImageToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setDoctorDetails((prevDetails) => ({
+      ...prevDetails,
+      image: file,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      let imageData = null;
+
+      if (doctorDetails.image) {
+        imageData = await convertImageToBase64(doctorDetails.image);
+      }
+
+      const formData = {
+        ...doctorDetails,
+        image: imageData,
+      };
       const response = await axios.post(
-        "http://192.168.168.209:8082/api/doctor/register",
-        doctorDetails
+        "http://localhost:8082/api/doctor/register",
+        formData
       );
       console.log(response.data);
       console.log(response.status);
       if (response.status === 200) {
+        const role = response.data.userRole;
+        setRole(role);
+        setIsLoggedIn(true);
         const authToken = {
           accessToken: response.data.accessToken,
           tokenType: response.data.tokenType,
-          userId: response.data.userId
+          userId: response.data.userId,
         };
         window.localStorage.setItem("authToken", JSON.stringify(authToken));
+        window.localStorage.setItem("userRole", role);
+        window.localStorage.setItem("isLoggedIn",true);
         navigate("/home");
       }
     } catch (error) {
@@ -255,29 +291,40 @@ export default function Register() {
                 <option value="" disabled>
                   {t('registerPage.choose')}
                 </option>
-                <option value="1">{t('registerPage.male')}</option>
-                <option value="2">{t('registerPage.female')}</option>
-                <option value="3">{t('registerPage.others')}</option>
+                <option value="MALE">{t('registerPage.male')}</option>
+                <option value="FEMALE">{t('registerPage.female')}</option>
+                <option value="OTHERS">{t('registerPage.others')}</option>
               </select>
             </div>
           </div>
-
-          <div className="form-group">
-            <div className="form-check">
-              <label
-                className="form-check-label"
-                htmlFor="applySeniorDoctorCheck"
-              >
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="applySeniorDoctorCheck"
-                  name="isSenior"
-                  checked={doctorDetails.isSenior}
-                  onChange={handleChange}
-                />
-                {t('registerPage.seniorDoctor')}
-              </label>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <input
+                type="file"
+                className="form-control"
+                accept="image/*"
+                name="image"
+                onChange={handleFileChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <div className="form-check">
+                <label
+                  className="form-check-label"
+                  htmlFor="applySeniorDoctorCheck"
+                >
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="applySeniorDoctorCheck"
+                    name="isSenior"
+                    checked={doctorDetails.isSenior}
+                    onChange={handleChange}
+                  />
+                  {t('registerPage.seniorDoctor')}
+                </label>
+              </div>
             </div>
           </div>
           <button type="submit" className="btn-design">

@@ -65,9 +65,14 @@ export default function DoctorHome() {
       "fill": "#FFCDEA"
     },
   ];
+  const authToken = JSON.parse(localStorage.getItem("authToken"));
+  const token = authToken ? authToken.accessToken : '';
+  const userId = parseInt(authToken.userId);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
+  const [doctorDetails,setDoctorDetails]=useState();
+  const [stats,setStats]=useState([]);
   useEffect(() => {
     fetchData();
   }, []);
@@ -77,10 +82,6 @@ export default function DoctorHome() {
       i18n.changeLanguage(selectedLanguage);
     }
     try {
-      const authToken = JSON.parse(localStorage.getItem("authToken"));
-      const token = authToken ? authToken.accessToken : '';
-      console.log(authToken);
-      const userId = parseInt(authToken.userId);
       const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -103,6 +104,43 @@ export default function DoctorHome() {
       console.error('Error fetching data:', error.message);
     }
   };
+  //fetching doctor details by id if needed
+  const fetchDoctorDetails = async (doctorId) => {
+    try {
+      const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${userId}`,{
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json',
+          }
+      });
+      setDoctorDetails(response.data);
+    }
+     catch (error) {
+      console.error('Error fetching doctor details:', error);
+      return null;
+    }
+  };
+
+  //fetching doctor stats
+  const fetchStats = async () => {
+    try {
+      if (doctorDetails && doctorDetails.doctorId) {
+        const response = await axios.get(`http://localhost:8082/api/doctor/get-stats/${doctorDetails.doctorId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setStats(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+    }
+  };
+  //fetchDoctorDetails();
+  useEffect(() => {
+    fetchDoctorDetails();
+  }, []);
+  
   const columns = [
     {
       field: 'fullName',
@@ -140,7 +178,11 @@ export default function DoctorHome() {
     setIsModalOpen(true);
     console.log(isModalOpen);
   };
-
+  //fetch stats
+  useEffect(() => {
+    fetchStats();
+  }, [doctorDetails]);
+  console.log("stats are",stats);
   return (
     <>
       <Navbar />
@@ -148,7 +190,7 @@ export default function DoctorHome() {
         <div className="statistics-cards">
           <div className="single-card">
             <div className="card-content">
-              <div className="number">10</div>
+              <div className="number">{stats[2]}</div>
               <div className="card-name">Pending Appointments</div>
             </div>
             <div className="icon-box">
@@ -157,7 +199,7 @@ export default function DoctorHome() {
           </div>
           <div className="single-card">
             <div className="card-content">
-              <div className="number">1217</div>
+              <div className="number">{stats[0]}</div>
               <div className="card-name">patients</div>
             </div>
             <div className="icon-box">
@@ -166,7 +208,7 @@ export default function DoctorHome() {
           </div>
           <div className="single-card">
             <div className="card-content">
-              <div className="number">300</div>
+              <div className="number">1</div>
               <div className="card-name">Active Patients</div>
             </div>
             <div className="icon-box">
@@ -175,7 +217,7 @@ export default function DoctorHome() {
           </div>
           <div className="single-card">
             <div className="card-content">
-              <div className="number">1500</div>
+              <div className="number">{stats[1]}</div>
               <div className="card-name">Appointments</div>
             </div>
             <div className="icon-box">

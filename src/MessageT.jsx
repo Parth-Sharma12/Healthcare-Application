@@ -1,12 +1,11 @@
 import React,{useState,useEffect} from 'react'
-import { db, auth, signInAnonymouslyIfNeeded } from '../firebase-config';
+import { db, auth, signInAnonymouslyIfNeeded } from './firebase-config';
 import {collection,addDoc,where,serverTimestamp,onSnapshot,query,orderBy} from "firebase/firestore";
 import {Link} from 'react-router-dom'
 export default function Message() {
     const [newMessage, setNewMessage] = useState("");
     const messagesRef = collection(db, "Messages");
 
-    // Sign in anonymously when the component mounts
   useEffect(() => {
     signInAnonymouslyIfNeeded();
   }, []);

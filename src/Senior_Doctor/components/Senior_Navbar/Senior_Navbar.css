@@ -7,7 +7,7 @@
     text-decoration: none;
   }
   .media-links a{
-    color:#BC7FCD;
+    color:rgb(234, 232, 232);
   }
   li {
     list-style: none;
@@ -72,7 +72,7 @@
   
   .Senior-nav-links ul li a {
     text-transform: capitalize;
-    color: #BC7FCD;
+    color: rgb(234, 232, 232);
     transition: 0.5s;
   }
   .Senior-media-links .hamburger-menu {
@@ -80,7 +80,7 @@
   }
   .Senior-nav-links ul li:hover > a {
     transform-origin: left;
-    color:#BC7FCD;
+    color:rgb(234, 232, 232);
     text-decoration: underline;
     transition: 0.5s;
   }

@@ -1,5 +1,5 @@
 .green-row {
-    background-color: #86469C; /* Light green color */
+    background-color: rgb(134, 70, 156,0.6); /* Light green color */
 }
 .green-row:hover{
     background-color: #BC7FCD !important;
@@ -13,6 +13,6 @@
     display: none !important; 
 }
 .MuiDataGrid-row.Mui-selected{
-    background-color: #86469C !important;
+    background-color: rgb(134, 70, 156,0.6) !important;
     opacity: 0.9;
 }

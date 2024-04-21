@@ -31,10 +31,11 @@ export default function Login({ setRole,setIsLoggedIn }) {
         const authToken = {
           accessToken: response.data.accessToken,
           tokenType: response.data.tokenType,
-          userId: response.data.userId
+          userId: response.data.userId,
         };
+        const role=response.data.userRole;
         window.localStorage.setItem("authToken", JSON.stringify(authToken));
-        const role = userId === 5 ? 'doctor' : userId === 1 ? 'admin' : userId === 15 ? 'moderator' :userId === 17 ? 'responder': null;
+        //const role = userId === 5 ? 'doctor' : userId === 1 ? 'admin' : userId === 15 ? 'moderator' :userId === 17 ? 'responder': null;
         window.localStorage.setItem("userRole", role);
         window.localStorage.setItem("isLoggedIn",true);
         setRole(role);

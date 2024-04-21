@@ -1,10 +1,20 @@
 import React from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import '../PatientDetails/PatientDetails.css'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 export default function PatientDetails() {
     const location = useLocation();
-    const { patient, date } = location.state;
+    const navigate=useNavigate();
+    const { patient, date } =location.state;
+    const handleChatNow = () => {
+        // Check if patient object exists before navigating
+        if (patient) {
+            // Navigate to the chat page and pass the entire patient object in the state
+            navigate('/chat', { state: { patient } });
+        } else {
+            console.error("Patient object is null or undefined");
+        }
+    };
     return (
         <>
             <Navbar />
@@ -55,7 +65,7 @@ export default function PatientDetails() {
                                 <span>Duration</span>
                             </div>
                             <div className="view-patient-buttons">
-                                <button className='view-patient-button' type="submit">Chat Now</button>
+                                <button className='view-patient-button' onClick={handleChatNow}>Chat Now</button>
                                 <button className='view-patient-button' type="submit">Call</button>
                             </div>
                         </form>

@@ -3,12 +3,12 @@
   flex-wrap: wrap;
   gap: 25px;
   margin-top: 15vh;
-  margin-left: 35vw;
+  margin-left: 32vw;
 }
 
 .post-card-doc {
   max-height: 80vh;
-  width: 500px;
+  width: 60%;
   background-color: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0, 3);
@@ -35,6 +35,7 @@
   font-size: 15px;
   color: #666;
   margin-bottom: 20px;
+  overflow-wrap: break-word;
 
 }
 
@@ -68,7 +69,7 @@ button:active {
 }
 
 .flag {
-  margin-left: 8vw;
+  margin-left: 15rem;
   height: 2rem;
   width: 2rem;
   color: #86469C;

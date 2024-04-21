@@ -1,0 +1,6 @@
+.chatMessages{
+    background-color: rgb(188, 127, 205,0.5);
+    padding: 10px;
+    height: calc(100% - 120px);
+    overflow-y: scroll;
+}

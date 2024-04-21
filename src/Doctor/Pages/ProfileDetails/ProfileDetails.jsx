@@ -6,6 +6,7 @@ export default function ProfileDetails() {
     const [initialProfileData, setInitialProfileData] = useState({});
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [passwordFields, setPasswordFields] = useState({
         oldPassword: "",
         newPassword: "",
@@ -28,13 +29,13 @@ export default function ProfileDetails() {
     const authToken = JSON.parse(localStorage.getItem("authToken"));
     const token = authToken ? authToken.accessToken : '';
     console.log(authToken);
-    const userId = parseInt(authToken.userId);
+    const user_Id = parseInt(authToken.userId);
     useEffect(() => {
         fetchData();
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${userId}`, {
+            const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${user_Id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -62,7 +63,7 @@ export default function ProfileDetails() {
             // Send updated profileData to backend
             const authToken = JSON.parse(localStorage.getItem("authToken"));
             const token = authToken ? authToken.accessToken : '';
-            const response = await axios.put(`http://localhost:8082/api/doctor/update/${userId}`, profileData, {
+            const response = await axios.put(`http://localhost:8082/api/doctor/update/${user_Id}`, profileData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -90,8 +91,10 @@ export default function ProfileDetails() {
                 return;
             }
             try {
-                const response = await axios.put(`http://localhost:8082/api/doctor/updatePassword/${userId}`, {
-                    password: passwordFields.newPassword
+                const response = await axios.put(`http://localhost:8082/api/doctor/update-password`, {
+                    userId:user_Id,
+                    oldPassword:passwordFields.oldPassword,
+                    newPassword:passwordFields.newPassword
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -100,6 +103,11 @@ export default function ProfileDetails() {
                 });
 
                 console.log('Password updated successfully:', response.data);
+                setShowSuccessMessage(true);
+
+            setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 2000);
 
                 setPasswordFields({
                     oldPassword: "",
@@ -200,6 +208,7 @@ export default function ProfileDetails() {
 
                         )}
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
+                        {showSuccessMessage && <p className="success-message">Password updated successfully</p>}
                         <div className='view-profile-buttons'>
                             <button className='view-profile-button' onClick={handleSave}>Edit</button>
                             <button className='view-profile-button' onClick={(e) => { e.preventDefault(); toggleChangePassword(); }}>{showChangePassword ? "update" : "update password"}</button>

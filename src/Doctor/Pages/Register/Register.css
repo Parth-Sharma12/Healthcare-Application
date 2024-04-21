@@ -8,7 +8,7 @@
 
 .wrapper-register-main {
   align-items: center;
-  min-height: 105vh;
+  min-height: 115vh;
   background: url("../../Images/3133086.jpg") no-repeat;
   background-size: cover;
   background-position: center;
@@ -112,6 +112,15 @@
   margin: 10px;
   display: flex;
   flex-direction: row;
+}
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+.form-check{
+  padding-left: 3.25rem;
+  padding-top: 1.5rem;
 }
 @media (max-width: 768px) {
   .language-selection {
