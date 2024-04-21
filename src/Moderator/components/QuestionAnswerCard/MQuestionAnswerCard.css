@@ -41,20 +41,29 @@
 }
 
 .vote-buttons button {
-  background-color: #3498db;
-  color: #fff;
-  padding: 8px 16px;
+  padding: 10px 20px;
+  background-color: #86469C;
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 8px;
-  transition: background-color 0.3s ease-in-out;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+
 }
 
 .vote-buttons button:hover {
-  background-color: #2980b9;
+  background-color: #BC7FCD;
+
+}
+.vote-buttons:focus {
+  outline: none;
 }
 
+.vote-buttons:active {
+  background-color: #BC7FCD;
+} 
 .ans-content {
   border: 1px solid #ddd;
   border-radius: 8px;

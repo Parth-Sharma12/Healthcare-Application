@@ -32,6 +32,7 @@ import  {Appointment_History}  from "./Senior_Doctor/components/Appointment_Hist
 import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
 import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx"
 import ChatHome from "./chat/components/ChatHome.jsx";
+import Responder_Profile from "./Responder/components/Responder_Profile/Responder_Profile.js";
 //Logic to implement role based routing
 function App() {
   const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
@@ -61,7 +62,9 @@ function App() {
               ) : role === "ADMIN" ? (
                 <AdminHome />
               ) : role === "MODERATOR" ? (
-                // <Appointment_History/>
+              //  <Senior_Home/> 
+              //  <Appointment_History/>
+                
                 <MFlaggedPosts />
               ) : role === "RESPONDER" ? (
                 <RHome />

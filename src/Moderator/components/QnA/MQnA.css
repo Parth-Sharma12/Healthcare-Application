@@ -1,47 +1,8 @@
-.mod2-navbar {
-  width: 100%;
-  height: 100px;
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-.mod2-collapse{
-  margin-right: 30vw;
-}
-.mod2-navbar-brand,
-.mod2-navbar-toggler {
-  margin-left: 10px;
-  font-size: 30px;
-}
 
-/* Center the nav items */
-.mod2-navbar-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.mod2-nav-item {
-  margin-right: 5vw;
-  font-size:x-large;
-}
-
-/* Adjust dropdown position if needed */
-.mod2-nav-item.dropdown {
-  position: relative;
-  margin-right: 20px;
-}
-
-  
-  .mod2-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
   .mod2-main-content_mod1 {
     display: flex;
+    width: 100%;
   }
   
   .mod2-flag-img1{
@@ -66,7 +27,7 @@
   .mod2-box1 {
     width: 200px;
     padding: 20px;
-    background-color: #f8d7d7; /* Light pink background */
+    background-color: rgb(188, 127, 205,0.7); /* Light pink background */
     border: 1px solid #e0a6a6; /* Light pink border */
     border-radius: 16px;
     text-align: center;
@@ -84,7 +45,7 @@
     width: 120px; /* Increased size for the circle */
     height: 120px; /* Increased size for the circle */
     border-radius: 50%;
-    background-color: #007bff; /* Blue circle background */
+    background-color: rgb(134, 70, 156,0.7); /* Blue circle background */
     color: white;
     font-size: 36px; /* Larger font size for the circle */
     line-height: 120px; /* Center text vertically */
@@ -95,6 +56,10 @@
   
   .mod2-circle1-text {
     font-size: 18px;
-    color: #555; /* Slightly darker text color */
+    color: #fffbfb; /* Slightly darker text color */
+  }
+  .mod2-heading-big{
+    font-size: 30px;
+    color: white;
   }
   

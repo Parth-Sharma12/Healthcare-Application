@@ -1,73 +1,18 @@
-.resp1-navbar{
-    margin-top: -15px;
-    width: 1665px;
-    height: 100px;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    padding: 10px; /* Increase padding for more space */
-    font-size: 25px;
-    font-family:serif;
-}
-.resp1-navbar-brand,.resp1-navbar-toggler{
-    margin-left:2vw;
-    margin-top: 3vh;
-    font-size: 30px; /* Increase font size */
-}
 
-/* AdminPanel.css */
-
-/* Navbar style */
-.resp1-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-
-  /* Center the nav items */
-  .resp1-navbar-nav {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .resp1-nav-item {
-    margin-right: 100px; /* Adjust the margin as needed */
-  }
-  
-  /* Adjust dropdown position if needed */
-  .resp1-nav-item.dropdown {
-    position: relative;
-    margin-right: 250px;
-  }
-  
-  .resp1-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-  .resp1-vertical-column{
-    height: 705px;
-    background-color: rgb(207, 60, 209);
-    width: 150px;
-    padding: 64px;
-  }
   .resp1-logo{
     width: 100px;
     height: 80px;
   }
   .resp1-data{
     margin-left: 400px;
-    background-color: rgb(221, 233, 244);
-    
+    background-color: rgb(221, 233, 244);    
   }
   .resp1-data1{
     width: 800px;
     height: 200px;
     margin-top: 100px;
     margin-bottom: 80px;
+    
   }
 
   .resp1-responder-content{
@@ -78,11 +23,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20vh;
-    margin-right: 20vw;
+    margin-top: 15vh;
+    width: 55vw;
+
   }
   
   .resp1-data {
+    background-color: rgb(188, 127, 205,0.5) ; 
     align-items: center;
     border-radius: 20px;
     padding: 10px;
@@ -90,6 +37,7 @@
     display: flex;
     font-size:large;
     font-weight: 500;
+    margin-bottom: 10vh;
   }
   
   .resp1-info-row {
@@ -109,7 +57,7 @@
   .resp1-circle2 {
     width: 70px;
     height: 60px;
-    background-color: #d86363;
+    background-color:rgb(134, 70, 156,0.7);
     color: #fff;
     font-size: larger;
     border-radius: 50%;
@@ -125,7 +73,6 @@
   
   .resp1-circle2 {
     margin-left: 5vw;
-
   }
   
   .resp1-circle1:hover,
@@ -138,19 +85,15 @@
     margin-top: 20px;
     margin-left: 60px;
     border-radius: 30px;
-    background-color: rgb(179, 240, 23);
+    background-color:rgb(134, 70, 156,0.8);
     padding: 15px 30px;
     font-size: 20px;
-    color: #100d0d;
+    color: #ffffff;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;  
   }
   
-  .resp1-button:hover {
-    transform: translateY(-3px);
-    background-color: rgb(150, 200, 10);
-  }
   
   .resp1-button:focus {
     outline: none;
@@ -159,6 +102,20 @@
   .resp1-button:active {
     transform: translateY(1px);
   } 
-  
-
+  .resp1-heading-big{
+    font-size: 18px;
+  }
+ 
+  .resp1-img1{
+    height: 40vh;
+    width: 20vw;
+  }
+  .resp1-img{
+    width: 10vw;
+    margin-top: 45vh;
+    margin-left: 2vw;
+  }
+  .resp1-main-content{
+    display:flex;
+  }
  /* Add this at the end of your CSS file */

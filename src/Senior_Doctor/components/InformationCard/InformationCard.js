@@ -1,7 +1,10 @@
 import React from 'react';
 import './InformationCard.css';
 
-export const InformationCard = ({ profilePhoto, name = "Dr. Parth Sharma", id = 1, email = "sharmaparth1208@gmail.com", experience = 5, age = 45 }) => {
+export const InformationCard = ({ profilePhoto, name, id , email , experience, age }) => {
+  
+  
+
   return (
     <div className="Senior1-doctor-card">
       <img src='/images/adminpanel.png' alt={name} className="Senior1-profile-photo" />

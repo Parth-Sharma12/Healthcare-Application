@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import './Moderator_Profile.css';
-import { NAV } from '../NAV/NAV';
+import React,{useEffect, useState} from 'react';
+import './Responder_Profile.css';
+import { NAV } from '../../../Moderator/components/NAV/NAV';
 import axios from 'axios'
-export default function Moderator_Profile() {
+import { NAV_RESP } from '../NAV_RESP/NAV_RESP';
+export default function Responder_Profile() {
     const [initialProfileData, setInitialProfileData] = useState({});
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -11,7 +12,6 @@ export default function Moderator_Profile() {
         newPassword: "",
         confirmPassword: ""
     });
-    
     const [profileData, setProfileData] = useState({
         firstName: "",
         middleName: "",
@@ -30,13 +30,12 @@ export default function Moderator_Profile() {
     const token = authToken ? authToken.accessToken : '';
     console.log(authToken);
     const userId = parseInt(authToken.userId);
-    console.log(userId)
     useEffect(() => {
         fetchData();
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/moderator/getbyid/${userId}`, {
+            const response = await axios.get(`http://localhost:8082/api/responder/getbyid/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -71,19 +70,19 @@ export default function Moderator_Profile() {
                 return;
             }
             try {
-                const response = await axios.put(`http://localhost:8082/api/moderator/update-password`, {
+                const response = await axios.put(`http://localhost:8082/api/responder/update-password`, {
                     newPassword: passwordFields.newPassword,
                     oldPassword: passwordFields.oldPassword,
-                    userId: userId
+                    userId : userId
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": 'application/json',
                     }
                 });
-
+                alert("Password upadated successfully");
                 console.log('Password updated successfully:', response.data);
-                alert('Password updated successfully');
+
                 setPasswordFields({
                     oldPassword: "",
                     newPassword: "",
@@ -92,7 +91,6 @@ export default function Moderator_Profile() {
 
                 setShowChangePassword(false);
             } catch (error) {
-                alert('Error updating password:')
                 console.error('Error updating password:', error.message);
             }
         }
@@ -107,53 +105,53 @@ export default function Moderator_Profile() {
     };
     return (
         <>
-            <NAV/>
-            <div className='mod7-profile-details-wrapper'>
-                <div className="mod7-profile-inner">
-                    <div className="mod7-profile-image-holder">
+            <NAV_RESP/>
+            <div className='resp7-profile-details-wrapper'>
+                <div className="resp7-profile-inner">
+                    <div className="resp7-profile-image-holder">
                         <img src="https://img.freepik.com/free-vector/hand-drawn-world-mental-health-day_52683-44659.jpg" alt="image" />
                     </div>
                     <form>
                         <h3>Your Profile</h3>
-                        <div className="mod7-form-group-profile">
-                            <label className='mod7-view-profile-label'>Name</label>
-                            <input type="text" placeholder='First Name' className='mod7-form-control-profile' value={profileData.firstName + " " + profileData.middleName + " " + profileData.lastName} readOnly />
+                        <div className="resp7-form-group-profile">
+                            <label className='resp7-view-profile-label'>Name</label>
+                            <input type="text" placeholder='First Name' className='resp7-form-control-profile' value={profileData.firstName + " " + profileData.middleName + " " + profileData.lastName} readOnly />
                         </div>
-                        <div className="mod7-form-wrapper-profile">
-                            <label className='mod7-view-profile-label'>Email</label>
-                            <input type="text" placeholder='Email Address' className='mod7-form-control-profile' value={profileData.email} readOnly />
+                        <div className="resp7-form-wrapper-profile">
+                            <label className='resp7-view-profile-label'>Email</label>
+                            <input type="text" placeholder='Email Address' className='resp7-form-control-profile' value={profileData.email} readOnly />
                         </div>
                        
                         {showChangePassword && (<>
-                            <div className="mod7-form-wrapper-profile">
-                                <label className='mod7-view-profile-label'>Old Password</label>
+                            <div className="resp7-form-wrapper-profile">
+                                <label className='resp7-view-profile-label'>Old Password</label>
                                 <input
                                     type="password"
                                     placeholder="Old Password"
                                     name="oldPassword"
-                                    className='mod7-form-control-profile'
+                                    className='resp7-form-control-profile'
                                     value={passwordFields.oldPassword}
                                     onChange={handleChangePasswordFields}
                                 />
                             </div>
-                            <div className="mod7-form-wrapper-profile">
-                                <label className='mod7-view-profile-label'>New Password</label>
+                            <div className="resp7-form-wrapper-profile">
+                                <label className='resp7-view-profile-label'>New Password</label>
                                 <input
                                     type="password"
                                     placeholder="New Password"
                                     name="newPassword"
-                                    className='mod7-form-control-profile'
+                                    className='resp7-form-control-profile'
                                     value={passwordFields.newPassword}
                                     onChange={handleChangePasswordFields}
                                 />
                             </div>
-                            <div className="mod7-form-wrapper-profile">
-                                <label className='mod7-view-profile-label'>Confirm Password</label>
+                            <div className="resp7-form-wrapper-profile">
+                                <label className='resp7-view-profile-label'>Confirm Password</label>
                                 <input
                                     type="password"
                                     placeholder="Confirm Password"
                                     name="confirmPassword"
-                                    className='mod7-form-control-profile'
+                                    className='resp7-form-control-profile'
                                     value={passwordFields.confirmPassword}
                                     onChange={handleChangePasswordFields}
                                 />
@@ -161,10 +159,10 @@ export default function Moderator_Profile() {
                         </>
 
                         )}
-                        {errorMessage && <p className="mod7-error-message">{errorMessage}</p>}
-                        <div className='mod7-view-profile-buttons'>
+                        {errorMessage && <p className="resp7-error-message">{errorMessage}</p>}
+                        <div className='resp7-view-profile-buttons'>
                             
-                            <button className='mod7-view-profile-button' onClick={(e) => { e.preventDefault(); toggleChangePassword(); }}>{showChangePassword ? "update" : "update password"}</button>
+                            <button className='resp7-view-profile-button' onClick={(e) => { e.preventDefault(); toggleChangePassword(); }}>{showChangePassword ? "update" : "update password"}</button>
                            
                         </div>
                     </form>
