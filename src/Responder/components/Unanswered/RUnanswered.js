@@ -3,6 +3,7 @@ import './RUnanswered.css';
 import AnsweringCard from '../AnsweringCard/RAnsweringCard';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { NAV_RESP } from '../NAV_RESP/NAV_RESP';
 export const RUnanswered = () => {
   const [questions, setQuestions] = useState([]);
 
@@ -49,35 +50,7 @@ export const RUnanswered = () => {
   return (
     <div className="resp2-app-container">
       {/* Navbar */}
-      <nav className="resp2-navbar  ">
-        {/* <img className = "resp2-logo" src="images/logo.png" alt="Logo" /> */}
-        <a className="resp2-navbar-brand" href="#" style={linkStyle}>
-          Tranquil Minds
-        </a>
-
-        <div className="resp2-collapse" id="navbarSupportedContent">
-          <ul className="resp2-navbar-nav">
-            <li className="resp2-nav-item">
-
-              <Link to="/home" style={linkStyle}>
-                Home
-              </Link>
-
-            </li>
-            <li className="resp2-nav-item">
-              <Link to="/home" style={linkStyle}>
-                View Posts
-              </Link>
-            </li>
-            <li className="resp2-nav-item">
-              <Link to="/" style={linkStyle} onClick={handleLogout}>
-                LogOut
-              </Link>
-            </li>
-
-          </ul>
-        </div>
-      </nav>
+      <NAV_RESP/>
       <div className="resp2-Main-content1">
         <div className="resp2-img_responder">
           <img className="resp2-moving-img" src="images/unanswered3.png" alt="Moving Img" />

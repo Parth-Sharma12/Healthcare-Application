@@ -1,3 +1,6 @@
+.mod1-app-container{
+  width: 50vw;
+}
 .mod1-navbar{
     margin-top: -15px;
     width: 1665px;
@@ -78,7 +81,7 @@
   .mod1-box {
     width: 200px;
     padding: 20px;
-    background-color: #f8d7d7; /* Light pink background */
+    background-color:rgb(188, 127, 205,0.7); /* Light pink background */
     border: 1px solid #e0a6a6; /* Light pink border */
     border-radius: 16px;
     text-align: center;
@@ -93,14 +96,19 @@
   .mod1-heading {
     margin-bottom: 15px; /* Increased margin for better spacing */
     font-size: 20px; /* Larger font size for headings */
-    color: #333; /* Darker text color */
+    color: #ffffff; /* Darker text color */
+  }
+  .mod1-heading {
+     /* Increased margin for better spacing */
+    font-size: 30px; /* Larger font size for headings */
+    color: #ffffff; /* Darker text color */
   }
   
   .mod1-circle {
     width: 120px; /* Increased size for the circle */
     height: 120px; /* Increased size for the circle */
     border-radius: 50%;
-    background-color: #007bff; /* Blue circle background */
+    background-color:rgb(134, 70, 156,0.7); /* Blue circle background */
     color: white;
     font-size: 36px; /* Larger font size for the circle */
     line-height: 120px; /* Center text vertically */

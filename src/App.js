@@ -65,10 +65,10 @@ function App() {
               ) : role === "admin" ? (
                 <AdminHome />
               ) : role === "moderator" ? (
-               <Senior_Home/> 
+              //  <Senior_Home/> 
               //  <Appointment_History/>
                 
-                // <MFlaggedPosts />
+                <MFlaggedPosts />
               ) : role === "responder" ? (
                 <RHome />
               ) : (

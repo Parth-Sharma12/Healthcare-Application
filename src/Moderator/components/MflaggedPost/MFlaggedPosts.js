@@ -3,6 +3,7 @@ import './MFlaggedPosts.css'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState , useEffect} from 'react';
+import { NAV } from '../NAV/NAV';
 import PostCard from '../PostCard/MPostCard';
 export const MFlaggedPosts = () => {
     const [flaggedPosts, setFlaggedPosts] = useState([]);
@@ -121,32 +122,7 @@ export const MFlaggedPosts = () => {
     return (
         <div className="mod1-app-container">
             {/* Navbar */}
-            <nav className="mod1-navbar ">
-               
-                <a className="mod1-navbar-brand"  style={linkStyle} href="#">Tranquil Minds</a>
-               
-
-                <div className="mod1-collapse mod1-navbar-collapse" id="navbarSupportedContent">
-                    <ul className="mod1-navbar-nav mr-auto">
-
-                        <li className="mod1-nav-item">
-                            <a className="mod1-nav-link"  style={linkStyle} href="#">Home</a>
-                        </li>
-                        
-                        <li className="mod1-nav-item">
-                            <a className="mod1-nav-link" href="#"> <Link to="/QnA" style={linkStyle}>QnA's</Link></a>
-                        </li>
-                        <li className="mod1-nav-item">
-                            <a className="mod1-nav-link"> <Link to="/Moderator_Profile" style={linkStyle}>Profile</Link></a>
-                        </li>  
-                        <li className="mod1-nav-item">
-                            <a className="mod1-nav-link" onClick={handleLogout} style={linkStyle} href="/">Logout</a>
-                        </li> 
-
-                    </ul>
-
-                </div>
-            </nav>
+            <NAV/>
             <div className='mod1-main-content1'>
                 <div className='mod1-img'>
                 <img className = "mod1-flag-img" src="images/flag.png" alt="Column 1 Image" />
@@ -170,7 +146,7 @@ export const MFlaggedPosts = () => {
                     ))} 
                 </div>
                 <div className='mod1-box'>
-          <h3>Number of Flagged Posts</h3>
+          <h3 className='mod1-heading-big'>Number of Flagged Posts</h3>
           <div className='mod1-circle'>{flaggedPosts.length}</div>
         </div>
 

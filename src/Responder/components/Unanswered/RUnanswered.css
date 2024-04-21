@@ -79,8 +79,8 @@
   .resp2-moving-img {
     width: 400px;
     height: 600px;
-    margin-left: -85px;
-    margin-top: 190px;
+    margin-left: 5px;
+    margin-top: 80px;
   }
   
   /* Add transition effect to smooth movement */

@@ -1,4 +1,4 @@
-.mod6-navbar{
+.resp6-navbar{
     margin-top: -15px;
     width: 1665px;
     height: 100px;
@@ -10,7 +10,7 @@
     font-size: 25px;
     
 }
-.mod6-navbar-brand,.mod6-navbar-toggler{
+.resp6-navbar-brand,.mod6-navbar-toggler{
    
     font-size: 2.5vw; /* Increase font size */
     white-space:nowrap;
@@ -20,38 +20,38 @@
 /* AdminPanel.css */
 
 /* Navbar style */
-.mod6-navbar {
+.resp6-navbar {
     display: flex;
     align-items: center;
   }
   
 
   /* Center the nav items */
-  .mod6-navbar-nav {
+  .resp6-navbar-nav {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .mod6-nav-item {
+  .resp6-nav-item {
     
   
     margin-right: 100px; /* Adjust the margin as needed */
   }
   
   /* Adjust dropdown position if needed */
-  .mod6-nav-item.dropdown {
+  .resp6-nav-item.dropdown {
     position: relative;
     margin-right: 10vw;
   }
   
-  .mod6-dropdown-menu {
+  .resp6-dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
   }
  
-  .mod6-logo{
+  .resp6-logo{
     margin-top:2vh ;
     width: 100px;
     height: 80px;

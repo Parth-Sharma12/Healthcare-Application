@@ -77,8 +77,8 @@ export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uplo
          
           <div className="button-container">
             <button className='btn-disable' onClick={onDisable}>Disable</button>
-            <button onClick={onUnflag}>Unflag</button>
-            <button className='mod1-btn-comments' onClick={handleCommentsClick}>Comments</button>
+            <button className='btn-disable' onClick={onUnflag}>Unflag</button>
+            <button className='btn-disable' onClick={handleCommentsClick}>Comments</button>
           </div>
         </div>
         <CommentModal isOpen={isModalOpen} onClose={handleCloseModal}  comments={Comments} />
