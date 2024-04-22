@@ -14,7 +14,7 @@ export default function ResponderDetails() {
       const authTokenString = localStorage.getItem('authToken');
       const authToken = JSON.parse(authTokenString);
       const accessToken = authToken.accessToken;
-      const response = await axios.get('http://localhost:8082/api/admin/responders', {
+      const response = await axios.get('http://192.168.198.236:8082/api/admin/responders', {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }

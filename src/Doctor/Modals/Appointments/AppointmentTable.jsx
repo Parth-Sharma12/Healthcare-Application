@@ -19,7 +19,7 @@ export default function AppointmentTable({ date }) {
           return;
         }
         //const dummyid = 23;
-        const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}/date/${date}`, {
+        const response = await axios.get(`http://192.168.198.236:8082/api/appointment/doctor-appointments/${userId}/date/${date}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": 'application/json',

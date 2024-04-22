@@ -51,7 +51,7 @@ export default function AddPost() {
             };
             //console.log(postData);
             // Send POST request to backend
-            const response = await axios.post('http://localhost:8082/api/post/add-post', postData,{
+            const response = await axios.post('http://192.168.198.236:8082/api/post/add-post', postData,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',

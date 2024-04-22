@@ -86,7 +86,7 @@ export default function Register({ setRole, setIsLoggedIn }) {
         image: imageData,
       };
       const response = await axios.post(
-        "http://localhost:8082/api/doctor/register",
+        "http://192.168.198.236:8082/api/doctor/register",
         formData
       );
       console.log(response.data);

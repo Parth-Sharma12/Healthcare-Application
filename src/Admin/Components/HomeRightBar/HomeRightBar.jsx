@@ -137,22 +137,22 @@ export default function HomeRightBar() {
         const authToken = JSON.parse(authTokenString);
         const accessToken = authToken.accessToken;
         //make request
-        const doctorsResponse = await axios.get('http://localhost:8082/api/admin/doctors', {
+        const doctorsResponse = await axios.get('http://192.168.198.236:8082/api/admin/doctors', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        const patientResponse = await axios.get('http://localhost:8082/api/admin/patients', {
+        const patientResponse = await axios.get('http://192.168.198.236:8082/api/admin/patients', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        const moderatorResponse = await axios.get('http://localhost:8082/api/admin/doctors', {
+        const moderatorResponse = await axios.get('http://192.168.198.236:8082/api/admin/doctors', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        const responderResponse = await axios.get('http://localhost:8082/api/admin/patients', {
+        const responderResponse = await axios.get('http://192.168.198.236:8082/api/admin/patients', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

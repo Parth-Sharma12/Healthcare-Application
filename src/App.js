@@ -92,6 +92,7 @@ function App() {
         <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
         <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
         <Route path="/Responder_Profile" exact element={role === 'RESPONDER' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
+        {/* <Route path="/Appointment_History" exact element={role === 'MODERATOR' && isLoggedIn ? <Appointment_History /> : <InvalidRole />} /> */}
       </Routes>
     </Router>
   );

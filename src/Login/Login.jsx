@@ -22,7 +22,7 @@ export default function Login({ setRole,setIsLoggedIn }) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8082/api/user/authenticate",
+        "http://192.168.198.236:8082/api/user/authenticate",
         userLoginDetails
       );
       if (response.status === 200) {

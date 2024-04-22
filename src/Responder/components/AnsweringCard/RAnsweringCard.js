@@ -37,7 +37,7 @@ const RAnsweringCard = ({ question }) => {
 
       // Make an API call using Axios to send the answer to the backend
       const response = await axios.put(
-        `http://localhost:8082/api/responder/add-answer/${question.questionId}`, modifiedQuestion, {
+        `http://192.168.198.236:8082/api/responder/add-answer/${question.questionId}`, modifiedQuestion, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

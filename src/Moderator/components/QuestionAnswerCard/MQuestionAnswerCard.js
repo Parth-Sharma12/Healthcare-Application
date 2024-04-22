@@ -19,7 +19,7 @@ const MQuestionAnswerCard = ({ question }) => {
       console.log(Id);
       setIsButtonDisabled(true); // Disable the button
       const response = await fetch(
-        `http://localhost:8082/api/moderator/approve-answer/${Id}`, {
+        `http://192.168.198.236:8082/api/moderator/approve-answer/${Id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

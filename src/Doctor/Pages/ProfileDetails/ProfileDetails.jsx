@@ -35,7 +35,7 @@ export default function ProfileDetails() {
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${user_Id}`, {
+            const response = await axios.get(`http://192.168.198.236:8082/api/doctor/doctorbyid/${user_Id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -63,7 +63,7 @@ export default function ProfileDetails() {
             // Send updated profileData to backend
             const authToken = JSON.parse(localStorage.getItem("authToken"));
             const token = authToken ? authToken.accessToken : '';
-            const response = await axios.put(`http://localhost:8082/api/doctor/update/${user_Id}`, profileData, {
+            const response = await axios.put(`http://192.168.198.236:8082/api/doctor/update/${user_Id}`, profileData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -91,7 +91,7 @@ export default function ProfileDetails() {
                 return;
             }
             try {
-                const response = await axios.put(`http://localhost:8082/api/doctor/update-password`, {
+                const response = await axios.put(`http://192.168.198.236:8082/api/doctor/update-password`, {
                     userId:user_Id,
                     oldPassword:passwordFields.oldPassword,
                     newPassword:passwordFields.newPassword

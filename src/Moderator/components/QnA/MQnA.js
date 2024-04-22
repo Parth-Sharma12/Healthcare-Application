@@ -30,7 +30,7 @@ const MQnA = () => {
       
       const userId = parseInt(token.userId);
       // Make an HTTP GET request to fetch flagged posts from the database
-      const response = await fetch('http://localhost:8082/api/moderator/unapproved-answers', {
+      const response = await fetch('http://192.168.198.236:8082/api/moderator/unapproved-answers', {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}` // Include the auth token in the header

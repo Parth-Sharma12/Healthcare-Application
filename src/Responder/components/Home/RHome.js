@@ -23,7 +23,7 @@ export const RHome = () => {
         };
 
         const response = await axios.get(
-          'http://localhost:8082/api/question/question-data', // Adjust the URL as per your backend endpoint
+          'http://192.168.198.236:8082/api/question/question-data', // Adjust the URL as per your backend endpoint
           { headers: headers }
         );
 

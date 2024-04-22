@@ -1,21 +1,23 @@
 import React from 'react';
 import './InformationCard.css';
-
-export const InformationCard = ({ profilePhoto, name, id , email , experience, age }) => {
-  
-  
-
+import { Link } from 'react-router-dom';
+export const InformationCard = ({Doctorinfo}) => {
   return (
     <div className="Senior1-doctor-card">
-      <img src='/images/adminpanel.png' alt={name} className="Senior1-profile-photo" />
+      <img src='/images/adminpanel.png'  className="Senior1-profile-photo" />
       {/* <img src={profilePhoto} alt={name} className="Senior1-profile-photo" /> */}
       <div className="Senior1-details">
-        <h2>{name}</h2>
-        <p>Doctor-Id: <b>{id}</b></p>
-        <p>Email:<b>{email} </b></p>
-        <p>Experience:<b>{experience} </b> years</p>
-        <p>Age:<b>{age}</b> </p>
-        <button className="Senior-view-appointments-btn">View Appointment History</button>
+        <h2>{Doctorinfo.firstName}</h2>
+        <p>Doctor-Id: <b>{Doctorinfo.userId}</b></p>
+        <p>Email:<b>{Doctorinfo.email} </b></p>
+        <p>Experience:<b>{Doctorinfo.experience} </b> years</p>
+        <p>Age:<b>{Doctorinfo.age}</b> </p>
+        <Link  to={{
+          pathname: "/Appointment_History",
+          state: { doctorInfo: Doctorinfo }
+        }} className="Senior-view-appointments-btn">
+        View Appointment History
+      </Link>
       </div>
     </div>
   );

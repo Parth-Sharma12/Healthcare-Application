@@ -13,7 +13,7 @@ export default function RequestDetails() {
     try {
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
-      const response = await axios.get(`http://localhost:8082/api/admin/disabled-doctors`, {
+      const response = await axios.get(`http://192.168.198.236:8082/api/admin/disabled-doctors`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -44,7 +44,7 @@ export default function RequestDetails() {
       setDisabledDoctors(updatedDoctors);
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
-      await axios.put(`http://localhost:8082/api/admin/approve-doctor/${userId}`, true, {
+      await axios.put(`http://192.168.198.236:8082/api/admin/approve-doctor/${userId}`, true, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',

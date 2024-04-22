@@ -28,7 +28,7 @@ export const RUnanswered = () => {
 
       const userId = parseInt(authToken.userId);
       // etch data from your backend API endpoint
-      const response = await fetch('http://localhost:8082/api/responder/get-unanswered-questions', {
+      const response = await fetch('http://192.168.198.236:8082/api/responder/get-unanswered-questions', {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',

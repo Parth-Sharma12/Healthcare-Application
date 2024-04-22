@@ -36,7 +36,7 @@ export default function Moderator_Profile() {
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/moderator/getbyid/${userId}`, {
+            const response = await axios.get(`http://192.168.198.236:8082/api/moderator/getbyid/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',

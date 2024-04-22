@@ -82,7 +82,7 @@ export default function DoctorHome() {
       i18n.changeLanguage(selectedLanguage);
     }
     try {
-      const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}`, {
+      const response = await axios.get(`http://192.168.198.236:8082/api/appointment/doctor-appointments/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -107,7 +107,7 @@ export default function DoctorHome() {
   //fetching doctor details by id if needed
   const fetchDoctorDetails = async (doctorId) => {
     try {
-      const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${userId}`,{
+      const response = await axios.get(`http://192.168.198.236:8082/api/doctor/doctorbyid/${userId}`,{
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": 'application/json',
@@ -125,7 +125,7 @@ export default function DoctorHome() {
   const fetchStats = async () => {
     try {
       if (doctorDetails && doctorDetails.doctorId) {
-        const response = await axios.get(`http://localhost:8082/api/doctor/get-stats/${doctorDetails.doctorId}`, {
+        const response = await axios.get(`http://192.168.198.236:8082/api/doctor/get-stats/${doctorDetails.doctorId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

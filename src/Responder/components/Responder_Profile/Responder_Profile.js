@@ -35,7 +35,7 @@ export default function Responder_Profile() {
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/responder/getbyid/${userId}`, {
+            const response = await axios.get(`http://192.168.198.236:8082/api/responder/getbyid/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
