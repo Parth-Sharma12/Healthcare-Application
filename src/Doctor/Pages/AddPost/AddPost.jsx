@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import '../AddPost/AddPost.css'
 import axios from 'axios'
+import {BaseUrl} from '../../../BaseUrl'
 export default function AddPost() {
     //add a post backend logic 
     const [postTitle, setPostTitle] = useState('');
@@ -51,7 +52,7 @@ export default function AddPost() {
             };
             //console.log(postData);
             // Send POST request to backend
-            const response = await axios.post('http://192.168.198.236:8082/api/post/add-post', postData,{
+            const response = await axios.post(`${BaseUrl}/api/post/add-post`, postData,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',

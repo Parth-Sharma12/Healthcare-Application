@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../DoctorDetailsComponent/Doctor.css'
 import Navbar from '../Navbar/Navbar'
 import { DataGrid } from '@mui/x-data-grid';
+import { BaseUrl } from '../../../BaseUrl';
 export default function Doctor() {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function Doctor() {
       const authTokenString = localStorage.getItem('authToken');
       const authToken = JSON.parse(authTokenString);
       const accessToken = authToken.accessToken;
-      const response = await axios.get('http://192.168.198.236:8082/api/admin/doctors', {
+      const response = await axios.get(`${BaseUrl}/api/admin/doctors`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": 'application/json',
@@ -54,7 +55,7 @@ export default function Doctor() {
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
 
-      await axios.put(`http://192.168.198.236:8082/api/admin/approve-doctor/${userId}`,valueToSend, {
+      await axios.put(`${BaseUrl}/api/admin/approve-doctor/${userId}`,valueToSend, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',

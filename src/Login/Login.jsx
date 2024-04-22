@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import {BaseUrl} from '../BaseUrl'
 export default function Login({ setRole,setIsLoggedIn }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const { t, i18n } = useTranslation();
@@ -22,7 +23,7 @@ export default function Login({ setRole,setIsLoggedIn }) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.198.236:8082/api/user/authenticate",
+        `${BaseUrl}/api/user/authenticate`,
         userLoginDetails
       );
       if (response.status === 200) {

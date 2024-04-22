@@ -66,7 +66,7 @@ export default function PatientDetails() {
                             </div>
                             <div className="view-patient-buttons">
                                 <button className='view-patient-button' onClick={handleChatNow}>Chat Now</button>
-                                <button className='view-patient-button' type="submit">Call</button>
+                                {/* <button className='view-patient-button' type="submit">Call</button> */}
                             </div>
                         </form>
                     </div>

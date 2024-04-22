@@ -7,7 +7,7 @@ import { MdOutlineInsertComment } from "react-icons/md";
 import { FiFlag } from "react-icons/fi";
 import axios from 'axios';
 import { TiTick } from "react-icons/ti";
-
+import {BaseUrl} from '../../../BaseUrl'
 export default function ViewPosts() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [posts, setPosts] = useState([]);
@@ -22,7 +22,7 @@ export default function ViewPosts() {
         // Fetch posts from the backend
         async function fetchPosts() {
             try {
-                const response = await axios.get('http://192.168.198.236:8082/api/post/get-posts');
+                const response = await axios.get(`${BaseUrl}/api/post/get-posts`);
                 console.log(response.data);
                 setPosts(response.data); // Assuming the response contains an array of posts
             } catch (error) {
@@ -35,7 +35,7 @@ export default function ViewPosts() {
 
     const handleFlagPost = async (postId) => {
         try {
-            const response = await axios.put(`http://192.168.198.236:8082/api/post/flag/${postId}`, true, {
+            const response = await axios.put(`${BaseUrl}/api/post/flag/${postId}`, true, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json',

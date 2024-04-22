@@ -6,6 +6,7 @@ import { MdEmail } from "react-icons/md";
 import { GrLicense } from "react-icons/gr";
 import ErrorModal from "../../Modals/ErrorModal/ErrorModal";
 import axios from "axios";
+import {BaseUrl} from '../../../BaseUrl'
 import { useTranslation } from 'react-i18next';
 export default function Register({ setRole, setIsLoggedIn }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -86,7 +87,7 @@ export default function Register({ setRole, setIsLoggedIn }) {
         image: imageData,
       };
       const response = await axios.post(
-        "http://192.168.198.236:8082/api/doctor/register",
+        `${BaseUrl}/api/doctor/register`,
         formData
       );
       console.log(response.data);

@@ -3,6 +3,7 @@ import '../ModeratorDetails/ModeratorDetails.css'
 import Navbar from '../Navbar/Navbar'
 import { DataGrid } from '@mui/x-data-grid'
 import axios from 'axios'
+import { BaseUrl } from '../../../BaseUrl'
 export default function ModeratorDetails() {
   const [moderators, setModerators] = useState([]);
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function ModeratorDetails() {
       const authTokenString = localStorage.getItem('authToken');
       const authToken = JSON.parse(authTokenString);
       const accessToken = authToken.accessToken;
-      const response = await axios.get('http://192.168.198.236:8082/api/admin/moderators', {
+      const response = await axios.get(`${BaseUrl}/api/admin/moderators`, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
