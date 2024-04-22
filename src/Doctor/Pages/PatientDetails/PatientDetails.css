@@ -183,7 +183,7 @@ textarea.input-view-patient{
   font-weight: 500;
   transition: background-color 0.3s ease;
   width: 7rem;
-  margin-right: 2rem;
+  margin-left: 7rem;
 }
 .view-patient-button:hover{
     background-color: #FB9AD1;

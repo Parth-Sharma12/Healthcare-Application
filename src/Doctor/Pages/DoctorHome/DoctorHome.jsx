@@ -10,6 +10,7 @@ import CalenderComponent from '../../Components/Calender/CalenderComponent'
 import AppointmentTable from '../../Modals/Appointments/AppointmentTable'
 import { FaUser } from "react-icons/fa";
 import Footer from '../../Components/Footer/Footer'
+import { BaseUrl } from '../../../BaseUrl'
 export default function DoctorHome() {
   const data01 = [
     {
@@ -82,7 +83,7 @@ export default function DoctorHome() {
       i18n.changeLanguage(selectedLanguage);
     }
     try {
-      const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}`, {
+      const response = await axios.get(`${BaseUrl}/api/appointment/doctor-appointments/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -107,7 +108,7 @@ export default function DoctorHome() {
   //fetching doctor details by id if needed
   const fetchDoctorDetails = async (doctorId) => {
     try {
-      const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${userId}`,{
+      const response = await axios.get(`${BaseUrl}/api/doctor/doctorbyid/${userId}`,{
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": 'application/json',
@@ -125,7 +126,7 @@ export default function DoctorHome() {
   const fetchStats = async () => {
     try {
       if (doctorDetails && doctorDetails.doctorId) {
-        const response = await axios.get(`http://localhost:8082/api/doctor/get-stats/${doctorDetails.doctorId}`, {
+        const response = await axios.get(`${BaseUrl}/api/doctor/get-stats/${doctorDetails.doctorId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

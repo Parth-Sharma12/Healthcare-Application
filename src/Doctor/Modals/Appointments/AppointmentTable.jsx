@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import '../Appointments/AppointmentTable.css'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import {BaseUrl} from '../../../BaseUrl'
 export default function AppointmentTable({ date }) {
   const [dateappointments, setDateAppointments] = useState([]);
   //logic to check appointment details and find which slots are booked
@@ -19,7 +20,7 @@ export default function AppointmentTable({ date }) {
           return;
         }
         //const dummyid = 23;
-        const response = await axios.get(`http://localhost:8082/api/appointment/doctor-appointments/${userId}/date/${date}`, {
+        const response = await axios.get(`${BaseUrl}/api/appointment/doctor-appointments/${userId}/date/${date}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": 'application/json',

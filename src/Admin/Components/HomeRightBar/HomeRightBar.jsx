@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import '../HomeRightBar/HomeRightBar.css'
 import Navbar from '../Navbar/Navbar'
 import axios from 'axios'
+import { BaseUrl } from '../../../BaseUrl'
 import { Tooltip, BarChart, CartesianGrid, Bar, PieChart, Pie, FunnelChart, Funnel, LabelList, Legend, XAxis, YAxis, LineChart, Line,Label, ResponsiveContainer } from 'recharts'
 export default function HomeRightBar() {
   
@@ -137,22 +138,22 @@ export default function HomeRightBar() {
         const authToken = JSON.parse(authTokenString);
         const accessToken = authToken.accessToken;
         //make request
-        const doctorsResponse = await axios.get('http://localhost:8082/api/admin/doctors', {
+        const doctorsResponse = await axios.get(`${BaseUrl}/api/admin/doctors`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        const patientResponse = await axios.get('http://localhost:8082/api/admin/patients', {
+        const patientResponse = await axios.get(`${BaseUrl}/api/admin/patients`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        const moderatorResponse = await axios.get('http://localhost:8082/api/admin/doctors', {
+        const moderatorResponse = await axios.get(`${BaseUrl}/api/admin/doctors`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        const responderResponse = await axios.get('http://localhost:8082/api/admin/patients', {
+        const responderResponse = await axios.get(`${BaseUrl}/api/admin/patients`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

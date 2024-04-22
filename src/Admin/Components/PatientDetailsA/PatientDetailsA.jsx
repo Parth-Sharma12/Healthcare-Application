@@ -3,6 +3,7 @@ import Navbar from '../Navbar/Navbar'
 import '../PatientDetailsA/PatientDetailsA.css'
 import { DataGrid } from '@mui/x-data-grid'
 import axios from 'axios'
+import { BaseUrl } from '../../../BaseUrl'
 export default function PatientDetailsA() {
     const [patients, setPatients] = useState([]);
     useEffect(() => {
@@ -14,7 +15,7 @@ export default function PatientDetailsA() {
         const authTokenString = localStorage.getItem('authToken');
         const authToken = JSON.parse(authTokenString);
         const accessToken = authToken.accessToken;
-        const response = await axios.get('http://localhost:8082/api/admin/patients', {
+        const response = await axios.get(`${BaseUrl}/api/admin/patients`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

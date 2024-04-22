@@ -3,6 +3,7 @@ import '../RequestsDetails/RequestDetails.css'
 import Navbar from '../Navbar/Navbar'
 import { DataGrid } from '@mui/x-data-grid'
 import axios from 'axios'
+import { BaseUrl } from '../../../BaseUrl'
 export default function RequestDetails() {
   //fetch data from backend display only those whose isDisabled value is true.
   const [disabledDoctors,setDisabledDoctors] = useState([]);
@@ -13,7 +14,7 @@ export default function RequestDetails() {
     try {
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
-      const response = await axios.get(`http://localhost:8082/api/admin/disabled-doctors`, {
+      const response = await axios.get(`${BaseUrl}/api/admin/disabled-doctors`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -44,7 +45,7 @@ export default function RequestDetails() {
       setDisabledDoctors(updatedDoctors);
       const authToken = JSON.parse(localStorage.getItem("authToken"));
       const token = authToken ? authToken.accessToken : '';
-      await axios.put(`http://localhost:8082/api/admin/approve-doctor/${userId}`, true, {
+      await axios.put(`${BaseUrl}/api/admin/approve-doctor/${userId}`, true, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../ProfileDetails/ProfileDetails.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import axios from 'axios'
+import {BaseUrl} from '../../../BaseUrl'
 export default function ProfileDetails() {
     const [initialProfileData, setInitialProfileData] = useState({});
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -35,7 +36,7 @@ export default function ProfileDetails() {
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${user_Id}`, {
+            const response = await axios.get(`${BaseUrl}/api/doctor/doctorbyid/${user_Id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -63,7 +64,7 @@ export default function ProfileDetails() {
             // Send updated profileData to backend
             const authToken = JSON.parse(localStorage.getItem("authToken"));
             const token = authToken ? authToken.accessToken : '';
-            const response = await axios.put(`http://localhost:8082/api/doctor/update/${user_Id}`, profileData, {
+            const response = await axios.put(`${BaseUrl}/api/doctor/update/${user_Id}`, profileData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -91,7 +92,7 @@ export default function ProfileDetails() {
                 return;
             }
             try {
-                const response = await axios.put(`http://localhost:8082/api/doctor/update-password`, {
+                const response = await axios.put(`${BaseUrl}/api/doctor/update-password`, {
                     userId:user_Id,
                     oldPassword:passwordFields.oldPassword,
                     newPassword:passwordFields.newPassword
