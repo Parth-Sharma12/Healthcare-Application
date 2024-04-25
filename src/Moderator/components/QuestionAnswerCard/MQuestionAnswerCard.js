@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import axios for making HTTP requests
 import './MQuestionAnswerCard.css'; // Add styles for your question-answer card here
-
+import { BaseUrl } from '../../../BaseUrl';
 const MQuestionAnswerCard = ({ question }) => {
   // Set flag to 0
   console.log(question.questionId);
@@ -19,7 +19,7 @@ const MQuestionAnswerCard = ({ question }) => {
       console.log(Id);
       setIsButtonDisabled(true); // Disable the button
       const response = await fetch(
-        `http://192.168.198.236:8082/api/moderator/approve-answer/${Id}`, {
+        `${BaseUrl}/api/moderator/approve-answer/${Id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

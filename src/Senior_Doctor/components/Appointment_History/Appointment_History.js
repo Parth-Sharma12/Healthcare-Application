@@ -1,23 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Appointment_History.css';
 import Senior_Navbar from '../Senior_Navbar/Senior_Navbar';
+import axios from 'axios'; // Import Axios
+import { useParams } from 'react-router-dom';
 
-export const Appointment_History = ({doctorInfo}) => {
-    doctorInfo = {
-        name: "Dr. John Doe",
-        profilePic: "/images/adminpanel.png",
-        email: "john.doe@example.com",
-        gender: "Male"
-    };
-    const appointments = [
-        { appointment_id: 1, date: "2024-04-15", time: "10:00 AM" },
-        { appointment_id: 2, date: "2024-04-20", time: "2:30 PM" },
-        { appointment_id: 3, date: "2024-04-25", time: "11:45 AM" },
-        // Add more appointments as needed
-    ];
+export const Appointment_History = () => {
+    const { doctorId } = useParams();
+    console.log("Doctor ID in Appointment History:", doctorId);
+
+    const [appointments, setAppointments] = useState([]);
+    const [doctorInfo, setDoctorInfo] = useState(null); 
     
+    useEffect(() => {
+        console.log('Inside useEffect');
+        console.log('doctorId:', doctorId);
+        const fetchData = async () => {
+            if (doctorId) {
+                console.log('Fetching data for doctorId:', doctorId);
+                try {
+                    const authToken = JSON.parse(localStorage.getItem("authToken"));
+                    const token = authToken ? authToken.accessToken : '';
+                    
+                    // Fetch doctor info
+                    const doctorResponse = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${doctorId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    console.log(doctorResponse.data);
+                    setDoctorInfo(doctorResponse.data);
+                    
+                    // Fetch appointments
+                    const appointmentsResponse = await axios.get(`http://localhost:8082/api/doctor/distinct-patient/${doctorId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    setAppointments(appointmentsResponse.data);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            }
+        };
+    
+        fetchData();
+    }, [doctorId]); // Include doctorId in the dependency array
+
     const handleViewChat = (appointment_id) => {
-        // Handle view chat action
         console.log(`View Chat for appointment ${appointment_id}`);
     };
 
@@ -25,29 +54,24 @@ export const Appointment_History = ({doctorInfo}) => {
         <div>
             <Senior_Navbar />
             <div className="Senior3-Doctor-Info">
-                <img src={doctorInfo.profilePic} alt="Doctor" className="Senior3-Doctor-Profile-Pic" />
+                <img src="/images/adminpanel.png" alt="Doctor" className="Senior3-Doctor-Profile-Pic" />
                 <div className="Senior3-Doctor-Details">
-                    <h2>{doctorInfo.name}</h2>
-                    <p>Email: {doctorInfo.email}</p>
-                    <p>Gender: {doctorInfo.gender}</p>
+                    <h2>{doctorInfo?.firstName}</h2> {/* Use optional chaining to avoid errors if doctorInfo is null */}
+                    <p>Email: {doctorInfo?.user.email}</p>
+                    <p>Gender: {doctorInfo?.gender}</p>
                 </div>
             </div>
             <div className="Appointment-History-container">
                 <h2 className="Appointment-History-title">Appointment History</h2>
                 <ul className="Appointment-History-list">
                     {appointments.map(appoint => (
-                        <li key={appoint.appointment_id} className="Appointment-History-item">
-                            <p>Appointment ID: {appoint.appointment_id}</p>
-                            <p>Date: {appoint.date}</p>
-                            <p>Time: {appoint.time}</p>
+                        <li key={appoint} className="Appointment-History-item">
+                            <p>Appointment ID: {appoint}</p>
                             <button className='Senior3-Viewchat' onClick={() => handleViewChat(appoint.appointment_id)}>View Chat</button>
                         </li>
                     ))}
                 </ul>
             </div>
         </div>
-
     );
 };
-
-

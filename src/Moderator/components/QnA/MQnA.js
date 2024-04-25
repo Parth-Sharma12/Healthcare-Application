@@ -4,7 +4,7 @@ import './MQnA.css';
 import QuestionAnswerCard from '../QuestionAnswerCard/MQuestionAnswerCard';
 import { Link } from 'react-router-dom';
 import { NAV } from '../NAV/NAV';
-
+import { BaseUrl } from '../../../BaseUrl';
 const MQnA = () => {
   const [qaData, setQaData] = useState([]);
   const [numberOfUnapprovedQuestion,setnumberOfUnapprovedQuestion] = useState(0);
@@ -30,7 +30,7 @@ const MQnA = () => {
       
       const userId = parseInt(token.userId);
       // Make an HTTP GET request to fetch flagged posts from the database
-      const response = await fetch('http://192.168.198.236:8082/api/moderator/unapproved-answers', {
+      const response = await fetch(`${BaseUrl}/api/moderator/unapproved-answers`, {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${token}` // Include the auth token in the header

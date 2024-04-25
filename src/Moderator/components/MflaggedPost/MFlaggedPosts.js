@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState , useEffect} from 'react';
 import { NAV } from '../NAV/NAV';
+import { BaseUrl } from '../../../BaseUrl';
 import PostCard from '../PostCard/MPostCard';
 export const MFlaggedPosts = () => {
     const [flaggedPosts, setFlaggedPosts] = useState([]);
@@ -29,7 +30,7 @@ export const MFlaggedPosts = () => {
             
             const userId = parseInt(authToken.userId);
             // Make an HTTP GET request to fetch flagged posts from the database
-            const response = await fetch('http://192.168.198.236:8082/api/moderator/flagged-posts', {
+            const response = await fetch(`${BaseUrl}/api/moderator/flagged-posts`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}` // Include the auth token in the header
@@ -62,7 +63,7 @@ export const MFlaggedPosts = () => {
             
             const userId = parseInt(token.userId);
             // Make an HTTP PUT request to update the flagged status of the post
-            const response = await fetch(`http://192.168.198.236:8082/api/moderator/unflag/${postId}`, {
+            const response = await fetch(`${BaseUrl}/api/moderator/unflag/${postId}`, {
                method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ export const MFlaggedPosts = () => {
                 
                 const userId = parseInt(token.userId);
                 // Make an HTTP PUT request to update the flagged status of the post
-                const response = await fetch(`http://192.168.198.236:8082/api/moderator/disable/${postId}`, {
+                const response = await fetch(`${BaseUrl}/api/moderator/disable/${postId}`, {
                   method: 'PUT',
                   headers: {
                     'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import AnsweringCard from '../AnsweringCard/RAnsweringCard';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { NAV_RESP } from '../NAV_RESP/NAV_RESP';
+import { BaseUrl } from '../../../BaseUrl';
 export const RUnanswered = () => {
   const [questions, setQuestions] = useState([]);
 
@@ -28,7 +29,7 @@ export const RUnanswered = () => {
 
       const userId = parseInt(authToken.userId);
       // etch data from your backend API endpoint
-      const response = await fetch('http://192.168.198.236:8082/api/responder/get-unanswered-questions', {
+      const response = await fetch(`${BaseUrl}/api/responder/get-unanswered-questions`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',
