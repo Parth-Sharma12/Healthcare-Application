@@ -12,7 +12,7 @@ export const InformationCard = ({ Doctorinfo }) => {
         <p>Email:<b>{Doctorinfo.email} </b></p>
         <p>Experience:<b>{Doctorinfo.experience} </b> years</p>
         <p>Age:<b>{Doctorinfo.age}</b> </p>
-        console.log("Doctor ID:", Doctorinfo.userId);
+        
         <Link
           to={`/Appointment_History/${ Doctorinfo.userId}`} // Pass doctorId as URL parameter
           className="Senior-view-appointments-btn"
