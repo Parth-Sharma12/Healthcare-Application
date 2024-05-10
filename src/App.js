@@ -34,8 +34,8 @@ import Responder_Profile from "./Responder/components/Responder_Profile/Responde
 import UpdatePasswordPage from "./Moderator/components/UpdatePasswordPage/UpdatePasswordPage.js";
 import YourPosts from "./Doctor/Pages/YourPosts/YourPosts.jsx";
 import { AppointmentProvider } from "./Doctor/Context/AppointmentContext.js";
-//Logic to implement role based routing
 import UpdatePassword_resp from "./Responder/components/UpdatePassword/UpdatePassword_resp.js";
+//Logic to implement role based routing
 function App() {
   const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
   const [isLoggedIn, setIsLoggedIn] = useState(

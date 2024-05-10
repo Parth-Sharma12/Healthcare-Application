@@ -52,6 +52,7 @@ export default function AppointmentTable({ date }) {
   const handleRowClick = (event) => {
    const id=event.row.id;
    const patientName=event.row.patientName;
+   console.log("id and patient name is",id,patientName);
     const userIdToFetch = idToUserIdMap[`${id},${patientName}`];
     if (userIdToFetch) {
       const appointment = dateAppointments.find(appointment => appointment.patient.userId === userIdToFetch);
@@ -80,7 +81,6 @@ export default function AppointmentTable({ date }) {
 
 // Transform dateAppointments to include only patient names
 const rows = dateAppointments
-  .filter(appointment => appointment.date === date) // Filter appointments for the selected date
   .map((appointment, index) => ({
     id: index + 1, // Assign an incremented ID starting from 1
     patientName: `${appointment.patient.firstName} ${appointment.patient.middleName || ''} ${appointment.patient.lastName}`
