@@ -4,3 +4,8 @@
     height: calc(100% - 120px);
     overflow-y: scroll;
 }
+.chatLoadingMessage{
+    text-align: center;
+    color: rgb(188, 127, 205,0.5);
+    font-size: 2rem;
+}

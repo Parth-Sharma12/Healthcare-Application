@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../ProfileDetails/ProfileDetails.css';
 import Navbar from '../../Components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import {BaseUrl} from '../../../BaseUrl'
 export default function ProfileDetails() {
+    const navigate = useNavigate();
     const [initialProfileData, setInitialProfileData] = useState({});
     const [showChangePassword, setShowChangePassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -59,12 +61,24 @@ export default function ProfileDetails() {
         }));
     };
 
-    const handleSave = async () => {
+    const handleSave = async (e) => {
+        e.preventDefault();
         try {
+            // const payLoad={
+            //     "consultationFee":profileData.consultationFee,
+            //     "description":profileData.description,
+            //     "mobileNo":profileData.mobileNo,
+            //     "firstName":profileData.firstName,
+            //     "middleName":profileData.middleName,
+            //     "lastName":profileData.lastName,
+            //     "age":profileData.age
+            // };
+           // console.log("to send",payLoad);
             // Send updated profileData to backend
+            console.log("handle is called");
             const authToken = JSON.parse(localStorage.getItem("authToken"));
             const token = authToken ? authToken.accessToken : '';
-            const response = await axios.put(`${BaseUrl}/api/doctor/update/${user_Id}`, profileData, {
+            const response = await axios.put(`${BaseUrl}/api/doctor/update-doctor/${user_Id}`, profileData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -81,13 +95,17 @@ export default function ProfileDetails() {
         setProfileData(initialProfileData);
     };
 
+    const handleYourPosts = () => {
+        navigate('/YourPosts'); // Navigate to '/other-page' when the button is clicked
+      };
+
     const toggleChangePassword = async () => {
         if (!showChangePassword) {
             setShowChangePassword(true);
         }
         else {
             //logic to update the password in backend.
-            if (passwordFields.newPassword !== passwordFields.confirmPassword) {
+            if (passwordFields.newPassword!== passwordFields.confirmPassword) {
                 setErrorMessage("Passwords do not match");
                 return;
             }
@@ -136,9 +154,11 @@ export default function ProfileDetails() {
             <div className='profile-details-wrapper'>
                 <div className="profile-inner">
                     <div className="profile-image-holder">
-                        <img src="https://img.freepik.com/free-vector/hand-drawn-world-mental-health-day_52683-44659.jpg" alt="image" />
+                    <button className='Your-Posts' onClick={handleYourPosts}>Your Posts</button>
+                        <img src={profileData.image} alt="" />
                     </div>
                     <form>
+                        
                         <h3>Your Profile</h3>
                         <div className="form-group-profile">
                             <label className='view-profile-label'>Name</label>
@@ -152,12 +172,9 @@ export default function ProfileDetails() {
                             <label className='view-profile-label'>Contact</label>
                             <input type="text" placeholder='Mobile No.' name="mobileNo" className='form-control-profile' value={profileData.mobileNo} onChange={handleChange} />
                         </div>
-                        {/* <div className="form-wrapper-profile">
-                            <input type="text" placeholder='Address' className='form-control-profile' />
-                        </div> */}
                         <div className="form-wrapper-profile">
                             <label className='view-profile-label'>Consultation</label>
-                            <input type="text" placeholder='Consultation Fee' name="consultationFee" className='form-control-profile' value={profileData.consultationFee + " RS"} onChange={handleChange} />
+                            <input type="text" placeholder='Consultation Fee' name="consultationFee" className='form-control-profile' value={profileData.consultationFee} onChange={handleChange} />
                         </div>
                         <div className="form-wrapper-profile">
                             <label className='view-profile-label'>Gender</label>
@@ -211,7 +228,7 @@ export default function ProfileDetails() {
                         {errorMessage && <p className="error-message">{errorMessage}</p>}
                         {showSuccessMessage && <p className="success-message">Password updated successfully</p>}
                         <div className='view-profile-buttons'>
-                            <button className='view-profile-button' onClick={handleSave}>Edit</button>
+                            <button className='view-profile-button' onClick={(e) => handleSave(e)}>Edit</button>
                             <button className='view-profile-button' onClick={(e) => { e.preventDefault(); toggleChangePassword(); }}>{showChangePassword ? "update" : "update password"}</button>
                             <button className='view-profile-button' onClick={handleCancel}>cancel</button>
                         </div>

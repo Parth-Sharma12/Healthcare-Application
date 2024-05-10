@@ -1,106 +1,233 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../ProfileDetails/ProfileDetails.css';
 import Navbar from '../Navbar/Navbar';
-export default function ProfileDetails() {
+import { BaseUrl } from '../../../BaseUrl'
+import axios from 'axios';
+export default function ProfileDetails(props) {
+    const formType = props.formType;
+    const [successMessage, setSuccessMessage] = useState('');
+    const [failureMessage, setfailureMessage] = useState('');
+
+      const authTokenString = localStorage.getItem('authToken');
+      const authToken = JSON.parse(authTokenString);
+      const accessToken = authToken.accessToken;
+
+    //data to send while adding moderators and responders
+    const [formData, setFormData] = useState({
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        email: '',
+        password: '',
+    });
+
+    //function to handle change in input fields
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    //function to handle form submit based on the if we are adding responder or moderator
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (formType === 'AddModerator') {
+                await handleAddModerator();
+            } else if (formType === 'AddResponder') {
+                await handleAddResponder();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle error
+        }
+    };
+
+    //handel cancel
+    const handleCancel = () => {
+        setFormData({
+            firstName: '',
+            middleName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        });
+    };
+
+    //function to add moderator
+    const handleAddModerator = async (data) => {
+        try {
+            const response = await axios.post(`${BaseUrl}/api/admin/add-moderator`, {
+                user: {
+                    email: formData.email,
+                    password: formData.password
+                },
+                firstName: formData.firstName,
+                middleName: formData.middleName,
+                lastName: formData.lastName
+            }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            console.log(response.data);
+            setFormData({
+                firstName: '',
+                middleName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            });
+            // Display success message
+            setSuccessMessage('An email has been sent to reset the password.');
+        // Clear success message after 2 seconds
+        setTimeout(() => {
+            setSuccessMessage('');
+        }, 2000);
+            // Handle success response
+        } catch (error) {
+            console.error('Error adding moderator:', error);
+            // Display success message
+            setfailureMessage('Some problem occured....Retry again after sometime.');
+            // Clear failure message after 2 seconds
+            setTimeout(() => {
+                setfailureMessage('');
+            }, 2000);
+            // Handle error
+        }
+    };
+
+    //function to add responder
+    const handleAddResponder = async (data) => {
+        try {
+            const response = await axios.post(`${BaseUrl}/api/admin/add-responder`, {
+                user: {
+                    email: formData.email,
+                    password: formData.password
+                },
+                firstName: formData.firstName,
+                middleName: formData.middleName,
+                lastName: formData.lastName
+            }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            console.log(response.data);
+            setFormData({
+                firstName: '',
+                middleName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            });
+            // Display success message
+            setSuccessMessage('An email has been sent to reset the password.');
+        // Clear success message after 2 seconds
+        setTimeout(() => {
+            setSuccessMessage('');
+        }, 2000);
+            // Handle success response
+        } catch (error) {
+            console.error('Error adding responder:', error);
+            // Display success message
+            setfailureMessage('Some problem occured....Retry again after sometime.');
+        // Clear failure message after 2 seconds
+        setTimeout(() => {
+            setfailureMessage('');
+        }, 2000);
+            // Handle error
+        }
+    };
+
     return (
         // <div className='MainProfileContainer'>
         <div className="MainProfileContainer"><Navbar />
-           <div className='profile-details-wrapper-admin'>
-                <div className="profile-inner-admin">
-                    <div className="profile-image-holder-admin">
-                        <img src="https://img.freepik.com/free-vector/hand-drawn-world-mental-health-day_52683-44659.jpg" alt="image" />
-                    </div>
-                    <form>
-                        <h3>Your Profile</h3>
-                        <div className="form-group-profile-admin">
-                            <input type="text" placeholder='First Name' className='form-control-profile-admin' />
-                            <input type="text" placeholder='Middle Name' className='form-control-profile-admin' />
-                            <input type="text" placeholder='Last Name' className='form-control-profile-admin' />
+            <div className='profile-details-wrapper-admin'>
+                {formType === 'Profile' && (
+                    <>
+                        <div className="profile-inner-admin">
+                            <div className="profile-image-holder-admin">
+                                <img src="https://img.freepik.com/free-vector/hand-drawn-world-mental-health-day_52683-44659.jpg" alt="" />
+                            </div>
+                            <form>
+                                <h3>{formType === 'Profile' ? 'Your Profile' : formType === 'AddModerator' ? 'Add Moderator' : 'Add Responder'}</h3>
+                                <div className="form-group-profile-admin">
+                                    <input type="text" placeholder='First Name' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='Middle Name' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='Last Name' className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Email Address' className='form-control-profile-admin' readOnly />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Mobile No.' className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Address' className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Consultation Fee' className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Gender' className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='License No.' className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Description' className='form-control-profile-admin' />
+                                </div>
+                                <div className='view-profile-buttons-admin'>
+                                    <button className='view-profile-button-admin'>Edit</button>
+                                    <button className='view-profile-button-admin'>cancel</button>
+                                </div>
+                            </form>
                         </div>
-                        <div className="form-wrapper-profile-admin">
+                    </>
+                )}
+                {(formType === 'AddModerator' || formType === 'AddResponder') && (
+                    <>
+                        <div className="profile-inner-admin">
+                            <div className="profile-image-holder-admin">
+                                <img src="https://img.freepik.com/free-vector/hand-drawn-world-mental-health-day_52683-44659.jpg" alt="" />
+                            </div>
+                            <form onSubmit={handleSubmit}>
+                                <h3>{formType === 'Profile' ? 'Your Profile' : formType === 'AddModerator' ? 'Add Moderator' : 'Add Responder'}</h3>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='First Name' name="firstName" value={formData.firstName} onChange={handleChange} className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Middle Name' name="middleName" value={formData.middleName} onChange={handleChange} className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="text" placeholder='Last Name' name="lastName" value={formData.lastName} onChange={handleChange} className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="email" placeholder='Email Address' name='email' value={formData.email} onChange={handleChange} className='form-control-profile-admin' />
+                                </div>
+                                <div className="form-wrapper-profile-admin">
+                                    <input type="password" placeholder='Password' name='password' value={formData.password} onChange={handleChange} className='form-control-profile-admin' />
+                                </div>
+                                {(successMessage && !failureMessage) && (
+                                    <p className="success-message-add-admin">{successMessage}</p>
+                                )}
 
+                                {failureMessage && (
+                                    <p className="failure-message-add-admin">{failureMessage}</p>
+                                )}
+
+                                <div className='view-profile-buttons-admin'>
+                                    <button type='submit' className='view-profile-button-admin'>Add</button>
+                                    <button onClick={handleCancel} className='view-profile-button-admin'>Cancel</button>
+                                </div>
+                            </form>
                         </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='Email Address' className='form-control-profile-admin' readOnly />
-                        </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='Mobile No.' className='form-control-profile-admin' />
-                        </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='Address' className='form-control-profile-admin' />
-                        </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='Consultation Fee' className='form-control-profile-admin' />
-                        </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='Gender' className='form-control-profile-admin' />
-                        </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='License No.' className='form-control-profile-admin' />
-                        </div>
-                        <div className="form-wrapper-profile-admin">
-                            <input type="text" placeholder='Description' className='form-control-profile-admin' />
-                        </div>
-                        <div className='view-profile-buttons-admin'>
-                            <button className='view-profile-button-admin'>Edit</button>
-                            <button className='view-profile-button-admin'>cancel</button>
-                        </div>
-                    </form>
-                </div>
+                    </>
+                )}
             </div>
         </div>
-            /* <div className="viewProfileContainer">
-                <div className="userProfile">
-                    <div className="userAvatar">
-                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt='' />
-                    </div>
-                    <h2 className="userName">Vivek Maltare</h2>
-                    <h3 className="userEmail">maltarevivek@gmail.com</h3>
-                </div> */
-                /* <div className="aboutSection">
-            <h2>About</h2>
-            <p>
-              I'm Yuki. Full Stack Designer. I enjoy creating user-centric, delightful
-              and human experiences.
-            </p>
-          </div> */
-                /* <div className="personalDetails">
-                    <h1 className='personalDetailsHeading'>Personal Details</h1>
-                    <div className="formField">
-                        <label htmlFor="fullName" className="formLabel">Full Name</label>
-                        <input readOnly type="text" id="fullName" className="formInput non-editable-field" placeholder="Enter full name" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="email" className="formLabel">Email</label>
-                        <input type="email" id="email" className="formInput" placeholder="Enter email" />
-                    </div> */
-                    /* Add more personal details fields here */
-                /* </div>
-                <div className="addressSection"> */
-                    /* <h2>Address</h2> */
-                    /* <div className="formField">
-                        <label htmlFor="street" className="formLabel">Street</label>
-                        <input type="text" id="street" className="formInput" placeholder="Enter street" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="city" className="formLabel">City</label>
-                        <input type="text" id="city" className="formInput" placeholder="Enter city" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="city" className="formLabel">City</label>
-                        <input type="text" id="city" className="formInput" placeholder="Enter city" />
-                    </div>
-                    <div className="formField">
-                        <label htmlFor="city" className="formLabel">City</label>
-                        <input readOnly type="text" id="city" className="formInput non-editable-field" placeholder="Enter city" />
-                    </div> */
-                    /* Add more address fields here */
-                /* </div>
-                <div className="buttonContainer">
-                    <button className="cancelButton">Cancel</button>
-                    <button className="updateButton">Edit</button>
-                </div>
-            </div>
-        </div> */
     );
 }

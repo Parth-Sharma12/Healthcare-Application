@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
-import '../ViewPosts/ViewPosts.css'
+import React,{useState,useEffect} from 'react'
 import CommentModal from '../../Modals/CommentModal/CommentModal';
 import axios from 'axios';
+import Navbar from '../../Components/Navbar/Navbar'
+import '../ViewPosts/ViewPosts.css'
 import { TiTick } from "react-icons/ti";
 import { FaComments } from "react-icons/fa";
-import { IoFlagSharp } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
 import {BaseUrl} from '../../../BaseUrl'
-export default function ViewPosts() {
+export default function YourPosts() {
+    const [postComments, setSelectedPostComments] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [posts, setPosts] = useState([]);
-    // const [comments, setComments] = useState([]);
-    const [postComments, setSelectedPostComments] = useState([]);
-    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [postId,setPostId]=useState(null);
+
     //getting user token 
     const authToken = JSON.parse(localStorage.getItem("authToken"));
     const userId = authToken ? parseInt(authToken.userId) : null;
     const token = authToken ? authToken.accessToken : '';
+
     useEffect(() => {
         // Fetch posts from the backend
         async function fetchPosts() {
@@ -33,25 +33,6 @@ export default function ViewPosts() {
         fetchPosts();
     }, []);
 
-    const handleFlagPost = async (postId) => {
-        try {
-            const response = await axios.put(`${BaseUrl}/api/post/flag/${postId}`, true, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (response.status === 200) {
-                console.log('Post has been flagged successfully!');
-                openSuccessModal();
-            }
-        } catch (error) {
-            console.error('Error flagging post:', error.message);
-            console.log('Failed to flag post. Please try again.');
-        }
-    };
-
     const formatUploadedAt = (dateString) => {
         const options = {
             timeZone: 'Asia/Kolkata',
@@ -66,20 +47,37 @@ export default function ViewPosts() {
         };
         return new Date(dateString).toLocaleString('en-US', options);
     };
+
     const openModal = (comments,postId) => {
         setSelectedPostComments(comments);
         setIsModalOpen(true);
         setPostId(postId);
     };
-    const openSuccessModal = () => {
-        setIsSuccessModalOpen(true);
-        setTimeout(() => {
-            setIsSuccessModalOpen(false);
-        }, 2000); // Close the modal after 2 seconds
-    };
 
-    return (
-        <>
+    const handleDeletePost = async (postId) => {
+        console.log("post id in your post is",postId);
+        try {
+            const response = await axios.delete(`${BaseUrl}/api/post/delete/${postId}`,{
+                data:userId,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+    
+            if (response.status === 200) {
+                console.log('Post has been deleted successfully!');
+                // Filter out the deleted post from the posts array
+                setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+            }
+        } catch (error) {
+            console.error('Error deleting post:', error.message);
+            console.log('Failed to delete post. Please try again.');
+        }
+    };
+    
+
+  return (
+    <>
             <Navbar />
             <div className="post-card-doc-container">
                 {posts.map(post => (
@@ -90,9 +88,14 @@ export default function ViewPosts() {
                             <p>{post.description}</p>
                             <p>Uploaded By: {post.name} at {formatUploadedAt(post.uploadedAt)}.</p>
                             <div className="button-flag">
-                            <p className='view-comment-para'>{post.flagged}</p><IoFlagSharp className='flag' onClick={() => handleFlagPost(post.id)}/>
                                 <FaComments className='comment-icon-view-posts' onClick={() => openModal(post.comments,post.id)} />
                                 <p className='view-comment-para'>View Comments</p>
+                                {userId === post.postedBy && (
+                                    <>
+                                    <MdDelete className='comment-icon-view-posts'  onClick={() => handleDeletePost(post.id)}/>
+                                    <p className='view-comment-para'>Delete Post</p>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -104,12 +107,6 @@ export default function ViewPosts() {
                 onClose={() => setIsModalOpen(false)}
                 postId={postId}
             />
-            {isSuccessModalOpen && (
-                <div className="success-modal">
-                    <TiTick className='tick-icon'/> Successfully flagged post!!
-                </div>
-            )}
-
         </>
-    )
+  )
 }

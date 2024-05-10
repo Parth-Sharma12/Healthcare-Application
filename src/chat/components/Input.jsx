@@ -10,7 +10,9 @@ export default function Input(props) {
   const userIdDoc = authToken ? parseInt(authToken.userId) : null;
   const patient=props.patient;
   const userIdPatient=patient.userId;
+  console.log("user id of patient in input before fetching messages",userIdPatient);
   const roomId='$'+userIdDoc+'_'+userIdPatient;
+  console.log("room id of patient input before fetching messages",roomId);
   const [newMessage, setNewMessage] = useState("");
   const messagesRef = collection(db, "Messages");
   const handleSubmit = async (event) => {

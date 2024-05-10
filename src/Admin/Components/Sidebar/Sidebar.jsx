@@ -45,6 +45,14 @@ export default function Sidebar() {
           <div className="RequestContainer">
             <Link to="/Requests">View Requests</Link>
           </div>
+          <h4 className='RequestTitle'>Moderators</h4>
+          <div className="RequestContainer">
+            <Link to="/AddModerator">Add Moderator</Link>
+          </div>
+          <h4 className='RequestTitle'>Responders</h4>
+          <div className="RequestContainer">
+            <Link to="/AddResponder">Add Responder</Link>
+          </div>
         </div>
       </div>
     </div>

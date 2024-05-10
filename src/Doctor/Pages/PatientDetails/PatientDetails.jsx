@@ -5,7 +5,7 @@ import { useLocation,useNavigate } from 'react-router-dom';
 export default function PatientDetails() {
     const location = useLocation();
     const navigate=useNavigate();
-    const { patient, date } =location.state;
+    const { patient = {}, date } = location.state || {};
     const handleChatNow = () => {
         // Check if patient object exists before navigating
         if (patient) {
@@ -15,10 +15,15 @@ export default function PatientDetails() {
             console.error("Patient object is null or undefined");
         }
     };
+    const handleGoBack = () => {
+        // Navigate back with the same state that was received
+        navigate("/home");
+    };
     return (
         <>
             <Navbar />
-            <div className='container-view-patient'>
+            {patient && (
+                <div className='container-view-patient'>
                 <div className="form-view-patient">
                     <div className="img-view-patient">
                         <img src="https://c8.alamy.com/comp/M3YY2G/doctor-with-patient-cartoon-M3YY2G.jpg" alt="" />
@@ -65,13 +70,15 @@ export default function PatientDetails() {
                                 <span>Duration</span>
                             </div>
                             <div className="view-patient-buttons">
-                                <button className='view-patient-button' onClick={handleChatNow}>Chat Now</button>
+                                {/* <button className='view-patient-button' onClick={handleChatNow}>Chat Now</button> */}
                                 {/* <button className='view-patient-button' type="submit">Call</button> */}
+                                <button className='view-patient-button' onClick={handleGoBack}>Back</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            )}
         </>
     )
 }

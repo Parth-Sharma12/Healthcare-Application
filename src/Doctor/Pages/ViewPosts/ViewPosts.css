@@ -39,7 +39,7 @@
 
 }
 
-.View-Comments {
+/* .View-Comments{
   padding: 10px 20px;
   background-color: #86469C;
   color: white;
@@ -49,9 +49,9 @@
   font-size: 1rem;
   font-weight: 500;
   transition: background-color 0.3s ease;
-}
+}*/
 
-button:hover {
+ button:hover {
   background-color: #BC7FCD;
 }
 
@@ -65,19 +65,21 @@ button:active {
 
 .button-flag {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .flag {
-  margin-left: 15rem;
-  height: 2rem;
-  width: 2rem;
+  margin-right: 1rem;
+  height: 3rem;
+  width: 3rem;
   color: #86469C;
 }
 .comment-icon-view-posts{
-  width:2rem;
-  height: 2rem;
+  width:3rem;
+  height: 3rem;
   color: #86469C;
+
 }
 .success-modal {
   position: fixed;
@@ -94,4 +96,8 @@ button:active {
   height: 100px;
   width: 100px;
   color:#86469C;
+}
+.view-comment-para{
+  margin: 0.5rem;
+  font-size: 1.5rem !important;
 }

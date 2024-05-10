@@ -1,5 +1,7 @@
 .green-row {
     background-color: rgb(134, 70, 156,0.6); /* Light green color */
+    color: white;
+    text-decoration: underline;
 }
 .green-row:hover{
     background-color: #BC7FCD !important;

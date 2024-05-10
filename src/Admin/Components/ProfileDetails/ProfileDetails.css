@@ -198,6 +198,16 @@
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
+.success-message-add-admin {
+    color: green; 
+    font-size: 14px;
+    margin-top: 10px;
+}
+.failure-message-add-admin {
+    color: red;    
+    font-size: 14px;
+    margin-top: 10px;
+}
 @media(max-width:767px){
     .profile-inner-admin{
         display: block;
