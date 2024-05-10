@@ -5,13 +5,11 @@ import Login from "./Login/Login";
 import Register from "./Doctor/Pages/Register/Register";
 import React, { axios , useState, useEffect } from "react";
 import DoctorHome from "./Doctor/Pages/DoctorHome/DoctorHome";
-import Footer from "./Doctor/Components/Footer/Footer";
 import ViewPosts from "./Doctor/Pages/ViewPosts/ViewPosts"
 import ProfileDetails from './Doctor/Pages/ProfileDetails/ProfileDetails'
 import PatientDetails from "./Doctor/Pages/PatientDetails/PatientDetails";
 import InvalidRole from "./InvalidRole/InvalidRole";
 import DoctorDetails from './Admin/Pages/DoctorDetails/DoctorDetails';
-import Home from './Admin/Pages/AdminHome/AdminHome';
 import Moderator from './Admin/Pages/Moderator/Moderator';
 import Patient from './Admin/Pages/Patient/Patient';
 import Responder from './Admin/Pages/Responder/Responder';
@@ -36,9 +34,11 @@ import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx"
 import ChatHome from "./chat/components/ChatHome.jsx";
 import Responder_Profile from "./Responder/components/Responder_Profile/Responder_Profile.js";
 import UpdatePasswordPage from "./Moderator/components/UpdatePasswordPage/UpdatePasswordPage.js";
-//Logic to implement role based routing
+import YourPosts from "./Doctor/Pages/YourPosts/YourPosts.jsx";
+import { AppointmentProvider } from "./Doctor/Context/AppointmentContext.js";
 import UpdatePassword_resp from "./Responder/components/UpdatePassword/UpdatePassword_resp.js";
 import { ChatModal } from "./Senior_Doctor/components/ChatModal/ChatModal.js";
+//Logic to implement role based routing
 function App() {
   const [userId, setUserId] = useState(window.localStorage.getItem('userId') || false);
   const [role, setRole] = useState(window.localStorage.getItem('userRole') || false);

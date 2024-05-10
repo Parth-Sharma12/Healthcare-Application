@@ -1,6 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './CommentModal.css';
-const CommentModal = ({ isOpen, comments, onClose }) => {
+import { TiTick } from "react-icons/ti";
+import axios from 'axios'
+import { BaseUrl } from '../../../BaseUrl';
+import { GiConsoleController } from 'react-icons/gi';
+const CommentModal = ({ isOpen, comments, onClose,postId}) => {
+  console.log("post id is",postId);
+  const [newComment, setNewComment] = useState('');
+  const [addSuccess,setAddSuccess]=useState(false);
+
+  const authToken = JSON.parse(localStorage.getItem("authToken"));
+  const token = authToken ? authToken.accessToken : '';
+  const userId = authToken ? parseInt(authToken.userId) : null;
+
   if (!isOpen) return null;
 
   //method to show time in format like 2 days ago etc.
@@ -29,12 +41,54 @@ const CommentModal = ({ isOpen, comments, onClose }) => {
     return 'Just now';
   };
   
+  //add comment
+  const handleSubmitComment = async () => {
+    try {
+      const uploadedAt = new Date();
+      const commentData = {
+        description: newComment,
+        uploadedAt: uploadedAt,
+        commentById:userId,
+        postId: postId
+    };
+        // Make a POST request to your backend API endpoint to add the comment
+        const response = await axios.post(`${BaseUrl}/api/post/add-comment`, commentData, {
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+      });
+
+        // Check if the comment was added successfully
+        if (response.status === 201) {
+            console.log('Comment added successfully:', newComment);
+            // Clear the input field after submission
+            setNewComment('');
+            // Open the comment success modal
+            setAddSuccess(true);
+            // Close the comment success modal after 2 seconds
+            setTimeout(() => {
+                setAddSuccess(false);
+            }, 2000);
+        } else {
+            console.error('Failed to add comment');
+            // Handle error case
+        }
+    } catch (error) {
+        console.error('Error adding comment:', error.message);
+        // Handle error case
+    }
+};
+
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
+
   return (
-    <div className="modal-overlay">
+<div className="modal-overlay">
       <div className="comment-modal">
         <div className="modal-content">
           <button className="close-button" onClick={onClose}>X</button>
-          <h2>Comments</h2>
+          <h2>Listen, share, heal!!</h2>
           {comments.map((comment, index) => (
             <div key={index} className="comment">
               <div className="comment-header">
@@ -44,7 +98,22 @@ const CommentModal = ({ isOpen, comments, onClose }) => {
               <div className="comment-body">{comment.description}</div>
             </div>
           ))}
+          {/* Always show input box for adding a comment */}
+          <div className="add-comment">
+            <input
+              type="text"
+              placeholder="Share Your Thoughts.."
+              value={newComment}
+              onChange={handleCommentChange}
+            />
+            <button onClick={handleSubmitComment} className='add-comment-submit'>Submit</button>
+          </div>
         </div>
+        {addSuccess && (
+          <div className="success-modal-add-comment">
+            <TiTick className='tick-icon-add-comment'/> Comment added successfully!!
+          </div>
+        )}
       </div>
     </div>
   );
