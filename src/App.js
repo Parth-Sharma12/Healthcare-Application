@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BaseUrl } from "./BaseUrl.js";
+
 import Login from "./Login/Login";
 import Register from "./Doctor/Pages/Register/Register";
-import React, { useState, useEffect } from "react";
+import React, { axios , useState, useEffect } from "react";
 import DoctorHome from "./Doctor/Pages/DoctorHome/DoctorHome";
 import Footer from "./Doctor/Components/Footer/Footer";
 import ViewPosts from "./Doctor/Pages/ViewPosts/ViewPosts"
@@ -28,77 +30,120 @@ import AddPost from "./Doctor/Pages/AddPost/AddPost.jsx";
 import { Senior_Home } from "./Senior_Doctor/components/Home/Senior_Home.js";
 import Senior_Navbar from "./Senior_Doctor/components/Senior_Navbar/Senior_Navbar.js";
 import { InformationCard } from "./Senior_Doctor/components/InformationCard/InformationCard.js";
-import  {Appointment_History}  from "./Senior_Doctor/components/Appointment_History/Appointment_History.js";
-import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
+import { Appointment_History } from "./Senior_Doctor/components/Appointment_History/Appointment_History.js";
+import Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderator_Profile.js";
 import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx"
 import ChatHome from "./chat/components/ChatHome.jsx";
 import Responder_Profile from "./Responder/components/Responder_Profile/Responder_Profile.js";
 import UpdatePasswordPage from "./Moderator/components/UpdatePasswordPage/UpdatePasswordPage.js";
 //Logic to implement role based routing
 import UpdatePassword_resp from "./Responder/components/UpdatePassword/UpdatePassword_resp.js";
+import { ChatModal } from "./Senior_Doctor/components/ChatModal/ChatModal.js";
 function App() {
-  const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
+  const [userId, setUserId] = useState(window.localStorage.getItem('userId') || false);
+  const [role, setRole] = useState(window.localStorage.getItem('userRole') || false);
+  const [Firstrole, setFirstLogin] = useState(window.localStorage.getItem('FirstLogin') || false);
+  const [isSenior, setIsSenior] = useState(false); // State to store the boolean value fetched from the API
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(window.localStorage.getItem('isLoggedIn')) || true
   );
+  
+  console.log(userId);
+  console.log(Firstrole);
   useEffect(() => {
     const storedRole = window.localStorage.getItem("userRole");
     const storedLoggedIn = JSON.parse(window.localStorage.getItem('isLoggedIn'));
+    const isFirst = window.localStorage.getItem('FirstLogin');
+    console.log(Firstrole);
     if (storedRole !== null && storedLoggedIn !== null) {
       setRole(storedRole);
       setIsLoggedIn(storedLoggedIn);
+      setFirstLogin(isFirst);
     }
-  }, []);
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" exact element={<Login setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/forgotpassword" exact element={<ForgotPassword/>}/>
-        <Route path="/register" exact element={<Register setRole={setRole} setIsLoggedIn={setIsLoggedIn} />}/>
-        <Route
-          path="/home"
-          element={
-            isLoggedIn ? (
-              role === "DOCTOR" ? (
-                <DoctorHome />
-              ) : role === "ADMIN" ? (
-                <AdminHome />
-              ) : role === "MODERATOR" ? (
-              //  <Senior_Home/> 
-              //  <Appointment_History/>
-                // <UpdatePasswordPage/>
-                <MFlaggedPosts />
-              ) : role === "RESPONDER" ? (
-                <RHome />
-                // <UpdatePassword_resp/>
+    const fetchSeniorStatus = async () => {
+      try {
+        const token = window.localStorage.getItem('authToken'); // Assuming you have stored the auth token in localStorage
+        if (!token) {
+          throw new Error("Authentication token not found.");
+        }
+
+        const response = await axios.get(`${BaseUrl}/api/doctor/is-senior/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Pass the token in the Authorization header
+          }
+        });
+
+        setIsSenior(response.data.isSenior);
+      } catch (error) {
+        console.error("Error fetching senior status:", error);
+      }
+    };
+
+    if (userId && role === "DOCTOR") {
+      fetchSeniorStatus();
+    }
+  }, [userId]);
+
+
+
+return (
+  <Router>
+    <Routes>
+      <Route path="/" exact element={<Login setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/forgotpassword" exact element={<ForgotPassword />} />
+      <Route path="/register" exact element={<Register setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route
+        path="/home"
+        element={
+          isLoggedIn ? (
+            role === "DOCTOR" ? (
+              !isSenior ? (
+                <Senior_Home/>
+              ) :
+              <DoctorHome />
+            ) : role === "ADMIN" ? (
+              <AdminHome />
+            ) : role === "MODERATOR" ? (
+              Firstrole ? (
+                 <UpdatePasswordPage />
+                // <ChatModal />
               ) : (
-                <InvalidRole />
+                // <Senior_Home />
+                <MFlaggedPosts />
               )
+            ) : role === "RESPONDER" ? Firstrole ? (
+              <UpdatePassword_resp />
+            ) : (
+              <RHome />
+              // <UpdatePassword_resp/>
             ) : (
               <InvalidRole />
             )
-          }
-        />
-        <Route path="/ViewPosts" exact element={role === 'DOCTOR' && isLoggedIn ? <ViewPosts /> : <InvalidRole />} />
-        <Route path="/viewprofile" exact element={role === 'DOCTOR' && isLoggedIn ? <ProfileDetails /> : <InvalidRole />} />
-        <Route path="/PatientDetails" exact element={role === 'DOCTOR' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
-        <Route path="/chat" exact element={role === 'DOCTOR' && isLoggedIn ? <ChatHome /> : <InvalidRole />} />
-        <Route path="/addposts" exact element={role=='DOCTOR'&& isLoggedIn?<AddPost/>:<InvalidRole/>}/>
-        <Route path="/doctors" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
-        <Route path="/patients" exact element={role === 'ADMIN' && isLoggedIn ? <Patient/> : <InvalidRole />} />
-        <Route path="/responders" exact element={role === 'ADMIN' && isLoggedIn ? <Responder /> : <InvalidRole />} />
-        <Route path="/moderators" exact element={role === 'ADMIN' && isLoggedIn ? <Moderator /> : <InvalidRole />} />
-        <Route path="/requests" exact element={role === 'ADMIN' && isLoggedIn ? <Requests /> : <InvalidRole />} />
-        <Route path="/logout" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
-        <Route path="/profile" exact element={role === 'ADMIN' && isLoggedIn ? <Profile /> : <InvalidRole />} />
-        <Route path="/QnA" exact element={role === 'MODERATOR' && isLoggedIn ? <QnA /> : <InvalidRole />} />
-        <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
-        <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
-        <Route path="/Responder_Profile" exact element={role === 'RESPONDER' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
-        {/* <Route path="/Appointment_History/:doctorId" element={isLoggedIn ? <Appointment_History /> : <InvalidRole />} /> */}
-      </Routes>
-    </Router>
-  );
+          ) : (
+            <InvalidRole />
+          )
+        }
+      />
+      <Route path="/ViewPosts" exact element={role === 'DOCTOR' && isLoggedIn ? <ViewPosts /> : <InvalidRole />} />
+      <Route path="/viewprofile" exact element={role === 'DOCTOR' && isLoggedIn ? <ProfileDetails /> : <InvalidRole />} />
+      <Route path="/PatientDetails" exact element={role === 'DOCTOR' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
+      <Route path="/chat" exact element={role === 'DOCTOR' && isLoggedIn ? <ChatHome /> : <InvalidRole />} />
+      <Route path="/addposts" exact element={role == 'DOCTOR' && isLoggedIn ? <AddPost /> : <InvalidRole />} />
+      <Route path="/doctors" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
+      <Route path="/patients" exact element={role === 'ADMIN' && isLoggedIn ? <Patient /> : <InvalidRole />} />
+      <Route path="/responders" exact element={role === 'ADMIN' && isLoggedIn ? <Responder /> : <InvalidRole />} />
+      <Route path="/moderators" exact element={role === 'ADMIN' && isLoggedIn ? <Moderator /> : <InvalidRole />} />
+      <Route path="/requests" exact element={role === 'ADMIN' && isLoggedIn ? <Requests /> : <InvalidRole />} />
+      <Route path="/logout" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
+      <Route path="/profile" exact element={role === 'ADMIN' && isLoggedIn ? <Profile /> : <InvalidRole />} />
+      <Route path="/QnA" exact element={role === 'MODERATOR' && isLoggedIn ? <QnA /> : <InvalidRole />} />
+      <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
+      <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
+      <Route path="/Responder_Profile" exact element={role === 'RESPONDER' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
+      <Route path="/Appointment_History/:doctorId" element={isLoggedIn ? <Appointment_History /> : <InvalidRole />} />
+    </Routes>
+  </Router>
+);
 }
 
 export default App;

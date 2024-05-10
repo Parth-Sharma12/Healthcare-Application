@@ -63,7 +63,7 @@
   .mod1-main-content1{
     display: flex;
     width: 100%;
-    margin-left: 4vw;
+    margin-left: 5vw;
     /* Replace 'background-image.jpg' with your image file name */
     /* background-image: url("C:\Users\ASUS\Desktop\temp\had\public\images\flagged.png");  */
     background-size: cover;
@@ -74,24 +74,25 @@
     display: flex;  
     flex-wrap: wrap;
     gap: 2.2vw; /* Adjust the gap as needed relative to viewport width */
-    margin-left: 16.7vw; /* Margin left relative to viewport width */
+    margin-left: 18vw; /* Margin left relative to viewport width */
     margin-top: 6.9vh; /* Margin top relative to viewport height */
 }
 
-  .mod1-box {
-    width: 200px;
-    padding: 20px;
-    background-color:rgb(188, 127, 205,0.7); /* Light pink background */
-    border: 1px solid #e0a6a6; /* Light pink border */
-    border-radius: 16px;
-    text-align: center;
-    height: 300px;
-    margin-top: 40px;
-    position: fixed;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
-    right: 0;
-    margin-right: 5vw;
-  }
+.mod1-box {
+  width: 15vw;
+  padding: 2.5vw;
+  background-color: rgba(188, 127, 205, 0.7); /* Light pink background */
+  border: 0.5vw solid #e0a6a6; /* Light pink border */
+  border-radius: 2vw;
+  text-align: center;
+  height: 50vh;
+  margin-top: 8vh;
+  position: fixed;
+  box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+  right: 0;
+  margin-right: 5vw;
+}
+
   
   .mod1-heading {
     margin-bottom: 15px; /* Increased margin for better spacing */
@@ -120,7 +121,7 @@
     color: #555; /* Slightly darker text color */
   }
   .mod1-flag-img{
-    width: 400px;
+    width: 25vw;
     height: 350px;
     position: fixed;
     bottom: 0;

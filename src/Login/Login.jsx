@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import {BaseUrl} from '../BaseUrl'
-export default function Login({ setRole,setIsLoggedIn }) {
+import { BaseUrl } from '../BaseUrl'
+export default function Login({ setRole, setIsLoggedIn }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -27,28 +27,51 @@ export default function Login({ setRole,setIsLoggedIn }) {
         userLoginDetails
       );
       if (response.status === 200) {
-        const userId=response.data.userId;
+        const userId = response.data.userId;
         console.log(response.data);
+        const token = window.localStorage.getItem('authToken');
         const authToken = {
           accessToken: response.data.accessToken,
           tokenType: response.data.tokenType,
           userId: response.data.userId,
-        };
-        const role=response.data.userRole;
+        };  
+        const role = response.data.userRole;
+        window.localStorage.setItem("userId",authToken.userId);
         window.localStorage.setItem("authToken", JSON.stringify(authToken));
         //const role = userId === 5 ? 'doctor' : userId === 1 ? 'admin' : userId === 15 ? 'moderator' :userId === 17 ? 'responder': null;
         window.localStorage.setItem("userRole", role);
-        window.localStorage.setItem("isLoggedIn",true);
+        window.localStorage.setItem("isLoggedIn", true);
+
         setRole(role);
         setIsLoggedIn(true);
         console.log(role);
+
+        // Fetch moderator or responder DTO based on the user role
+        if (role === "MODERATOR" || role === "RESPONDER") {
+          const api_role = role.toLowerCase();
+          console.log(userId);
+          const token = window.localStorage.getItem('authToken');
+          console.log(response.data.accessToken);
+          const moderatorResponderResponse = await axios.get(
+            `${BaseUrl}/api/${api_role}/getbyid/${userId}`,{
+              headers: {
+                Authorization: `Bearer ${response.data.accessToken}` // Pass the token in the Authorization header
+              }
+            }
+
+          );
+          console.log(moderatorResponderResponse);
+          const isFirstLogin = moderatorResponderResponse.data.firstLogin;
+          window.localStorage.setItem("FirstLogin", isFirstLogin);
+          console.log(isFirstLogin);
+        }
         navigate("/home");
       }
     }
     catch (error) {
       console.error("Error posting data:", error.response.status);
       let errorStatus = error.response.status;
-      window.localStorage.setItem("isLoggedIn",false);
+      window.localStorage.setItem("isLoggedIn", false);
       console.log(errorStatus);
     }
   };

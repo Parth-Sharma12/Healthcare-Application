@@ -9,8 +9,8 @@ export const Appointment_History = () => {
     console.log("Doctor ID in Appointment History:", doctorId);
 
     const [appointments, setAppointments] = useState([]);
-    const [doctorInfo, setDoctorInfo] = useState(null); 
-    
+    const [doctorInfo, setDoctorInfo] = useState(null);
+
     useEffect(() => {
         console.log('Inside useEffect');
         console.log('doctorId:', doctorId);
@@ -20,7 +20,7 @@ export const Appointment_History = () => {
                 try {
                     const authToken = JSON.parse(localStorage.getItem("authToken"));
                     const token = authToken ? authToken.accessToken : '';
-                    
+
                     // Fetch doctor info
                     const doctorResponse = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${doctorId}`, {
                         headers: {
@@ -29,20 +29,21 @@ export const Appointment_History = () => {
                     });
                     console.log(doctorResponse.data);
                     setDoctorInfo(doctorResponse.data);
-                    
+
                     // Fetch appointments
                     const appointmentsResponse = await axios.get(`http://localhost:8082/api/doctor/distinct-patient/${doctorId}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
                     });
+                    console.log(appointmentsResponse);
                     setAppointments(appointmentsResponse.data);
                 } catch (error) {
                     console.error('Error fetching data:', error);
                 }
             }
         };
-    
+
         fetchData();
     }, [doctorId]); // Include doctorId in the dependency array
 
@@ -64,9 +65,9 @@ export const Appointment_History = () => {
             <div className="Appointment-History-container">
                 <h2 className="Appointment-History-title">Appointment History</h2>
                 <ul className="Appointment-History-list">
-                    {appointments.map(appoint => (
+                    {appointments.map((appoint, index) => ( // Use the second argument of map() as the index
                         <li key={appoint} className="Appointment-History-item">
-                            <p>Appointment ID: {appoint}</p>
+                            <p>Patient ID: {index + 1}</p> {/* Use the index provided by map() */}
                             <button className='Senior3-Viewchat' onClick={() => handleViewChat(appoint.appointment_id)}>View Chat</button>
                         </li>
                     ))}
