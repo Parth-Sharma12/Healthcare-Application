@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Moderator_Profile.css';
+import { BaseUrl } from '../../../BaseUrl';
 import { NAV } from '../NAV/NAV';
 import axios from 'axios'
 export default function Moderator_Profile() {
@@ -36,7 +37,7 @@ export default function Moderator_Profile() {
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/moderator/getbyid/${userId}`, {
+            const response = await axios.get(`${BaseUrl}/api/moderator/getbyid/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -71,7 +72,7 @@ export default function Moderator_Profile() {
                 return;
             }
             try {
-                const response = await axios.put(`http://localhost:8082/api/moderator/update-password`, {
+                const response = await axios.put(`${BaseUrl}/api/moderator/update-password`, {
                     newPassword: passwordFields.newPassword,
                     oldPassword: passwordFields.oldPassword,
                     userId: userId

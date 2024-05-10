@@ -3,6 +3,7 @@ import './Responder_Profile.css';
 import { NAV } from '../../../Moderator/components/NAV/NAV';
 import axios from 'axios'
 import { NAV_RESP } from '../NAV_RESP/NAV_RESP';
+import { BaseUrl } from '../../../BaseUrl';
 export default function Responder_Profile() {
     const [initialProfileData, setInitialProfileData] = useState({});
     const [showChangePassword, setShowChangePassword] = useState(false);
@@ -35,7 +36,7 @@ export default function Responder_Profile() {
     }, []);
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/responder/getbyid/${userId}`, {
+            const response = await axios.get(`${BaseUrl}/api/responder/getbyid/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": 'application/json',
@@ -70,7 +71,7 @@ export default function Responder_Profile() {
                 return;
             }
             try {
-                const response = await axios.put(`http://localhost:8082/api/responder/update-password`, {
+                const response = await axios.put(`${BaseUrl}:8082/api/responder/update-password`, {
                     newPassword: passwordFields.newPassword,
                     oldPassword: passwordFields.oldPassword,
                     userId : userId

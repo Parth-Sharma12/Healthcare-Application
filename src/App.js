@@ -31,9 +31,11 @@ import  Moderator_Profile from "./Moderator/components/Moderator_Profile/Moderat
 import ForgotPassword from "./ForgotPassword/ForgotPassword.jsx"
 import ChatHome from "./chat/components/ChatHome.jsx";
 import Responder_Profile from "./Responder/components/Responder_Profile/Responder_Profile.js";
+import UpdatePasswordPage from "./Moderator/components/UpdatePasswordPage/UpdatePasswordPage.js";
 import YourPosts from "./Doctor/Pages/YourPosts/YourPosts.jsx";
 import { AppointmentProvider } from "./Doctor/Context/AppointmentContext.js";
 //Logic to implement role based routing
+import UpdatePassword_resp from "./Responder/components/UpdatePassword/UpdatePassword_resp.js";
 function App() {
   const [role, setRole] = useState(window.localStorage.getItem('userRole')||false);
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -66,10 +68,11 @@ function App() {
               ) : role === "MODERATOR" ? (
               //  <Senior_Home/> 
               //  <Appointment_History/>
-                
+                // <UpdatePasswordPage/>
                 <MFlaggedPosts />
               ) : role === "RESPONDER" ? (
                 <RHome />
+                // <UpdatePassword_resp/>
               ) : (
                 <InvalidRole />
               )
@@ -97,6 +100,7 @@ function App() {
         <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
         <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
         <Route path="/Responder_Profile" exact element={role === 'RESPONDER' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
+        {/* <Route path="/Appointment_History/:doctorId" element={isLoggedIn ? <Appointment_History /> : <InvalidRole />} /> */}
       </Routes>
     </Router>
   );

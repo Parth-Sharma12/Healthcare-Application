@@ -1,15 +1,15 @@
-.mod6-navbar{
-    margin-top: -15px;
-    width: 1665px;
-    height: 100px;
-    background-color:#86469C;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1px; /* Increase padding for more space */
-    font-size: 25px;
-    
+.mod6-navbar {
+  margin-top: -1.5vh; /* Margin top relative to viewport height */
+  width: 98vw; /* Width relative to viewport width */
+  height: 15vh; /* Height relative to viewport height */
+  background-color: #86469C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1vw; /* Padding relative to viewport width */
+  font-size: 1.5vw; /* Font size relative to viewport width */
 }
+
 .mod6-navbar-brand,.mod6-navbar-toggler{
    
     font-size: 2.5vw; /* Increase font size */

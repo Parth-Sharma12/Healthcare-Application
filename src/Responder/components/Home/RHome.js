@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './RHome.css';
 import { NAV_RESP } from '../NAV_RESP/NAV_RESP';
-
+import { BaseUrl } from '../../../BaseUrl';
 export const RHome = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [totalUnansweredQuestions, setTotalUnansweredQuestions] = useState(0);
@@ -23,7 +23,7 @@ export const RHome = () => {
         };
 
         const response = await axios.get(
-          'http://localhost:8082/api/question/question-data', // Adjust the URL as per your backend endpoint
+          `${BaseUrl}/api/question/question-data`, // Adjust the URL as per your backend endpoint
           { headers: headers }
         );
 

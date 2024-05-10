@@ -38,16 +38,11 @@ export const Senior_Home = () => {
     <div className="Senior2-Home">
       <Senior_Navbar />
       <div className="Senior2-doctor-cards-container">
-        {doctors.map(doctor => (
+        {doctors.map((doctor, index) => (
           <InformationCard
-            key={doctor.id}
+            key={index}
             // If you don't have images, use a placeholder or leave it empty
-            profilePhoto="/images/adminpanel.png" // Example placeholder image URL
-            name={doctor.firstName}
-            id={doctor.userId}
-            email={doctor.email}
-            experience={doctor.experience}
-            age={doctor.age}
+            Doctorinfo = {doctor}
           />
         ))}
       </div>

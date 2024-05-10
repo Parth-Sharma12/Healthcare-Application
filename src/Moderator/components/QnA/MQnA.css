@@ -1,59 +1,66 @@
+.mod2-app-container{
+  width: 1vw;
+}
 
-
-  .mod2-main-content_mod1 {
+.mod2-main-content_mod1 {
     display: flex;
     width: 100%;
-    
-  }
+     
+} 
   
-  .mod2-flag-img1{
-    width: 400px;
-    height: 400px;
+.mod2-flag-img1 {
+    width: 25vw; /* Width relative to viewport width */
+    height: 50vh; /* Height relative to viewport width */
     position: fixed;
-    margin-top: 250px;
-  }
-  
-  .mod2-logo{
-    width: 100px;
-    height: 80px;
-  }
-  .mod2-QnAs{
-    margin-left: 400px;
-    margin-top:20px;
-    margin-right: 280px;
-  }
+    margin-top: 28vh; /* Margin top relative to viewport height */
+}
+
+.mod2-logo {
+  width: 8.3vw; /* Width relative to viewport width */
+  height: 6.7vh; /* Height relative to viewport height */
+}
+
+.mod2-QnAs {
+  margin-left: 25vw; /* Margin left relative to viewport width */
+  margin-top: 2.8vh; /* Margin top relative to viewport height */
+  margin-right: 0vw; /* Margin right relative to viewport width */
+}
+
   .mod2-column-item{
     margin-bottom:100px;
   }
   .mod2-box1 {
-    width: 200px;
-    padding: 1.5vw;
-    background-color: rgb(188, 127, 205,0.7); /* Light pink background */
-    border: 1px solid #e0a6a6; /* Light pink border */
-    border-radius: 16px;
+    width: 16.7vw; /* Width relative to viewport width */
+    padding: 1.5vw; /* Padding relative to viewport width */
+    background-color: rgb(188, 127, 205, 0.7); /* Light pink background */
+    border: 0.1vw solid #e0a6a6; /* Border width relative to viewport width */
+    border-radius: 1.3vw; /* Border radius relative to viewport width */
     text-align: center;
-    margin-left: 220px;
-    height: 300px;
-    margin-top: 40px;
+    margin-left: 18.3vw; /* Margin left relative to viewport width */
+    height: 5 0vh; /* Height relative to viewport height */
+    margin-top: 5.6vh; /* Margin top relative to viewport height */
     position: fixed;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    box-shadow: 0 0 0.7vw rgba(0, 0, 0, 0.1); /* Soft shadow effect relative to viewport width */
     right: 0;
-    margin-right: 50px;
-  }
+    margin-right: 1vw;
+    
+}
+
 
   
-  .mod2-circle1 {
-    width: 120px; /* Increased size for the circle */
-    height: 120px; /* Increased size for the circle */
-    border-radius: 50%;
-    background-color: rgb(134, 70, 156,0.7); /* Blue circle background */
-    color: white;
-    font-size: 36px; /* Larger font size for the circle */
-    line-height: 120px; /* Center text vertically */
-    margin: 0 auto 15px; /* Adjusted margin for better spacing */
-    margin-right: 15px;
-    margin-top: 10px;
-  }
+.mod2-circle1 {
+  width: 10vw; /* Increased size for the circle relative to viewport width */
+  height: 10vw; /* Increased size for the circle relative to viewport width */
+  border-radius: 50%;
+  background-color: rgb(134, 70, 156, 0.7); /* Blue circle background */
+  color: white;
+  font-size: 3.3vw; /* Larger font size for the circle relative to viewport width */
+  line-height: 10vw; /* Center text vertically relative to viewport width */
+  margin: 0 auto 3vh; /* Adjusted margin for better spacing relative to viewport height */
+  margin-right: 2vw; /* Margin right relative to viewport width */
+  margin-top: 2.8vh; /* Margin top relative to viewport height */
+}
+
   
   .mod2-circle1-text {
     font-size: 18px;

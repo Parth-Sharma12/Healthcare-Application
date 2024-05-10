@@ -1,13 +1,13 @@
 .resp6-navbar{
     margin-top: -15px;
-    width: 1665px;
+    width: 100vw;
     height: 100px;
     background-color:#86469C;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1px; /* Increase padding for more space */
-    font-size: 25px;
+    font-size: 1.5vw;
     
 }
 .resp6-navbar-brand,.mod6-navbar-toggler{

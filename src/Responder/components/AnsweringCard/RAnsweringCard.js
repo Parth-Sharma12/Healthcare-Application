@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './RAnsweringCard.css'; // Add styles for your question-answer card here
-
+import { BaseUrl } from '../../../BaseUrl';
 const RAnsweringCard = ({ question }) => {
   const Time = new Date(question.uploadedAt).toLocaleString();
   const [answer, setAnswer] = useState('');
@@ -37,7 +37,7 @@ const RAnsweringCard = ({ question }) => {
 
       // Make an API call using Axios to send the answer to the backend
       const response = await axios.put(
-        `http://localhost:8082/api/responder/add-answer/${question.questionId}`, modifiedQuestion, {
+        `${BaseUrl}/api/responder/add-answer/${question.questionId}`, modifiedQuestion, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

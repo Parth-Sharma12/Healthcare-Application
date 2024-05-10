@@ -63,7 +63,7 @@
   .mod1-main-content1{
     display: flex;
     width: 100%;
-    margin-left: 100px;
+    margin-left: 4vw;
     /* Replace 'background-image.jpg' with your image file name */
     /* background-image: url("C:\Users\ASUS\Desktop\temp\had\public\images\flagged.png");  */
     background-size: cover;
@@ -73,11 +73,11 @@
     /* Add styles for the posts container */
     display: flex;  
     flex-wrap: wrap;
-    gap: 16px; /* Adjust the gap as needed */
-    margin-left: 300px;
-    margin-top: 50px;
+    gap: 2.2vw; /* Adjust the gap as needed relative to viewport width */
+    margin-left: 16.7vw; /* Margin left relative to viewport width */
+    margin-top: 6.9vh; /* Margin top relative to viewport height */
+}
 
-  }
   .mod1-box {
     width: 200px;
     padding: 20px;
