@@ -36,17 +36,19 @@ export const UpdatePassword_resp = () => {
     }
 
     try {
+      
 
       const response = await axios.put(`${BaseUrl}/api/responder/update-password`, {
         newPassword: newPassword,
         oldPassword: currentPassword,
         userId: userId
-      }, {
+      }, {  
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": 'application/json',
         }
       });
+      console.log(response);
       // Reset form fields and display success message
       setCurrentPassword('');
       setNewPassword('');

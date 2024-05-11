@@ -7,7 +7,7 @@ export default function Profile(props) {
   return (
     <div className='ProfileContainer'>
       <Sidebar />
-      <ProfileDetails formType={formType} />
+      <ProfileDetails formType={formType}/>
     </div>
   )
 }

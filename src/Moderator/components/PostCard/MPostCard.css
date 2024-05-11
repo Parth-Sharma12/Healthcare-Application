@@ -1,7 +1,7 @@
 /* PostCard.css */
 .post-card {
-    width: 820px;
-    height: 700px;
+    width: 50vw;
+    height: 100vh;
     background-color: rgb(249, 249, 249,0.7);;
     border: 2px solid black;
     border-radius: 16px;
@@ -25,7 +25,7 @@
     }
   
     .content-box {
-      height: 350px;
+      height: 70vh;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 12px;
@@ -47,11 +47,11 @@
     .button-container {
       display: flex;
       justify-content: space-between;
-      
+      margin-top: 5vh;
       button {
         background-color: #3498db;
         color: #fff;
-        padding: 8px 16px;
+        padding: 0.5vw 3vh;
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -64,21 +64,21 @@
     }
   }
   .Description-box{
-    height: 300px;
+    height: 60vh;
     margin-bottom: 30px;
     overflow: auto;
-    width: 700px;
+    width: 47vw;
     
   }
   .image-container{
-    width:700px;
-    height: 200px;
+    width:45vw;
+    height: 40vh;
     align-items: center;
     display: flex;
     justify-content: center;
     img{
-        width: 200px;
-        height: 200px;
+        width: 30vw;
+        height: 40vh;
         text-align: center;
        
     }

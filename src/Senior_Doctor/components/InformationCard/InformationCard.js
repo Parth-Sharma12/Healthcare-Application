@@ -7,7 +7,7 @@ export const InformationCard = ({ Doctorinfo }) => {
     <div className="Senior1-doctor-card">
       <img src='/images/adminpanel.png' className="Senior1-profile-photo" />
       <div className="Senior1-details">
-        <h2>{Doctorinfo.firstName}</h2>
+        <h2>{"Dr." + Doctorinfo.firstName + " " + Doctorinfo.lastName}</h2>
         <p>Doctor-Id: <b>{Doctorinfo.userId}</b></p>
         <p>Email:<b>{Doctorinfo.email} </b></p>
         <p>Experience:<b>{Doctorinfo.experience} </b> years</p>
