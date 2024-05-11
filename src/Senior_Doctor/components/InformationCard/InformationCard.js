@@ -8,10 +8,10 @@ export const InformationCard = ({ Doctorinfo }) => {
       <img src='/images/adminpanel.png' className="Senior1-profile-photo" />
       <div className="Senior1-details">
         <h2>{"Dr." + Doctorinfo.firstName + " " + Doctorinfo.lastName}</h2>
-        <p>Doctor-Id: <b>{Doctorinfo.userId}</b></p>
-        <p>Email:<b>{Doctorinfo.email} </b></p>
-        <p>Experience:<b>{Doctorinfo.experience} </b> years</p>
-        <p>Age:<b>{Doctorinfo.age}</b> </p>
+        <p><b>Doctor-Id </b>: {Doctorinfo.userId}</p>
+        <p><b>Email</b>:{Doctorinfo.email} </p>
+        <p><b>Experience</b>:{Doctorinfo.experience}  years</p>
+        <p><b>Age</b>:{Doctorinfo.age} </p>
         
         <Link
           to={`/Appointment_History/${ Doctorinfo.userId}`} // Pass doctorId as URL parameter
