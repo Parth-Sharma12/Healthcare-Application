@@ -32,7 +32,7 @@ export default function ChatHome() {
     <div className='chatHome'>
       <div className="chatHomeContainer">
       {authenticated && <ChatSideBar patient={selectedPatient || (dateAppointments.length > 0 ? dateAppointments[0].patient : null)} dateAppointments={dateAppointments} onPatientClick={handlePatientSelect}/>}
-        {authenticated && <Chat patient={selectedPatient || (dateAppointments.length > 0 ? dateAppointments[0].patient : null)}/>}
+      {authenticated && <Chat patient={selectedPatient || (dateAppointments.length > 0 ? dateAppointments[0].patient : null)} dateAppointments={dateAppointments} onPatientClick={handlePatientSelect}/>}
       </div>
     </div>
     </>

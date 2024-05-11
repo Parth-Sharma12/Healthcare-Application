@@ -6,7 +6,7 @@ import { FaVideo } from "react-icons/fa";
 import Messages from './Messages'
 import Input from './Input'
 export default function Chat(props) {
-  const patient=props.patient;
+  const { patient, dateAppointments,onPatientClick } = props;
   return (
     <div className='chat'>
       <div className="chatInfo">
@@ -18,7 +18,7 @@ export default function Chat(props) {
         </div> 
       </div>
       <Messages patient={patient}/>
-      <Input patient={patient}/>
+      <Input patient={patient} dateAppointments={dateAppointments} onPatientClick={onPatientClick}/>
     </div>
   )
 }

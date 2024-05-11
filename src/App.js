@@ -66,13 +66,9 @@ function App() {
               ) : role === "ADMIN" ? (
                 <AdminHome />
               ) : role === "MODERATOR" ? (
-              //  <Senior_Home/> 
-              //  <Appointment_History/>
-                // <UpdatePasswordPage/>
                 <MFlaggedPosts />
               ) : role === "RESPONDER" ? (
                 <RHome />
-                // <UpdatePassword_resp/>
               ) : (
                 <InvalidRole />
               )

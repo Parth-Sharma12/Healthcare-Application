@@ -3,18 +3,18 @@ import Message from './Message'
 import '../CSS/Messages.css'
 import { db } from '../../firebase-config';
 import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
-
+import { decryptMessage,encryptMessage,masterKey } from '../../EncryptionHelper';
 export default function Messages(props) {
   const authToken = JSON.parse(localStorage.getItem("authToken"));
   const userIdDoc = authToken ? parseInt(authToken.userId) : null;
   const patient=props.patient;
   const userIdPatient=patient.userId;
-  console.log("user id of patient in chathome before fetching messages",userIdPatient);
+  //console.log("user id of patient in chathome before fetching messages",userIdPatient);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true); // Introduce loading state
   const messagesRef = collection(db, "Messages");
   const roomId='$'+userIdDoc+'_'+userIdPatient;
-  console.log("room id of patient in chathome before fetching messages",roomId);
+  //console.log("room id of patient in chathome before fetching messages",roomId);
   useEffect(() => {
     setLoading(true); // Set loading to true when component mounts or roomId changes
     const queryMessages = query(
@@ -24,11 +24,14 @@ export default function Messages(props) {
     );
 
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      let messages = [];
+      let decryptedMessages = []; // Array to store decrypted messages
       snapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
+        const message = doc.data();
+        const decryptedText = decryptMessage(message.text, masterKey); // Decrypt message text
+        const decryptedMessage = { ...message, text: decryptedText }; // Replace encrypted text with decrypted text
+        decryptedMessages.push({ ...decryptedMessage, id: doc.id });
       });
-      setMessages(messages);
+      setMessages(decryptedMessages);
       setLoading(false); // Set loading to false after messages are fetched
     });
 

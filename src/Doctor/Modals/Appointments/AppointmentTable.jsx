@@ -7,6 +7,9 @@ import {BaseUrl} from '../../../BaseUrl'
 export default function AppointmentTable({ date }) {
   const [dateAppointments, setDateAppointments] = useState([]);
   const [idToUserIdMap, setIdToUserIdMap] = useState({});
+  const [currentDateIdToUserIdMap, setCurrentDateIdToUserIdMap] = useState({});
+  const [currentDateAppointments, setCurrentDateAppointments] = useState([]);
+
   // Fetch appointments and construct the ID to userId map
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +40,24 @@ export default function AppointmentTable({ date }) {
           const fullName = `${appointment.patient.firstName} ${appointment.patient.middleName || ''} ${appointment.patient.lastName}`;
           idToUserId[`${id},${fullName}`] = appointment.patient.userId;
         });
+        // Print the generated map
+        console.log('Generated ID to userId map:', idToUserId);
         setIdToUserIdMap(idToUserId);
+
+        // Filter appointments to include only those for the current date
+      const currentDateAppointments = response.data.filter(appointment => appointment.date === date);
+      setCurrentDateAppointments(currentDateAppointments);
+
+      // Construct the ID to userId map for appointments on the current date
+      const currentDateIdToUserId = {};
+      currentDateAppointments.forEach((appointment, index) => {
+        const id = index + 1; // Assign an incremented ID starting from 1
+        const fullName = `${appointment.patient.firstName} ${appointment.patient.middleName || ''} ${appointment.patient.lastName}`;
+        currentDateIdToUserId[`${id},${fullName}`] = appointment.patient.userId;
+      });
+       // Print the generated map
+       console.log('Generated ID to userId map for current date:', currentDateIdToUserId);
+      setCurrentDateIdToUserIdMap(currentDateIdToUserId);
       } catch (error) {
         console.error('Error fetching appointments:', error);
       }
@@ -50,13 +70,13 @@ export default function AppointmentTable({ date }) {
   const navigate = useNavigate();
 
   const handleRowClick = (event) => {
-   const id=event.row.id;
-   const patientName=event.row.patientName;
-   console.log("id and patient name is",id,patientName);
-    const userIdToFetch = idToUserIdMap[`${id},${patientName}`];
+    const id = event.row.id;
+    const patientName = event.row.patientName;
+    console.log("id and patient name is", id, patientName);
+    const userIdToFetch = currentDateIdToUserIdMap[`${id},${patientName}`];
     if (userIdToFetch) {
-      const appointment = dateAppointments.find(appointment => appointment.patient.userId === userIdToFetch);
-  
+      const appointment = currentDateAppointments.find(appointment => appointment.patient.userId === userIdToFetch);
+
       if (appointment && appointment.patient) {
         navigate("/PatientDetails", { state: { patient: appointment.patient, date } });
       } else {
@@ -67,11 +87,20 @@ export default function AppointmentTable({ date }) {
     }
   };
 
+  console.log("appointment for current date are", currentDateAppointments);
+
+  // Transform currentDateAppointments to include only patient names
+  const rows = currentDateAppointments
+    .map((appointment, index) => ({
+      id: index + 1, // Assign an incremented ID starting from 1
+      patientName: `${appointment.patient.firstName} ${appointment.patient.middleName || ''} ${appointment.patient.lastName}`
+    }));
+
   const handleChatNow = () => {
     // Check if patient object exists before navigating
     if (dateAppointments) {
         // Navigate to the chat page and pass the entire patient object in the state
-        navigate('/chat', { state: { dateAppointments } });
+        navigate('/chat', { state: { dateAppointments} });
     } else {
         console.error("Patient object is null or undefined");
     }
@@ -79,12 +108,6 @@ export default function AppointmentTable({ date }) {
 
   console.log("appointment for current date are", dateAppointments);
 
-// Transform dateAppointments to include only patient names
-const rows = dateAppointments
-  .map((appointment, index) => ({
-    id: index + 1, // Assign an incremented ID starting from 1
-    patientName: `${appointment.patient.firstName} ${appointment.patient.middleName || ''} ${appointment.patient.lastName}`
-  }));
 
   return (
    <>

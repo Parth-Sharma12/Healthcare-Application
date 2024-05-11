@@ -4,17 +4,19 @@ import { GrGallery } from "react-icons/gr";
 import { CgAttachment } from "react-icons/cg";
 import { db, auth, signInAnonymouslyIfNeeded } from '../../firebase-config';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-
+import { encryptMessage,masterKey} from '../../EncryptionHelper';
 export default function Input(props) {
+  const { patient, dateAppointments,onPatientClick } = props;
   const authToken = JSON.parse(localStorage.getItem("authToken"));
   const userIdDoc = authToken ? parseInt(authToken.userId) : null;
-  const patient=props.patient;
+  console.log("selected patient in input",patient);
   const userIdPatient=patient.userId;
-  console.log("user id of patient in input before fetching messages",userIdPatient);
   const roomId='$'+userIdDoc+'_'+userIdPatient;
-  console.log("room id of patient input before fetching messages",roomId);
   const [newMessage, setNewMessage] = useState("");
+  const encryptedText = encryptMessage(newMessage, masterKey);
+  const senderId=userIdDoc + "_" + userIdPatient;
   const messagesRef = collection(db, "Messages");
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const currentUser = auth.currentUser;
@@ -23,14 +25,15 @@ export default function Input(props) {
 
     try {
       await addDoc(messagesRef, {
-        text: newMessage,
+        text: encryptedText,
         createdAt: serverTimestamp(),
-        senderId:userIdDoc+"_"+userIdPatient,
+        senderId:senderId,
         room: roomId
       });
 
       setNewMessage("");
       console.log("Message sent successfully!");
+      // Decrypt the message and print its value
     } catch (error) {
       console.error("Error sending message:", error);
     }
