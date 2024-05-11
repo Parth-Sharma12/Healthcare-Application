@@ -57,7 +57,7 @@ export const Appointment_History = () => {
             <div className="Senior3-Doctor-Info">
                 <img src="/images/adminpanel.png" alt="Doctor" className="Senior3-Doctor-Profile-Pic" />
                 <div className="Senior3-Doctor-Details">
-                    <h2>{doctorInfo?.firstName}</h2> {/* Use optional chaining to avoid errors if doctorInfo is null */}
+                    <h2>{doctorInfo?.firstName + " " + doctorInfo?.lastName}</h2> {/* Use optional chaining to avoid errors if doctorInfo is null */}
                     <p>Email: {doctorInfo?.user.email}</p>
                     <p>Gender: {doctorInfo?.gender}</p>
                 </div>

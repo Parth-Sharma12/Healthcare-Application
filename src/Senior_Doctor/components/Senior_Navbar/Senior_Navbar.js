@@ -25,11 +25,11 @@ export default function Senior_Navbar() {
                 }>
                     <ul>
                         <li>
-                            <Link to="/home">Home</Link>
+                            <Link className='Senior_home' to="/home">Home</Link>
                         </li>
                       
                         <li>
-                            <Link to="/viewprofile">Profile</Link>
+                            <Link className= 'Senior_profile' to="/Senior_Profile">Profile</Link>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@ export default function Senior_Navbar() {
                 <div className='Senior-media-links'>
                     <ul className='Senior-ul-links-desktop'>
                         <li>
-                            <Link to="/" onClick={handleLogout}><p>Logout</p></Link>
+                            <Link to="/" className='Senior-logout' onClick={handleLogout}><p>Logout</p></Link>
                         </li>
                         <li>
                             <FaUser style={{ color: 'ffffff' }} />

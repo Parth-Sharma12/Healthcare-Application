@@ -38,6 +38,7 @@ import YourPosts from "./Doctor/Pages/YourPosts/YourPosts.jsx";
 import { AppointmentProvider } from "./Doctor/Context/AppointmentContext.js";
 import UpdatePassword_resp from "./Responder/components/UpdatePassword/UpdatePassword_resp.js";
 import { ChatModal } from "./Senior_Doctor/components/ChatModal/ChatModal.js";
+import { Senior_Profile } from "./Senior_Doctor/components/Senior_Profile/Senior_Profile.js";
 //Logic to implement role based routing
 function App() {
   const [userId, setUserId] = useState(window.localStorage.getItem('userId') || false);
@@ -97,21 +98,21 @@ return (
         element={
           isLoggedIn ? (
             role === "DOCTOR" ? (
-              !isSenior ? (
+              isSenior ? (
                 <Senior_Home/>
               ) :
               <DoctorHome />
             ) : role === "ADMIN" ? (
               <AdminHome />
             ) : role === "MODERATOR" ? (
-              Firstrole ? (
+              !Firstrole ? (
                  <UpdatePasswordPage />
                 // <ChatModal />
               ) : (
                 // <Senior_Home />
                 <MFlaggedPosts />
               )
-            ) : role === "RESPONDER" ? Firstrole ? (
+            ) : role === "RESPONDER" ? !Firstrole ? (
               <UpdatePassword_resp />
             ) : (
               <RHome />
@@ -135,11 +136,15 @@ return (
       <Route path="/moderators" exact element={role === 'ADMIN' && isLoggedIn ? <Moderator /> : <InvalidRole />} />
       <Route path="/requests" exact element={role === 'ADMIN' && isLoggedIn ? <Requests /> : <InvalidRole />} />
       <Route path="/logout" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
+      <Route path="/profile" exact element={role === 'ADMIN' && isLoggedIn ? <Profile formType="Profile"/> : <InvalidRole />} />
+      <Route path="/AddModerator" exact element={role === 'ADMIN' && isLoggedIn ? <Profile formType="AddModerator"/> : <InvalidRole />} />
+      <Route path="/AddResponder" exact element={role === 'ADMIN' && isLoggedIn ? <Profile formType="AddResponder"/> : <InvalidRole />} />
       <Route path="/profile" exact element={role === 'ADMIN' && isLoggedIn ? <Profile /> : <InvalidRole />} />
       <Route path="/QnA" exact element={role === 'MODERATOR' && isLoggedIn ? <QnA /> : <InvalidRole />} />
       <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
       <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
       <Route path="/Responder_Profile" exact element={role === 'RESPONDER' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
+      <Route path="/Senior_Profile" exact element={role === 'DOCTOR' && !isSenior && isLoggedIn ? <Senior_Profile /> : <InvalidRole />} />
       <Route path="/Appointment_History/:doctorId" element={isLoggedIn ? <Appointment_History /> : <InvalidRole />} />
     </Routes>
   </Router>
