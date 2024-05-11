@@ -130,7 +130,7 @@ return (
       />
       <Route path="/ViewPosts" exact element={role === 'DOCTOR' && isLoggedIn ? <ViewPosts /> : <InvalidRole />} />
       <Route path="/viewprofile" exact element={role === 'DOCTOR' && isLoggedIn ? <ProfileDetails /> : <InvalidRole />} />
-      <Route path="/PatientDetails" exact element={role === 'DOCTOR' && isLoggedIn ? <PatientDetails /> : <InvalidRole />} />
+      <Route path="/PatientDetails" exact element={role === 'DOCTOR' && isLoggedIn ?<AppointmentProvider> <PatientDetails /> </AppointmentProvider>: <InvalidRole />} />
       <Route path="/chat" exact element={role === 'DOCTOR' && isLoggedIn ? <ChatHome /> : <InvalidRole />} />
       <Route path="/addposts" exact element={role == 'DOCTOR' && isLoggedIn ? <AddPost /> : <InvalidRole />} />
       <Route path="/doctors" exact element={role === 'ADMIN' && isLoggedIn ? <DoctorDetails /> : <InvalidRole />} />
