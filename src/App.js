@@ -101,7 +101,10 @@ return (
               isSenior ? (
                 <Senior_Home/>
               ) :
-              <DoctorHome />
+              <AppointmentProvider>
+                <DoctorHome />
+              </AppointmentProvider>
+              
             ) : role === "ADMIN" ? (
               <AdminHome />
             ) : role === "MODERATOR" ? (
