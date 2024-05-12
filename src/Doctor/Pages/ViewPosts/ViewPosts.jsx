@@ -18,6 +18,20 @@ export default function ViewPosts() {
     const authToken = JSON.parse(localStorage.getItem("authToken"));
     const userId = authToken ? parseInt(authToken.userId) : null;
     const token = authToken ? authToken.accessToken : '';
+
+    const addCommentToPost = (postId, comment) => {
+        console.log("function called");
+        // Find the post in the state and update its comments
+        const updatedPosts = posts.map(post => {
+            if (post.id === postId) {
+                return { ...post, comments: [...post.comments, comment] };
+            }
+            return post;
+        });
+        console.log("updated posts are",updatedPosts);
+        setPosts(updatedPosts);
+    };
+
     useEffect(() => {
         // Fetch posts from the backend
         async function fetchPosts() {
@@ -103,6 +117,7 @@ export default function ViewPosts() {
                 comments={postComments}
                 onClose={() => setIsModalOpen(false)}
                 postId={postId}
+                addCommentToPost={addCommentToPost}
             />
             {isSuccessModalOpen && (
                 <div className="success-modal">

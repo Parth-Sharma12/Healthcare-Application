@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './CommentModal.css';
 import { TiTick } from "react-icons/ti";
 import axios from 'axios'
 import { BaseUrl } from '../../../BaseUrl';
 import { GiConsoleController } from 'react-icons/gi';
-const CommentModal = ({ isOpen, comments, onClose,postId}) => {
+const CommentModal = ({ isOpen, comments, onClose,postId,addCommentToPost}) => {
   console.log("post id is",postId);
   const [newComment, setNewComment] = useState('');
   const [addSuccess,setAddSuccess]=useState(false);
@@ -13,8 +13,12 @@ const CommentModal = ({ isOpen, comments, onClose,postId}) => {
   const token = authToken ? authToken.accessToken : '';
   const userId = authToken ? parseInt(authToken.userId) : null;
 
-  if (!isOpen) return null;
+  // Ensure re-render when isOpen prop changes
+//   useEffect(() => {
+//     setNewComment(''); // Reset new comment input field when modal opens
+// }, [comments]);
 
+if (!isOpen) return null;
   //method to show time in format like 2 days ago etc.
   const formatTimeAgo = (dateString) => {
     const date = new Date(dateString);
@@ -54,13 +58,15 @@ const CommentModal = ({ isOpen, comments, onClose,postId}) => {
         // Make a POST request to your backend API endpoint to add the comment
         const response = await axios.post(`${BaseUrl}/api/post/add-comment`, commentData, {
           headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization':`Bearer ${token}`
           }
       });
 
         // Check if the comment was added successfully
         if (response.status === 201) {
             console.log('Comment added successfully:', newComment);
+            // Call addCommentToPost function to update the state with the new comment
+            addCommentToPost(postId, commentData);
             // Clear the input field after submission
             setNewComment('');
             // Open the comment success modal

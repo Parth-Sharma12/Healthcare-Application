@@ -128,3 +128,8 @@
     align-items: flex-end;
   }
 }
+.form-check-terms{
+  padding-left: 1.25rem;
+  padding-top: 0rem;
+  margin-bottom: 1rem;
+}
