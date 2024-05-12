@@ -3,10 +3,10 @@
   align-items: center;
   background-color: #ceebee; /* Light gray background */
   border-radius: 12px;
-  padding: 20px;
+  /* padding: .001vw; */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-  width: 35vw; /* Width in viewport width */
+  width: 30vw; /* Width in viewport width */
   height: 45vh; /* Height in viewport height */
 }
 
@@ -19,7 +19,7 @@
     width: 10vw; /* 10% of viewport width */
     height: 10vw; /* 10% of viewport width */
     border-radius: 50%;
-    margin-right: 1vw; /* 2.5% of viewport width */
+    margin-right: 0.3vw; /* 2.5% of viewport width */
     object-fit: cover; /* Ensure the image fills the circle */
 }
 
@@ -28,7 +28,7 @@
   }
   
   .Senior1-details h2 {
-    font-size: 5vh; /* Larger font size relative to viewport height */
+    font-size: 3.5vh; /* Larger font size relative to viewport height */
     margin-bottom: 3vh; /* Slightly more spacing relative to viewport height */
     font-family: 'Arial', sans-serif; /* Change font to Arial */
     color: #333333; /* Dark gray text color */

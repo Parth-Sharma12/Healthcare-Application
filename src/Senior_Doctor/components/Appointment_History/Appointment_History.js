@@ -3,6 +3,7 @@ import './Appointment_History.css';
 import Senior_Navbar from '../Senior_Navbar/Senior_Navbar';
 import axios from 'axios'; // Import Axios
 import { useParams } from 'react-router-dom';
+import { ChatModal } from '../ChatModal/ChatModal';
 
 export const Appointment_History = () => {
     const { doctorId } = useParams();
@@ -10,6 +11,8 @@ export const Appointment_History = () => {
 
     const [appointments, setAppointments] = useState([]);
     const [doctorInfo, setDoctorInfo] = useState(null);
+    const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+    const [showChatModal, setShowChatModal] = useState(false);
 
     useEffect(() => {
         console.log('Inside useEffect');
@@ -36,7 +39,7 @@ export const Appointment_History = () => {
                             'Authorization': `Bearer ${token}`
                         }
                     });
-                    console.log(appointmentsResponse);
+                    console.log(appointmentsResponse.data);
                     setAppointments(appointmentsResponse.data);
                 } catch (error) {
                     console.error('Error fetching data:', error);
@@ -49,6 +52,12 @@ export const Appointment_History = () => {
 
     const handleViewChat = (appointment_id) => {
         console.log(`View Chat for appointment ${appointment_id}`);
+        setSelectedAppointmentId(appointment_id);
+        setShowChatModal(true);
+    };
+
+    const handleCloseChatModal = () => {
+        setShowChatModal(false);
     };
 
     return (
@@ -65,14 +74,22 @@ export const Appointment_History = () => {
             <div className="Appointment-History-container">
                 <h2 className="Appointment-History-title">Appointment History</h2>
                 <ul className="Appointment-History-list">
-                    {appointments.map((appoint, index) => ( // Use the second argument of map() as the index
-                        <li key={appoint} className="Appointment-History-item">
-                            <p>Patient ID: {index + 1}</p> {/* Use the index provided by map() */}
-                            <button className='Senior3-Viewchat' onClick={() => handleViewChat(appoint.appointment_id)}>View Chat</button>
+                    {appointments.map((appoint, index) => (
+                        <li key={appoint.appointment_id} className="Appointment-History-item">
+                            <p> Patient ID: {index + 1}</p>
+                            <button className='Senior3-Viewchat' onClick={() => handleViewChat(appoint)}>View Chat</button>
                         </li>
                     ))}
                 </ul>
             </div>
+            {showChatModal && (
+                <ChatModal
+                    show={showChatModal}
+                    handleClose={handleCloseChatModal}
+                    userIdDoc={doctorId}
+                    userIdPatient={selectedAppointmentId}
+                />
+            )}
         </div>
     );
 };

@@ -1,0 +1,62 @@
+/* ChatModal Container */
+.senior-modal {
+    position: relative; /* Set position to relative */
+    background-color: #f8f9fa; /* Light gray background */
+    width: 80vw;
+    max-width: 500px; /* Limit the maximum width of the modal */
+    padding: 20px; /* Add padding for better readability */
+    border-radius: 10px; /* Add rounded corners */
+    margin-top: 3vh;
+    margin-left: 3vw;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smoother appearance */
+  }
+  
+  /* Close button */
+  .senior-close-btn {
+    position: absolute; /* Set position to absolute */
+    top: 10px; /* Adjust top position */
+    right: 10px; /* Adjust right position */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove border */
+    font-size: 16px; /* Adjust font size */
+    cursor: pointer; /* Set cursor to pointer */
+  }
+  
+  /* Left-aligned message */
+  .senior-left-message {
+    display: flex;
+    align-items: flex-start; /* Align items to the start (left) */
+    margin-bottom: 10px; /* Add spacing between messages */
+  }
+  
+  .senior-left-message p {
+    background-color: #e0e0e0; /* Light gray background for left messages */
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%; /* Limit the width of the message container */
+    word-wrap: break-word; /* Allow words to break and wrap onto the next line */
+  }
+  
+  /* Right-aligned message */
+  .senior-right-message {
+    display: flex;
+    justify-content: flex-end; /* Align messages to the right */
+    align-items: flex-start; /* Align items to the start (right) */
+    margin-bottom: 10px; /* Add spacing between messages */
+  }
+  
+  .senior-right-message p {
+    background-color: #c9f0ff; /* Light blue background for right messages */
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%; /* Limit the width of the message container */
+    word-wrap: break-word;
+  }
+  
+  /* Hover effect for the modal */
+  .senior-modal:hover {
+    transform: translateY(-5px); /* Move the modal up slightly */
+    opacity: 0.9; /* Reduce opacity on hover */
+  }
+  

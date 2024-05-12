@@ -66,9 +66,11 @@ export default function Login({ setRole, setIsLoggedIn }) {
             }
 
           );
+          
           console.log(moderatorResponderResponse);
           const isFirstLogin = moderatorResponderResponse.data.firstLogin;
           window.localStorage.setItem("FirstLogin", isFirstLogin);
+          console.log(isFirstLogin);
           console.log(isFirstLogin);
         }
         navigate("/home");

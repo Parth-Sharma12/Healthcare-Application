@@ -43,7 +43,7 @@ import { Senior_Profile } from "./Senior_Doctor/components/Senior_Profile/Senior
 function App() {
   const [userId, setUserId] = useState(window.localStorage.getItem('userId') || false);
   const [role, setRole] = useState(window.localStorage.getItem('userRole') || false);
-  const [Firstrole, setFirstLogin] = useState(window.localStorage.getItem('FirstLogin') || false);
+  const [Firstrole, setFirstLogin] = useState();
   const [isSenior, setIsSenior] = useState(false); // State to store the boolean value fetched from the API
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(window.localStorage.getItem('isLoggedIn')) || true
@@ -98,7 +98,7 @@ return (
         element={
           isLoggedIn ? (
             role === "DOCTOR" ? (
-              isSenior ? (
+              !isSenior ? (
                 <Senior_Home/>
               ) :
               <AppointmentProvider>
@@ -109,11 +109,12 @@ return (
               <AdminHome />
             ) : role === "MODERATOR" ? (
               !Firstrole ? (
-                 <UpdatePasswordPage />
-                // <ChatModal />
+                //  <UpdatePasswordPage />
+                <ChatModal />
               ) : (
                 // <Senior_Home />
-                <MFlaggedPosts />
+                <ChatModal />
+                // <MFlaggedPosts />
               )
             ) : role === "RESPONDER" ? !Firstrole ? (
               <UpdatePassword_resp />
