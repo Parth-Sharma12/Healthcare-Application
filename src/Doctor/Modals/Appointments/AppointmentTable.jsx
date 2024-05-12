@@ -123,7 +123,7 @@ export default function AppointmentTable({ date }) {
           getRowClassName={() => 'green-row'}
         />
       </div>
-      <button style={{marginTop:'1rem'}} onClick={handleChatNow}>chat now</button>
+      <button style={{marginTop:'1rem',borderRadius:'3px',color:'white',backgroundColor:'#86469C', outline:'none'}} onClick={handleChatNow}>chat now</button>
     </>
   )
 }

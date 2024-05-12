@@ -5,7 +5,10 @@ import axios from 'axios'
 import { BaseUrl } from '../../../BaseUrl'
 import { Tooltip, BarChart, CartesianGrid, Bar, PieChart, Pie, FunnelChart, Funnel, LabelList, Legend, XAxis, YAxis, LineChart, Line,Label, ResponsiveContainer } from 'recharts'
 export default function HomeRightBar() {
-  
+  const doctors=0;
+  const patients=0;
+  const moderators=0;
+  const responders=0;
   const [data02,setData2] =useState([
     {
       "name": "Patients",
@@ -82,7 +85,7 @@ export default function HomeRightBar() {
       "fill": "#FB9AD1"
     },
     {
-      "value": 50,
+      "value": 7,
       "name": "Senior Doctors",
       "fill": "#BC7FCD"
     },
@@ -99,31 +102,31 @@ export default function HomeRightBar() {
   ]);
   const data5 = [
     {
-      "name": "Page A",
+      "name": "Doctors",
       "uv": 4000,
       "pv": 2400,
       "amt": 2400
     },
     {
-      "name": "Page B",
+      "name": "Moderators",
       "uv": 3000,
       "pv": 1398,
       "amt": 2210
     },
     {
-      "name": "Page C",
+      "name": "Responders",
       "uv": 2000,
       "pv": 9800,
       "amt": 2290
     },
     {
-      "name": "Page D",
+      "name": "Senior Doctors",
       "uv": 2780,
       "pv": 3908,
       "amt": 2000
     },
     {
-      "name": "Page E",
+      "name": "Patients",
       "uv": 1890,
       "pv": 4800,
       "amt": 2181
@@ -160,6 +163,7 @@ export default function HomeRightBar() {
         });
         //find total number of doctors and update the data
         const doctorsCount=doctorsResponse.data.length;
+        //doctors=doctorsCount;
         const patientsCount=patientResponse.data.length;
         const moderatorsCount=moderatorResponse.data.length;
         const respondersCount=responderResponse.data.length;
@@ -211,7 +215,7 @@ export default function HomeRightBar() {
           <div className='itemContainer1'>
             <div className='subItemContainer'>
               <p className='taskProgress'>Doctors</p>
-              <p className='taskCounter1'>115</p>
+              <p className='taskCounter1'>{data4[0].value}</p>
               <p className='currentMonth1'>Current Month</p>
             </div>
             <div className='pieChartContainer'>
@@ -240,7 +244,7 @@ export default function HomeRightBar() {
           <div className='itemContainer1'>
             <div className='subItemContainer'>
               <p className='taskProgress'>Moderators</p>
-              <p className='taskCounter2'>115</p>
+              <p className='taskCounter2'>{data4[4].value}</p>
               <p className='currentMonth1'>Current Month</p>
             </div>
             <div className='barChartContainer'>
@@ -254,7 +258,7 @@ export default function HomeRightBar() {
           <div className='itemContainer1'>
             <div className='subItemContainer'>
               <p className='taskProgress'>Patients</p>
-              <p className='taskCounter3'>200</p>
+              <p className='taskCounter3'>{data4[1].value}</p>
               <p className='currentMonth1'>Current Month</p>
             </div>
             <div className='pieChartContainer'>

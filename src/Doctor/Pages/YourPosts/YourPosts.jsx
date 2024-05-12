@@ -58,7 +58,7 @@ export default function YourPosts() {
         console.log("post id in your post is",postId);
         try {
             const response = await axios.delete(`${BaseUrl}/api/post/delete/${postId}`,{
-                data:userId,
+                data:{"userId":userId},
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

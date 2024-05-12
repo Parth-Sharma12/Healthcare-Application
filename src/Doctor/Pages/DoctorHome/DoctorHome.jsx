@@ -112,7 +112,7 @@ export default function DoctorHome() {
             </div>
             <div className="greeting-text">
               <div><p>Hi Doctor!!!</p></div>
-              <div><p>Have a great day at work...</p><button className='notifications-button'>view notifications</button></div>
+              <div><p>Have a great day at work...</p><button className='notifications-button'>Welcome On Board</button></div>
             </div>
           </div>         
           <CalenderComponent onDateSelect={handleDateSelect}/>

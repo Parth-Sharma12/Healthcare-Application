@@ -81,7 +81,7 @@ export default function ProfileDetails(props) {
                 password: ''
             });
             // Display success message
-            setSuccessMessage('An email has been sent to reset the password.');
+            setSuccessMessage('Moderator has been added successfully.');
         // Clear success message after 2 seconds
         setTimeout(() => {
             setSuccessMessage('');
@@ -124,7 +124,7 @@ export default function ProfileDetails(props) {
                 password: ''
             });
             // Display success message
-            setSuccessMessage('An email has been sent to reset the password.');
+            setSuccessMessage('Responder has been added successfully.');
         // Clear success message after 2 seconds
         setTimeout(() => {
             setSuccessMessage('');
@@ -155,30 +155,30 @@ export default function ProfileDetails(props) {
                             <form>
                                 <h3>{formType === 'Profile' ? 'Your Profile' : formType === 'AddModerator' ? 'Add Moderator' : 'Add Responder'}</h3>
                                 <div className="form-group-profile-admin">
-                                    <input type="text" placeholder='First Name' className='form-control-profile-admin' />
-                                    <input type="text" placeholder='Middle Name' className='form-control-profile-admin' />
-                                    <input type="text" placeholder='Last Name' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='First Name' className='form-control-profile-admin' value="Smit" />
+                                    <input type="text" placeholder='Middle Name' className='form-control-profile-admin' value="Kumar" />
+                                    <input type="text" placeholder='Last Name' className='form-control-profile-admin' value="Mehta" />
                                 </div>
                                 <div className="form-wrapper-profile-admin">
-                                    <input type="text" placeholder='Email Address' className='form-control-profile-admin' readOnly />
+                                    <input type="text" placeholder='Email Address' className='form-control-profile-admin' value="admin@gmail.com" readOnly />
                                 </div>
                                 <div className="form-wrapper-profile-admin">
-                                    <input type="text" placeholder='Mobile No.' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='Mobile No.' className='form-control-profile-admin' value="9617077335" />
                                 </div>
                                 <div className="form-wrapper-profile-admin">
-                                    <input type="text" placeholder='Address' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='Address' className='form-control-profile-admin' value="Ahmedabad" />
                                 </div>
                                 <div className="form-wrapper-profile-admin">
-                                    <input type="text" placeholder='Consultation Fee' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='DOB' className='form-control-profile-admin' value="23/10/2000"/>
                                 </div>
-                                <div className="form-wrapper-profile-admin">
+                                {/* <div className="form-wrapper-profile-admin">
                                     <input type="text" placeholder='Gender' className='form-control-profile-admin' />
                                 </div>
                                 <div className="form-wrapper-profile-admin">
                                     <input type="text" placeholder='License No.' className='form-control-profile-admin' />
-                                </div>
+                                </div> */}
                                 <div className="form-wrapper-profile-admin">
-                                    <input type="text" placeholder='Description' className='form-control-profile-admin' />
+                                    <input type="text" placeholder='Description' className='form-control-profile-admin' value="Administrator"/>
                                 </div>
                                 <div className='view-profile-buttons-admin'>
                                     <button className='view-profile-button-admin'>Edit</button>
