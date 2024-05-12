@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { BaseUrl } from "./BaseUrl.js";
+import axios from 'axios';
+
 
 import Login from "./Login/Login";
 import Register from "./Doctor/Pages/Register/Register";
-import React, { axios , useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DoctorHome from "./Doctor/Pages/DoctorHome/DoctorHome";
 import ViewPosts from "./Doctor/Pages/ViewPosts/ViewPosts"
 import ProfileDetails from './Doctor/Pages/ProfileDetails/ProfileDetails'
@@ -43,45 +45,35 @@ import { Senior_Profile } from "./Senior_Doctor/components/Senior_Profile/Senior
 function App() {
   const [userId, setUserId] = useState(window.localStorage.getItem('userId') || false);
   const [role, setRole] = useState(window.localStorage.getItem('userRole') || false);
-  const [Firstrole, setFirstLogin] = useState();
-  const [isSenior, setIsSenior] = useState(false); // State to store the boolean value fetched from the API
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(window.localStorage.getItem('isLoggedIn')) || true
-  );
+  const [FirstLogin, setFirstLogin] = useState(JSON.parse(window.localStorage.getItem('FirstLogin')));
+  console.log(FirstLogin);
+  const [isSenior, setIsSenior] = useState(JSON.parse(window.localStorage.getItem('IsSenior')));
+  console.log(isSenior)
   
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    JSON.parse(window.localStorage.getItem('isLoggedIn'))
+  );
+ // CORRECT VALUE UNTIL HERE
   console.log(userId);
-  console.log(Firstrole);
+  // console.log(Firstrole);
+  // setFirstLogin(Firstrole);
   useEffect(() => {
     const storedRole = window.localStorage.getItem("userRole");
     const storedLoggedIn = JSON.parse(window.localStorage.getItem('isLoggedIn'));
-    const isFirst = window.localStorage.getItem('FirstLogin');
-    console.log(Firstrole);
+    const storedIsSenior = JSON.parse(window.localStorage.getItem('IsSenior'));
+    console.log(storedIsSenior)
+    console.log(storedRole)
+    console.log(storedLoggedIn)
+    // setFirstLogin(window.localStorage.getItem('FirstLogin'));
+    // const isFirst = window.localStorage.getItem('FirstLogin');
+    // console.log(Firstrole);
+    // setFirstLogin(isFirst);
+
     if (storedRole !== null && storedLoggedIn !== null) {
       setRole(storedRole);
       setIsLoggedIn(storedLoggedIn);
-      setFirstLogin(isFirst);
-    }
-    const fetchSeniorStatus = async () => {
-      try {
-        const token = window.localStorage.getItem('authToken'); // Assuming you have stored the auth token in localStorage
-        if (!token) {
-          throw new Error("Authentication token not found.");
-        }
-
-        const response = await axios.get(`${BaseUrl}/api/doctor/is-senior/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}` // Pass the token in the Authorization header
-          }
-        });
-
-        setIsSenior(response.data.isSenior);
-      } catch (error) {
-        console.error("Error fetching senior status:", error);
-      }
-    };
-
-    if (userId && role === "DOCTOR") {
-      fetchSeniorStatus();
+      setIsSenior(storedIsSenior);
+      console.log(isSenior)
     }
   }, [userId]);
 
@@ -95,32 +87,29 @@ return (
       <Route path="/register" exact element={<Register setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
       <Route
         path="/home"
-        element={
+        element={   
           isLoggedIn ? (
+          <> {console.log("IsSenior value:", isSenior)}</>,
             role === "DOCTOR" ? (
-              !isSenior ? (
-                <Senior_Home/>
-              ) :
-              <AppointmentProvider>
-                <DoctorHome />
-              </AppointmentProvider>
-              
+              isSenior ? <Senior_Home /> : <AppointmentProvider> <DoctorHome /></AppointmentProvider>
             ) : role === "ADMIN" ? (
               <AdminHome />
             ) : role === "MODERATOR" ? (
-              !Firstrole ? (
-                //  <UpdatePasswordPage />
-                <ChatModal />
+              FirstLogin? (
+                <UpdatePasswordPage />
+          
               ) : (
-                // <Senior_Home />
-                <ChatModal />
-                // <MFlaggedPosts />
+                
+                <MFlaggedPosts />
               )
-            ) : role === "RESPONDER" ? !Firstrole ? (
-              <UpdatePassword_resp />
-            ) : (
-              <RHome />
-              // <UpdatePassword_resp/>
+            ) : role === "RESPONDER" ? (
+              FirstLogin === "true" ? (
+                <UpdatePassword_resp />
+               
+              ) : (
+                <RHome />
+                
+              )
             ) : (
               <InvalidRole />
             )
@@ -148,7 +137,7 @@ return (
       <Route path="/Moderator_Profile" exact element={role === 'MODERATOR' && isLoggedIn ? <Moderator_Profile /> : <InvalidRole />} />
       <Route path="/RUnanswered" exact element={role === 'RESPONDER' && isLoggedIn ? <RUnanswered /> : <InvalidRole />} />
       <Route path="/Responder_Profile" exact element={role === 'RESPONDER' && isLoggedIn ? <Responder_Profile /> : <InvalidRole />} />
-      <Route path="/Senior_Profile" exact element={role === 'DOCTOR' && !isSenior && isLoggedIn ? <Senior_Profile /> : <InvalidRole />} />
+      <Route path="/Senior_Profile" exact element={role === 'DOCTOR'  && isLoggedIn ? <Senior_Profile /> : <InvalidRole />} />
       <Route path="/Appointment_History/:doctorId" element={isLoggedIn ? <Appointment_History /> : <InvalidRole />} />
     </Routes>
   </Router>

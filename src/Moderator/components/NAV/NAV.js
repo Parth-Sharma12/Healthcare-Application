@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 export const NAV = () => {
     const handleLogout = () =>{
-      localStorage.removeItem("authToken");
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('userRole');
+      localStorage.clear();
       // Redirect to the login page or any other appropriate page after logout
     }
     const linkStyle = {

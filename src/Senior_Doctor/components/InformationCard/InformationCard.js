@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const InformationCard = ({ Doctorinfo }) => {
   return (
     <div className="Senior1-doctor-card">
-      <img src='/images/adminpanel.png' className="Senior1-profile-photo" />
+      <img src={Doctorinfo.image} alt="" className="Senior1-profile-photo" />
       <div className="Senior1-details">
         <h2>{"Dr." + Doctorinfo.firstName + " " + Doctorinfo.lastName}</h2>
         <p><b>Doctor-Id </b>: {Doctorinfo.userId}</p>

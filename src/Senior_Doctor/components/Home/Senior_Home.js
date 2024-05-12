@@ -3,7 +3,7 @@ import './Senior_Home.css';
 import Senior_Navbar from '../Senior_Navbar/Senior_Navbar';
 import { InformationCard } from '../InformationCard/InformationCard';
 import axios from 'axios'; // Import Axios library
-
+import { BaseUrl } from '../../../BaseUrl';
 export const Senior_Home = () => {
   // Define state to store the fetched doctors data
   const [doctors, setDoctors] = useState([]);
@@ -18,13 +18,14 @@ export const Senior_Home = () => {
 
         const userId = parseInt(token.userId);
         // Make a GET request to fetch doctors data from backend using Axios
-        const response = await axios.get('http://localhost:8082/api/appointment/doctors', {
+        const response = await axios.get(`${BaseUrl}/api/appointment/doctors`, {
           headers: {
             'Authorization': `Bearer ${token}` // Include the auth token in the header
           }
         });
         const data = response.data; // Extract data from Axios response
         console.log(data);
+        console.log(token);
         setDoctors(data); // Update state with fetched doctors data
       } catch (error) {
         console.error('Error fetching doctors:', error);

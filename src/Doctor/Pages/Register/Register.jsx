@@ -104,7 +104,7 @@ export default function Register({ setRole, setIsLoggedIn }) {
         window.localStorage.setItem("authToken", JSON.stringify(authToken));
         window.localStorage.setItem("userRole", role);
         window.localStorage.setItem("isLoggedIn",true);
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       if (error.response.status === 409) {

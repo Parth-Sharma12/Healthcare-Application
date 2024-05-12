@@ -4,8 +4,9 @@ import CommentModal from '../../../Doctor/Modals/CommentModal/CommentModal';
 import './MPostCard.css'; // Add styles for your post card here
 import { use } from 'i18next';
 
-export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uploaded_at,onUnflag,Comments }) => {
+export const MPostCard = ({ title, description, imageSrc, userName, onDisable, uploaded_at, onUnflag, Comments, ByAI }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleString(); // You can customize the format further if needed
@@ -28,21 +29,24 @@ export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uplo
 
   return (
     <div className="post-card">
-        
-        <div className='Header'>
+
+      <div className='Header'>
         <div className="user-name">
-            <p>{userName}</p>
+          <p>{userName}</p>
         </div>
         <div className="post-time">
-            <p>{formatTimestamp(uploaded_at)}</p>
-          </div>
+          <p>{formatTimestamp(uploaded_at)}</p>
         </div>
-        
-      <div className="flag-indicator">
-        <span>Flagged Post</span>
       </div>
+
+      {ByAI === 1 && ( // Conditionally render "Flagged by AI" text
+        <div className="flag-indicator">
+          <span>Flagged by AI</span>
+        </div>
+      )}
+
       <div className="content-box">
-      
+
         <div className='Title'>
           <h3>{title}</h3>
         </div>
@@ -74,16 +78,15 @@ export const MPostCard = ({ title, description,imageSrc,userName, onDisable,uplo
             )}
           </div>
         </div>
-         
-          <div className="button-container">
-            <button className='btn-disable' onClick={onDisable}>Disable</button>
-            <button className='btn-disable' onClick={onUnflag}>Unflag</button>
-            <button className='btn-disable' onClick={handleCommentsClick}>Comments</button>
-          </div>
+
+        <div className="button-container">
+          <button className='btn-disable' onClick={onDisable}>Disable</button>
+          <button className='btn-disable' onClick={onUnflag}>Unflag</button>
+          <button className='btn-disable' onClick={handleCommentsClick}>Comments</button>
         </div>
-        <CommentModal isOpen={isModalOpen} onClose={handleCloseModal}  comments={Comments} />
       </div>
-   
+      <CommentModal isOpen={isModalOpen} onClose={handleCloseModal} comments={Comments} />
+    </div>
   );
 };
 

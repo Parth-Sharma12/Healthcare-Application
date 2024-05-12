@@ -10,7 +10,20 @@
     margin-left: 3vw;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
     transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smoother appearance */
+
   }
+  .senior-modal-content {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden; /* Hide overflowing content */
+  }
+  
+  .senior-modal-body {
+    padding: 20px;
+    overflow-y: auto; /* Make the body scrollable vertically */
+    max-height: 500px; /* Set a maximum height for the scrollable area */
+  }
+  
   
   /* Close button */
   .senior-close-btn {
@@ -31,8 +44,9 @@
   }
   
   .senior-left-message p {
-    background-color: #e0e0e0; /* Light gray background for left messages */
+    background-color:  #86469C; /* Light gray background for left messages */
     padding: 10px;
+    color: white;
     border-radius: 10px;
     max-width: 70%; /* Limit the width of the message container */
     word-wrap: break-word; /* Allow words to break and wrap onto the next line */
@@ -47,7 +61,7 @@
   }
   
   .senior-right-message p {
-    background-color: #c9f0ff; /* Light blue background for right messages */
+    background-color: rgb(198, 206, 236); /* Light blue background for right messages */
     padding: 10px;
     border-radius: 10px;
     max-width: 70%; /* Limit the width of the message container */
@@ -59,4 +73,72 @@
     transform: translateY(-5px); /* Move the modal up slightly */
     opacity: 0.9; /* Reduce opacity on hover */
   }
-  
+  /* ChatModal.css */
+.chat-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.chat-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.senior-modal {
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  /* transform: translate(-50%, -50%); */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px; /* Adjust the maximum width as needed */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.senior-modal-content {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.senior-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc; /* Example border */
+}
+
+.senior-modal-header h3 {
+  margin: 0;
+}
+
+.senior-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #555; /* Example color */
+}
+
+.senior-close-btn:hover {
+  color: #333; /* Example color on hover */
+}
+
+.senior-modal-body {
+  padding: 20px;
+}

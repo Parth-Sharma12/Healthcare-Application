@@ -10,6 +10,7 @@ export default function Navbar() {
         localStorage.removeItem("authToken");
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userRole');
+        localStorage.clear();
       };
     const [showMediaIcons, setShowMediaIcons] = useState(false);
   return (

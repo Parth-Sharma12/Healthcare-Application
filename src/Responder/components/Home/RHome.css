@@ -70,10 +70,12 @@
   
   .resp1-circle1 {
     margin-left: 2vw;
+    margin-bottom: 2vh;
   }
   
   .resp1-circle2 {
     margin-left: 5vw;
+    margin-bottom: 2vh;
   }
   
   .resp1-circle1:hover,

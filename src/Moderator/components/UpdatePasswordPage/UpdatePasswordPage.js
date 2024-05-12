@@ -20,9 +20,7 @@ export const UpdatePasswordPage = () => {
 
 
    const handleLogout = () =>{
-        localStorage.removeItem("authToken");
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userRole');
+       localStorage.clear();
     // Redirect to the login page or any other appropriate page after logout
     
     }

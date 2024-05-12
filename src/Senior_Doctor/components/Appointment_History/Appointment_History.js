@@ -4,7 +4,7 @@ import Senior_Navbar from '../Senior_Navbar/Senior_Navbar';
 import axios from 'axios'; // Import Axios
 import { useParams } from 'react-router-dom';
 import { ChatModal } from '../ChatModal/ChatModal';
-
+import { BaseUrl } from '../../../BaseUrl';
 export const Appointment_History = () => {
     const { doctorId } = useParams();
     console.log("Doctor ID in Appointment History:", doctorId);
@@ -25,7 +25,7 @@ export const Appointment_History = () => {
                     const token = authToken ? authToken.accessToken : '';
 
                     // Fetch doctor info
-                    const doctorResponse = await axios.get(`http://localhost:8082/api/doctor/doctorbyid/${doctorId}`, {
+                    const doctorResponse = await axios.get(`${BaseUrl}/api/doctor/doctorbyid/${doctorId}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -34,7 +34,7 @@ export const Appointment_History = () => {
                     setDoctorInfo(doctorResponse.data);
 
                     // Fetch appointments
-                    const appointmentsResponse = await axios.get(`http://localhost:8082/api/doctor/distinct-patient/${doctorId}`, {
+                    const appointmentsResponse = await axios.get(`${BaseUrl}/api/doctor/distinct-patient/${doctorId}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -64,7 +64,7 @@ export const Appointment_History = () => {
         <div>
             <Senior_Navbar />
             <div className="Senior3-Doctor-Info">
-                <img src="/images/adminpanel.png" alt="Doctor" className="Senior3-Doctor-Profile-Pic" />
+            <img src={doctorInfo?.image} alt="" className="Senior3-Doctor-Profile-Pic" />
                 <div className="Senior3-Doctor-Details">
                     <h2>{doctorInfo?.firstName + " " + doctorInfo?.lastName}</h2> {/* Use optional chaining to avoid errors if doctorInfo is null */}
                     <p>Email: {doctorInfo?.user.email}</p>
@@ -82,14 +82,17 @@ export const Appointment_History = () => {
                     ))}
                 </ul>
             </div>
-            {showChatModal && (
-                <ChatModal
-                    show={showChatModal}
-                    handleClose={handleCloseChatModal}
-                    userIdDoc={doctorId}
-                    userIdPatient={selectedAppointmentId}
-                />
-            )}
+            <div className='Chat_modal'>
+                {showChatModal && (
+                    <ChatModal
+                        show={showChatModal}
+                        handleClose={handleCloseChatModal}
+                        userIdDoc={doctorId}
+                        userIdPatient={selectedAppointmentId}
+                    />
+                )}
+            </div>
+
         </div>
     );
 };

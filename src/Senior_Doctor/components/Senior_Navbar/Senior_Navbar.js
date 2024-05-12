@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa"
 export default function Senior_Navbar() {
     const handleLogout = () => {
-        localStorage.removeItem("authToken");
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userRole');
+       
+        localStorage.clear();
+        
     };
     const [showMediaIcons, setShowMediaIcons] = useState(false);
     return (

@@ -28,55 +28,59 @@ export default function Login({ setRole, setIsLoggedIn }) {
       );
       if (response.status === 200) {
         const userId = response.data.userId;
-        console.log(response.data);
-        const token = window.localStorage.getItem('authToken');
         const authToken = {
           accessToken: response.data.accessToken,
           tokenType: response.data.tokenType,
           userId: response.data.userId,
-        };  
+        };
         const role = response.data.userRole;
-        window.localStorage.setItem("userId",authToken.userId);
+        window.localStorage.setItem("userId", authToken.userId);
         window.localStorage.setItem("authToken", JSON.stringify(authToken));
-        //const role = userId === 5 ? 'doctor' : userId === 1 ? 'admin' : userId === 15 ? 'moderator' :userId === 17 ? 'responder': null;
         window.localStorage.setItem("userRole", role);
         window.localStorage.setItem("isLoggedIn", true);
-
+        console.log(role)
         setRole(role);
         setIsLoggedIn(true);
-        console.log(role);
-
+        if (role === "DOCTOR") {
+          try {
+            const token = response.data.accessToken;
+            const seniorStatusResponse = await axios.get(`${BaseUrl}/api/doctor/is-senior/${userId}`, {
+              headers: {
+                Authorization: `Bearer ${token}` // Pass the token in the Authorization header
+              }
+            });
+            console.log(seniorStatusResponse.data)
+            const isSenior = seniorStatusResponse.data;
+            console.log(isSenior)
+            window.localStorage.setItem("IsSenior", isSenior);
+          } catch (error) {
+            console.error("Error fetching senior status:", error);
+          }
+        }
         // Fetch moderator or responder DTO based on the user role
         if (role === "MODERATOR" || role === "RESPONDER") {
           const api_role = role.toLowerCase();
-          console.log(userId);
-          const token = window.localStorage.getItem('authToken');
-          console.log(response.data.accessToken);
           const moderatorResponderResponse = await axios.get(
-            `${BaseUrl}/api/${api_role}/getbyid/${userId}`,{
-              headers: {
-                Authorization: `Bearer ${response.data.accessToken}` // Pass the token in the Authorization header
-              }
+            `${BaseUrl}/api/${api_role}/getbyid/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${response.data.accessToken}` // Pass the token in the Authorization header
             }
-
-          );
-          
-          console.log(moderatorResponderResponse);
+          });
+  
           const isFirstLogin = moderatorResponderResponse.data.firstLogin;
           window.localStorage.setItem("FirstLogin", isFirstLogin);
-          console.log(isFirstLogin);
-          console.log(isFirstLogin);
         }
+  
+       
+        console.log("Done");
         navigate("/home");
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error posting data:", error.response.status);
-      let errorStatus = error.response.status;
       window.localStorage.setItem("isLoggedIn", false);
-      console.log(errorStatus);
     }
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
