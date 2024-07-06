@@ -3,6 +3,8 @@ import Navbar from '../../Components/Navbar/Navbar'
 import '../PatientDetails/PatientDetails.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BaseUrl } from '../../../BaseUrl';
+
 export default function PatientDetails() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -17,7 +19,7 @@ export default function PatientDetails() {
     // Fetch quiz score when the component mounts
     const fetchQuizScores = async () => {
         try {
-            const response = await axios.get(`http://localhost:8082/api/quiz/quiz-score/${patient.userId}`);
+            const response = await axios.get(`${BaseUrl}/api/quiz/quiz-score/${patient.userId}`);
             // Assuming the API response contains an array of quiz scores
             setQuizInfo(response.data);
             //setShowModal(true); // Show the modal after fetching the data
@@ -122,7 +124,7 @@ export default function PatientDetails() {
                                 <ul>
                                     {JSON.parse(quiz.jsonQuizScores).map((question, index) => (
                                         <li key={index + 1}>
-                                            {index+1}: Score: {question.score || 'N/A'}
+                                            {index+1}: Score: {question.score || '0'}
                                         </li>
                                     ))}
                                 </ul>

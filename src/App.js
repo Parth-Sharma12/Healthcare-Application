@@ -45,10 +45,10 @@ import { Senior_Profile } from "./Senior_Doctor/components/Senior_Profile/Senior
 function App() {
   const [userId, setUserId] = useState(window.localStorage.getItem('userId') || false);
   const [role, setRole] = useState(window.localStorage.getItem('userRole') || false);
-  const [FirstLogin, setFirstLogin] = useState(JSON.parse(window.localStorage.getItem('FirstLogin')));
+  const [FirstLogin, setFirstLogin] = useState(JSON.parse(window.localStorage.getItem('FirstLogin'))||false);
   console.log(FirstLogin);
-  const [isSenior, setIsSenior] = useState(JSON.parse(window.localStorage.getItem('IsSenior')));
-  console.log(isSenior)
+  const [isSenior, setIsSenior] = useState(JSON.parse(window.localStorage.getItem('IsSenior')) || false);
+  console.log(isSenior);
   
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(window.localStorage.getItem('isLoggedIn'))
@@ -73,7 +73,7 @@ function App() {
       setRole(storedRole);
       setIsLoggedIn(storedLoggedIn);
       setIsSenior(storedIsSenior);
-      console.log(isSenior)
+      console.log(isSenior);
     }
   }, [userId]);
 
@@ -82,7 +82,7 @@ function App() {
 return (
   <Router>
     <Routes>
-      <Route path="/" exact element={<Login setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
+      <Route path="/" exact element={<Login setIsSenior = {setIsSenior} setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
       <Route path="/forgotpassword" exact element={<ForgotPassword />} />
       <Route path="/register" exact element={<Register setRole={setRole} setIsLoggedIn={setIsLoggedIn} />} />
       <Route
@@ -91,13 +91,13 @@ return (
           isLoggedIn ? (
           <> {console.log("IsSenior value:", isSenior)}</>,
             role === "DOCTOR" ? (
-              isSenior ? <Senior_Home /> : <AppointmentProvider> <DoctorHome /></AppointmentProvider>
+              isSenior?<Senior_Home/>:<AppointmentProvider> <DoctorHome /></AppointmentProvider>
             ) : role === "ADMIN" ? (
               <AdminHome />
             ) : role === "MODERATOR" ? (
               FirstLogin? (
-                <UpdatePasswordPage />
-          
+                // <UpdatePasswordPage />
+                <MFlaggedPosts />
               ) : (
                 
                 <MFlaggedPosts />

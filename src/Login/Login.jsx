@@ -6,7 +6,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { BaseUrl } from '../BaseUrl'
-export default function Login({ setRole, setIsLoggedIn }) {
+export default function Login({ setIsSenior,setRole, setIsLoggedIn }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -57,8 +57,10 @@ export default function Login({ setRole, setIsLoggedIn }) {
             });
             console.log(seniorStatusResponse.data)
             const isSenior = seniorStatusResponse.data;
+
             console.log(isSenior)
             window.localStorage.setItem("IsSenior", isSenior);
+            setIsSenior(isSenior);
           } catch (error) {
             console.error("Error fetching senior status:", error);
           }
